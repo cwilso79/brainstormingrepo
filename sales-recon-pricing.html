@@ -500,6 +500,231 @@
         }
 
         /* ==========================================
+           Pricing Calculator
+           ========================================== */
+        .calculator-section {
+            background: linear-gradient(135deg, var(--color-neutral-light) 0%, var(--color-white) 100%);
+            border: 2px solid var(--color-accent);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        @media (max-width: 900px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calc-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-neutral-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .calc-label-hint {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-xs);
+            display: block;
+            margin-top: var(--space-xs);
+        }
+
+        .calc-select,
+        .calc-input {
+            padding: var(--space-md);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            background: var(--color-white);
+            color: var(--color-neutral-dark);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .calc-select:hover,
+        .calc-input:hover {
+            border-color: var(--color-accent);
+        }
+
+        .calc-select:focus,
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(42, 111, 219, 0.2);
+        }
+
+        .calc-input {
+            -moz-appearance: textfield;
+        }
+
+        .calc-input::-webkit-outer-spin-button,
+        .calc-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Quote Result */
+        .quote-result {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .quote-result-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        @media (max-width: 900px) {
+            .quote-result-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .quote-result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quote-item {
+            text-align: center;
+        }
+
+        .quote-item-label {
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+            margin-bottom: var(--space-xs);
+        }
+
+        .quote-item-value {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+        }
+
+        .quote-item-value.small {
+            font-size: var(--font-size-lg);
+        }
+
+        .quote-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: var(--space-lg) 0;
+        }
+
+        .quote-total-label {
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+            margin-bottom: var(--space-sm);
+        }
+
+        .quote-total-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+        }
+
+        .quote-total-note {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+            margin-top: var(--space-sm);
+        }
+
+        .quote-custom-message {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-top: var(--space-md);
+        }
+
+        .quote-custom-message h4 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .quote-custom-message p {
+            opacity: 0.9;
+            font-size: var(--font-size-sm);
+        }
+
+        /* Calculator Actions */
+        .calc-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            margin-top: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .calc-btn {
+            padding: var(--space-sm) var(--space-lg);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-md);
+            background: transparent;
+            color: var(--color-white);
+            font-family: var(--font-family);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-white);
+        }
+
+        .calc-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Operator symbols between inputs */
+        .calc-operator {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        @media (min-width: 901px) {
+            .calculator-grid-with-operators {
+                grid-template-columns: 1fr auto 1fr auto 1fr;
+            }
+
+            .calc-operator {
+                display: flex;
+            }
+        }
+
+        /* ==========================================
            Sticky Print Button
            ========================================== */
         .print-button {
@@ -629,8 +854,23 @@
                 page-break-before: auto;
             }
 
-            .content-section:nth-of-type(4) {
+            .content-section:nth-of-type(5) {
                 page-break-before: always;
+            }
+
+            /* Calculator in print */
+            .calculator-section {
+                border: 1px solid #E5E7EB;
+            }
+
+            .quote-result {
+                background: #0033A0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .calc-actions {
+                display: none;
             }
 
             .page-footer {
@@ -660,7 +900,8 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#data-features">Data &amp; Features</a></li>
                 <li><a href="#orbis-notes">Orbis Notes</a></li>
-                <li><a href="#price-multipliers">Price Multipliers</a></li>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#price-multipliers">Multipliers</a></li>
             </ul>
         </div>
     </nav>
@@ -773,6 +1014,118 @@
             </section>
         </div>
 
+        <!-- Pricing Calculator Section -->
+        <section id="calculator" class="content-section" aria-labelledby="calculator-title">
+            <p class="section-label">Interactive Tool</p>
+            <h2 class="section-title" id="calculator-title">Pricing Calculator</h2>
+
+            <div class="calculator-section">
+                <div class="calculator-grid calculator-grid-with-operators">
+                    <!-- User Count / Band Selection -->
+                    <div class="calc-field">
+                        <label class="calc-label" for="user-count">
+                            Number of Users
+                            <span class="calc-label-hint">Enter your expected user count</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="user-count" 
+                            class="calc-input" 
+                            min="1" 
+                            placeholder="e.g., 150"
+                            oninput="calculateQuote()"
+                            aria-describedby="user-band-display"
+                        >
+                        <span id="user-band-display" class="calc-label-hint" style="margin-top: 8px; color: var(--color-secondary); font-weight: 500;"></span>
+                    </div>
+
+                    <div class="calc-operator" aria-hidden="true">×</div>
+
+                    <!-- ACV Selection -->
+                    <div class="calc-field">
+                        <label class="calc-label" for="acv-range">
+                            Avg Contract Value (ACV)
+                            <span class="calc-label-hint">Your typical deal size</span>
+                        </label>
+                        <select id="acv-range" class="calc-select" onchange="calculateQuote()">
+                            <option value="">Select ACV range...</option>
+                            <option value="1">&lt; $50k (1x)</option>
+                            <option value="1.1">$50k – $100k (1.1x)</option>
+                            <option value="1.15">$100k – $250k (1.15x)</option>
+                            <option value="1.25">&gt; $250k (1.25x)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-operator" aria-hidden="true">×</div>
+
+                    <!-- Geographic Selection -->
+                    <div class="calc-field">
+                        <label class="calc-label" for="geo-footprint">
+                            Geographic Footprint
+                            <span class="calc-label-hint">Your team's regional spread</span>
+                        </label>
+                        <select id="geo-footprint" class="calc-select" onchange="calculateQuote()">
+                            <option value="">Select coverage...</option>
+                            <option value="1">Single region (1x)</option>
+                            <option value="1.1">Multiregional (1.1x)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quote Result -->
+                <div class="quote-result" id="quote-result" role="region" aria-live="polite" aria-label="Calculated quote">
+                    <div class="quote-result-grid">
+                        <div class="quote-item">
+                            <div class="quote-item-label">User Band</div>
+                            <div class="quote-item-value small" id="result-band">—</div>
+                        </div>
+                        <div class="quote-item">
+                            <div class="quote-item-label">Base Price</div>
+                            <div class="quote-item-value" id="result-base">—</div>
+                        </div>
+                        <div class="quote-item">
+                            <div class="quote-item-label">ACV Multiplier</div>
+                            <div class="quote-item-value small" id="result-acv">—</div>
+                        </div>
+                        <div class="quote-item">
+                            <div class="quote-item-label">Geo Multiplier</div>
+                            <div class="quote-item-value small" id="result-geo">—</div>
+                        </div>
+                    </div>
+
+                    <div class="quote-divider"></div>
+
+                    <div id="quote-standard-result">
+                        <div class="quote-total-label">Estimated Annual Price</div>
+                        <div class="quote-total-value" id="result-total">$0</div>
+                        <div class="quote-total-note" id="result-formula">Enter your details above to calculate</div>
+                    </div>
+
+                    <div id="quote-custom-result" class="quote-custom-message" style="display: none;">
+                        <h4>🤝 Custom Pricing Required</h4>
+                        <p>For organizations with 1,000+ users, we offer tailored enterprise packages. Contact your Moody's representative for a personalized quote.</p>
+                    </div>
+
+                    <div class="calc-actions">
+                        <button class="calc-btn" onclick="copyQuoteToClipboard()" id="copy-quote-btn" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy Quote
+                        </button>
+                        <button class="calc-btn" onclick="resetCalculator()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                <path d="M3 3v5h5"></path>
+                            </svg>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Price Multipliers Section -->
         <section id="price-multipliers" class="content-section" aria-labelledby="multipliers-title">
             <p class="section-label">Pricing Factors</p>
@@ -853,7 +1206,174 @@
 
     <!-- JavaScript -->
     <script>
+        // ==========================================
+        // Pricing Calculator Logic
+        // ==========================================
+        
+        // Pricing data
+        const pricingBands = [
+            { min: 1, max: 49, label: '<50', price: 45000 },
+            { min: 50, max: 249, label: '50–249', price: 225000 },
+            { min: 250, max: 499, label: '250–499', price: 300000 },
+            { min: 500, max: 749, label: '500–749', price: 440000 },
+            { min: 750, max: 999, label: '750–999', price: 615000 },
+            { min: 1000, max: Infinity, label: '>1,000', price: null } // Custom
+        ];
+
+        // Get user band based on count
+        function getUserBand(userCount) {
+            return pricingBands.find(band => userCount >= band.min && userCount <= band.max);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Calculate quote
+        function calculateQuote() {
+            const userCount = parseInt(document.getElementById('user-count').value) || 0;
+            const acvMultiplier = parseFloat(document.getElementById('acv-range').value) || 0;
+            const geoMultiplier = parseFloat(document.getElementById('geo-footprint').value) || 0;
+
+            // Get DOM elements
+            const bandDisplay = document.getElementById('user-band-display');
+            const resultBand = document.getElementById('result-band');
+            const resultBase = document.getElementById('result-base');
+            const resultAcv = document.getElementById('result-acv');
+            const resultGeo = document.getElementById('result-geo');
+            const resultTotal = document.getElementById('result-total');
+            const resultFormula = document.getElementById('result-formula');
+            const standardResult = document.getElementById('quote-standard-result');
+            const customResult = document.getElementById('quote-custom-result');
+            const copyBtn = document.getElementById('copy-quote-btn');
+
+            // Reset if no user count
+            if (userCount <= 0) {
+                bandDisplay.textContent = '';
+                resultBand.textContent = '—';
+                resultBase.textContent = '—';
+                resultAcv.textContent = acvMultiplier ? acvMultiplier + 'x' : '—';
+                resultGeo.textContent = geoMultiplier ? geoMultiplier + 'x' : '—';
+                resultTotal.textContent = '$0';
+                resultFormula.textContent = 'Enter your details above to calculate';
+                standardResult.style.display = 'block';
+                customResult.style.display = 'none';
+                copyBtn.disabled = true;
+                return;
+            }
+
+            // Get band
+            const band = getUserBand(userCount);
+            
+            // Update band display
+            bandDisplay.textContent = `→ Band: ${band.label} users`;
+            resultBand.textContent = band.label;
+
+            // Check for custom pricing
+            if (band.price === null) {
+                resultBase.textContent = 'Custom';
+                resultAcv.textContent = acvMultiplier ? acvMultiplier + 'x' : '—';
+                resultGeo.textContent = geoMultiplier ? geoMultiplier + 'x' : '—';
+                standardResult.style.display = 'none';
+                customResult.style.display = 'block';
+                copyBtn.disabled = true;
+                return;
+            }
+
+            // Update base price
+            resultBase.textContent = formatCurrency(band.price);
+
+            // Update multipliers
+            resultAcv.textContent = acvMultiplier ? acvMultiplier + 'x' : '—';
+            resultGeo.textContent = geoMultiplier ? geoMultiplier + 'x' : '—';
+
+            // Calculate total if all values present
+            if (acvMultiplier && geoMultiplier) {
+                const total = band.price * acvMultiplier * geoMultiplier;
+                resultTotal.textContent = formatCurrency(total);
+                resultFormula.textContent = `${formatCurrency(band.price)} × ${acvMultiplier}x × ${geoMultiplier}x`;
+                standardResult.style.display = 'block';
+                customResult.style.display = 'none';
+                copyBtn.disabled = false;
+
+                // Store for copy function
+                window.currentQuote = {
+                    userCount,
+                    band: band.label,
+                    basePrice: band.price,
+                    acvMultiplier,
+                    geoMultiplier,
+                    total
+                };
+            } else {
+                resultTotal.textContent = formatCurrency(band.price);
+                resultFormula.textContent = 'Select all options to see final price with multipliers';
+                standardResult.style.display = 'block';
+                customResult.style.display = 'none';
+                copyBtn.disabled = true;
+            }
+        }
+
+        // Copy quote to clipboard
+        function copyQuoteToClipboard() {
+            if (!window.currentQuote) return;
+
+            const q = window.currentQuote;
+            const acvLabel = q.acvMultiplier === 1 ? '< $50k' :
+                            q.acvMultiplier === 1.1 ? '$50k – $100k' :
+                            q.acvMultiplier === 1.15 ? '$100k – $250k' : '> $250k';
+            const geoLabel = q.geoMultiplier === 1 ? 'Single region' : 'Multiregional';
+
+            const quoteText = `SALES RECON - PRICING QUOTE
+=============================
+
+Users: ${q.userCount} (${q.band} band)
+Base Price: ${formatCurrency(q.basePrice)}
+
+Multipliers Applied:
+• ACV (${acvLabel}): ${q.acvMultiplier}x
+• Geographic (${geoLabel}): ${q.geoMultiplier}x
+
+ESTIMATED ANNUAL PRICE: ${formatCurrency(q.total)}
+
+Calculation: ${formatCurrency(q.basePrice)} × ${q.acvMultiplier} × ${q.geoMultiplier} = ${formatCurrency(q.total)}
+
+Generated: ${new Date().toLocaleDateString()}
+
+---
+MOODY'S`;
+
+            navigator.clipboard.writeText(quoteText).then(() => {
+                const btn = document.getElementById('copy-quote-btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy quote. Please try again.');
+            });
+        }
+
+        // Reset calculator
+        function resetCalculator() {
+            document.getElementById('user-count').value = '';
+            document.getElementById('acv-range').value = '';
+            document.getElementById('geo-footprint').value = '';
+            window.currentQuote = null;
+            calculateQuote();
+        }
+
+        // ==========================================
         // Accordion Toggle
+        // ==========================================
         function toggleAccordion(header) {
             // Only works on mobile
             if (window.innerWidth > 768) return;
