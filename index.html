@@ -732,7 +732,8 @@
 
             <!-- Base Offering -->
             <div class="base-offering">
-                <h3>📦 Included in All Packages - Base Offering</h3>
+                <h3>📦 SILE Base Package - Included in All Solutions</h3>
+                <p style="color: #1e40af; margin-bottom: 15px; line-height: 1.6;">The SILE base package gives every customer a strong intelligence foundation by combining core company data, ownership structures, and integrated risk insights. It ensures all missions start from a consistent, trusted view of entities and relationships, with the flexibility to add specialised modules as needs grow.</p>
                 <div class="base-items">
                     <div class="base-item">Orbis Global</div>
                     <div class="base-item">Beneficial Ownership</div>
@@ -914,7 +915,7 @@
                     <!-- Add-On Packages -->
                     <div class="form-section">
                         <h3 class="form-section-title">📦 Add-On Package</h3>
-                        <p class="form-help" style="margin-bottom: 20px;">Select an add-on package to enhance your solution. Each package is an independent bundle.</p>
+                        <p class="form-help" style="margin-bottom: 20px;">Select an add-on package to enhance your solution. Each tier builds on the previous—Plus includes Standard, and Premium includes both.</p>
                         
                         <div class="cards-grid cards-grid-4" id="addon-cards">
                             <!-- Cards will be populated dynamically based on use case -->
@@ -1034,7 +1035,7 @@
 
                         <div>
                             <div class="quote-section">
-                                <h3 class="quote-section-title">📦 Base Offering Included</h3>
+                                <h3 class="quote-section-title">📦 SILE Base Package Included</h3>
                                 <ul class="package-features">
                                     <li>Orbis Global</li>
                                     <li>Beneficial Ownership</li>
@@ -1145,26 +1146,46 @@
         };
 
         // ==========================================
-        // ADD-ON PACKAGE FEATURES (INDEPENDENT - not cumulative)
+        // ADD-ON PACKAGE FEATURES (CUMULATIVE - each tier builds on previous)
         // ==========================================
-        const addOnFeatures = {
+        // Base features for each tier (what's NEW in that tier)
+        const addOnFeaturesBase = {
             intelligence: {
-                base: [],
                 standard: ['T-Rank Power & Coalitions', 'Orbis IP'],
                 plus: ['Pathfinder', 'News Edge', 'Shell Company Indicator'],
                 premium: ['Cyber Risk (Bitsight)', 'Orbis Cross Border', 'Orbis M&A']
             },
             investigations: {
-                base: [],
                 standard: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ'],
                 plus: ['Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard'],
                 premium: ['Orbis M&A', 'Cyber Risk (Bitsight)', 'Orbis Cross Border']
             },
             supplyChain: {
-                base: [],
                 standard: ['Financial Strength', 'ESG Score', 'Probability of Default'],
                 plus: ['Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator'],
                 premium: ['ORBIS M&A', 'Orbis Cross Border', 'Sanctions 360']
+            }
+        };
+
+        // Cumulative features (what's INCLUDED in each tier)
+        const addOnFeatures = {
+            intelligence: {
+                base: [],
+                standard: [...addOnFeaturesBase.intelligence.standard],
+                plus: [...addOnFeaturesBase.intelligence.standard, ...addOnFeaturesBase.intelligence.plus],
+                premium: [...addOnFeaturesBase.intelligence.standard, ...addOnFeaturesBase.intelligence.plus, ...addOnFeaturesBase.intelligence.premium]
+            },
+            investigations: {
+                base: [],
+                standard: [...addOnFeaturesBase.investigations.standard],
+                plus: [...addOnFeaturesBase.investigations.standard, ...addOnFeaturesBase.investigations.plus],
+                premium: [...addOnFeaturesBase.investigations.standard, ...addOnFeaturesBase.investigations.plus, ...addOnFeaturesBase.investigations.premium]
+            },
+            supplyChain: {
+                base: [],
+                standard: [...addOnFeaturesBase.supplyChain.standard],
+                plus: [...addOnFeaturesBase.supplyChain.standard, ...addOnFeaturesBase.supplyChain.plus],
+                premium: [...addOnFeaturesBase.supplyChain.standard, ...addOnFeaturesBase.supplyChain.plus, ...addOnFeaturesBase.supplyChain.premium]
             }
         };
 
@@ -1173,20 +1194,20 @@
             intelligence: {
                 base: '',
                 standard: 'Add for agencies who need to analyze power structures, political coalitions, and track intellectual property ownership across global entities.',
-                plus: 'Add for agencies who need advanced network visualization to uncover hidden connections, real-time news monitoring, and detection of shell company structures.',
-                premium: 'Add for agencies who need comprehensive cyber threat assessment, cross-border transaction tracking, and merger & acquisition intelligence for national security analysis.'
+                plus: 'Includes everything in Standard, plus add for agencies who need advanced network visualization to uncover hidden connections, real-time news monitoring, and detection of shell company structures.',
+                premium: 'Includes everything in Standard and Plus, plus add for agencies who need comprehensive cyber threat assessment, cross-border transaction tracking, and merger & acquisition intelligence for national security analysis.'
             },
             investigations: {
                 base: '',
                 standard: 'Add for agencies who need to identify power structures, uncover state-owned entity connections, and access ICIJ investigative databases for financial crime cases.',
-                plus: 'Add for agencies who need shell company detection for fraud investigations, adverse media monitoring, and detailed financial statement analysis.',
-                premium: 'Add for agencies who need complete M&A transaction histories, cyber vulnerability assessments, and cross-border financial flow analysis for complex investigations.'
+                plus: 'Includes everything in Standard, plus add for agencies who need shell company detection for fraud investigations, adverse media monitoring, and detailed financial statement analysis.',
+                premium: 'Includes everything in Standard and Plus, plus add for agencies who need complete M&A transaction histories, cyber vulnerability assessments, and cross-border financial flow analysis for complex investigations.'
             },
             supplyChain: {
                 base: '',
                 standard: 'Add for agencies who need vendor financial health assessments, ESG sustainability scoring, and credit risk evaluation for procurement decisions.',
-                plus: 'Add for agencies who need supplier cyber risk monitoring, real-time news alerts on vendor issues, and beneficial ownership clarity to reduce supply chain risk.',
-                premium: 'Add for agencies who need acquisition history tracking, international supplier verification, and comprehensive sanctions screening for high-risk contracts.'
+                plus: 'Includes everything in Standard, plus add for agencies who need supplier cyber risk monitoring, real-time news alerts on vendor issues, and beneficial ownership clarity to reduce supply chain risk.',
+                premium: 'Includes everything in Standard and Plus, plus add for agencies who need acquisition history tracking, international supplier verification, and comprehensive sanctions screening for high-risk contracts.'
             }
         };
 
@@ -1516,8 +1537,8 @@ Entity Volume: ${labels.volume[configData.entityVolume]}`;
 
             summary += `
 
-BASE OFFERING INCLUDED
-----------------------
+SILE BASE PACKAGE INCLUDED
+--------------------------
 • Orbis Global
 • Beneficial Ownership
 • Orbis T-Rank
