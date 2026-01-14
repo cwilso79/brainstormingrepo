@@ -369,6 +369,18 @@
             line-height: 1.5;
         }
 
+        .card-guidance {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.6;
+            margin-top: 12px;
+            padding: 12px;
+            background: #f0f9ff;
+            border-left: 3px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
         /* Feature list in cards */
         .card-features {
             margin-top: 15px;
@@ -1155,6 +1167,28 @@
             }
         };
 
+        // Add-on guidance text per use case
+        const addOnGuidance = {
+            intelligence: {
+                base: '',
+                standard: 'Add for agencies who need to analyze power structures, political coalitions, and track intellectual property ownership across global entities.',
+                plus: 'Add for agencies who need advanced network visualization to uncover hidden connections, real-time news monitoring, and detection of shell company structures.',
+                premium: 'Add for agencies who need comprehensive cyber threat assessment, cross-border transaction tracking, and merger & acquisition intelligence for national security analysis.'
+            },
+            investigations: {
+                base: '',
+                standard: 'Add for agencies who need to identify power structures, uncover state-owned entity connections, and access ICIJ investigative databases for financial crime cases.',
+                plus: 'Add for agencies who need shell company detection for fraud investigations, adverse media monitoring, and detailed financial statement analysis.',
+                premium: 'Add for agencies who need complete M&A transaction histories, cyber vulnerability assessments, and cross-border financial flow analysis for complex investigations.'
+            },
+            supplyChain: {
+                base: '',
+                standard: 'Add for agencies who need vendor financial health assessments, ESG sustainability scoring, and credit risk evaluation for procurement decisions.',
+                plus: 'Add for agencies who need supplier cyber risk monitoring, real-time news alerts on vendor issues, and beneficial ownership clarity to reduce supply chain risk.',
+                premium: 'Add for agencies who need acquisition history tracking, international supplier verification, and comprehensive sanctions screening for high-risk contracts.'
+            }
+        };
+
         // ==========================================
         // LABELS
         // ==========================================
@@ -1304,18 +1338,20 @@
             const container = document.getElementById('addon-cards');
             const useCase = configData.useCase;
             const features = addOnFeatures[useCase];
+            const guidance = addOnGuidance[useCase];
             
             const addOns = [
-                { key: 'base', name: 'Base Only', desc: 'Core functionality only', tier: '' },
-                { key: 'standard', name: 'Standard', desc: 'Standard add-on bundle', tier: 'standard' },
-                { key: 'plus', name: 'Plus', desc: 'Plus add-on bundle', tier: 'plus' },
-                { key: 'premium', name: 'Premium', desc: 'Premium add-on bundle', tier: 'premium' }
+                { key: 'base', name: 'Base Only', tier: '' },
+                { key: 'standard', name: 'Standard', tier: 'standard' },
+                { key: 'plus', name: 'Plus', tier: 'plus' },
+                { key: 'premium', name: 'Premium', tier: 'premium' }
             ];
 
             let html = '';
             addOns.forEach(addon => {
                 const isSelected = addon.key === configData.addOn;
                 const featureList = features[addon.key];
+                const guidanceText = guidance[addon.key];
                 
                 html += `
                     <div class="selection-card ${isSelected ? 'selected' : ''}" onclick="selectAddOn('${addon.key}')">
@@ -1324,8 +1360,8 @@
                             <div class="card-radio"></div>
                             <div class="card-title">${addon.name}</div>
                         </div>
-                        <p class="card-description">${addon.desc}</p>
                         ${addon.tier ? `<span class="tier-badge ${addon.tier}">${addon.tier}</span>` : ''}
+                        ${guidanceText ? `<p class="card-guidance">${guidanceText}</p>` : '<p class="card-guidance" style="color: #94a3b8;">Core functionality without additional add-ons.</p>'}
                         ${featureList.length > 0 ? `
                             <div class="card-features">
                                 <div class="card-features-title">Includes</div>
@@ -1333,7 +1369,7 @@
                                     ${featureList.map(f => `<li>${f}</li>`).join('')}
                                 </ul>
                             </div>
-                        ` : '<p style="color: #94a3b8; font-size: 0.85rem; margin-top: 15px;">No additional features</p>'}
+                        ` : ''}
                     </div>
                 `;
             });
