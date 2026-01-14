@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moody's for Compliance - Sales Configurator</title>
+    <!-- SheetJS Library for Excel parsing -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     <style>
         /* Reset */
         *, *::before, *::after {
@@ -723,6 +725,111 @@
             color: #1a202c;
         }
 
+        /* Excel Upload */
+        .excel-upload-section {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.1) 0%, rgba(72, 187, 120, 0.05) 100%);
+            border: 2px dashed #48bb78;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .excel-upload-section:hover {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.15) 0%, rgba(72, 187, 120, 0.1) 100%);
+            border-color: #38a169;
+        }
+
+        .excel-upload-section.dragover {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.2) 0%, rgba(72, 187, 120, 0.15) 100%);
+            border-color: #2f855a;
+            transform: scale(1.02);
+        }
+
+        .excel-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .excel-upload-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #276749;
+            margin-bottom: 8px;
+        }
+
+        .excel-upload-subtitle {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 15px;
+        }
+
+        .excel-upload-input {
+            display: none;
+        }
+
+        .excel-upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #48bb78;
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .excel-upload-btn:hover {
+            background: #38a169;
+        }
+
+        .excel-file-info {
+            margin-top: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .excel-file-info.visible {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .excel-file-name {
+            font-weight: 500;
+            color: #276749;
+        }
+
+        .excel-file-remove {
+            background: #fc8181;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .excel-file-remove:hover {
+            background: #f56565;
+        }
+
+        .excel-template-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #667eea;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .excel-template-link:hover {
+            color: #5a67d8;
+        }
+
         /* Two Column Layout for Quote */
         .quote-grid {
             display: grid;
@@ -909,6 +1016,25 @@
                             <strong>Selected Capabilities:</strong>
                             <div class="selected-capabilities" id="selected-capabilities-display" style="margin-top: 10px;"></div>
                         </div>
+                    </div>
+
+                    <!-- Excel Upload Section -->
+                    <div class="excel-upload-section" id="excel-upload-area" onclick="document.getElementById('excel-file-input').click()">
+                        <div class="excel-upload-icon">📊</div>
+                        <div class="excel-upload-title">Upload Excel File</div>
+                        <div class="excel-upload-subtitle">Drag & drop an Excel file here, or click to browse</div>
+                        <div class="excel-upload-btn">Choose File</div>
+                        <input type="file" class="excel-upload-input" id="excel-file-input" accept=".xlsx,.xls,.csv" onchange="handleExcelUpload(event)">
+                        <div class="excel-file-info" id="excel-file-info">
+                            <span class="excel-file-name" id="excel-file-name"></span>
+                            <button class="excel-file-remove" onclick="removeExcelFile(event)">Remove</button>
+                        </div>
+                        <div class="excel-template-link" onclick="downloadTemplate(event)">📥 Download Excel Template</div>
+                    </div>
+
+                    <div class="info-alert" id="excel-import-status" style="display: none; margin-bottom: 20px;">
+                        <span class="info-alert-icon">✅</span>
+                        <span class="info-alert-text" id="excel-import-message">Data imported successfully!</span>
                     </div>
 
                     <div class="volume-section">
@@ -1635,6 +1761,243 @@ Next Steps:
 
         function exportQuote() {
             alert('📄 PDF export functionality would integrate with your CRM/CPQ system. For now, use "Copy Summary" to capture the quote details.');
+        }
+
+        // ==========================================
+        // EXCEL UPLOAD FUNCTIONS
+        // ==========================================
+        
+        // Drag and drop handlers
+        const excelUploadArea = document.getElementById('excel-upload-area');
+        
+        excelUploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.add('dragover');
+        });
+        
+        excelUploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.remove('dragover');
+        });
+        
+        excelUploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (isValidExcelFile(file)) {
+                    processExcelFile(file);
+                } else {
+                    alert('Please upload a valid Excel file (.xlsx, .xls, or .csv)');
+                }
+            }
+        });
+        
+        function isValidExcelFile(file) {
+            const validExtensions = ['.xlsx', '.xls', '.csv'];
+            const fileName = file.name.toLowerCase();
+            return validExtensions.some(ext => fileName.endsWith(ext));
+        }
+        
+        function handleExcelUpload(event) {
+            const file = event.target.files[0];
+            if (file && isValidExcelFile(file)) {
+                processExcelFile(file);
+            } else if (file) {
+                alert('Please upload a valid Excel file (.xlsx, .xls, or .csv)');
+            }
+        }
+        
+        function processExcelFile(file) {
+            // Show file info
+            document.getElementById('excel-file-name').textContent = file.name;
+            document.getElementById('excel-file-info').classList.add('visible');
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Get the first sheet
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // Convert to JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    
+                    // Parse and populate the form
+                    parseExcelData(jsonData);
+                    
+                    // Show success message
+                    showImportStatus('✅ Data imported successfully from ' + file.name, 'success');
+                    
+                } catch (error) {
+                    console.error('Error parsing Excel file:', error);
+                    showImportStatus('❌ Error parsing file: ' + error.message, 'error');
+                }
+            };
+            
+            reader.onerror = function() {
+                showImportStatus('❌ Error reading file', 'error');
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function parseExcelData(data) {
+            // Expected format:
+            // Row 0: Headers
+            // Possible columns: "Field", "Value" OR direct values
+            // OR: "Entities", "Screening", "IDD Reports", "IDD Type"
+            
+            if (data.length < 2) {
+                showImportStatus('❌ Excel file appears to be empty or has no data rows', 'error');
+                return;
+            }
+            
+            const headers = data[0].map(h => String(h).toLowerCase().trim());
+            
+            // Check for key-value format (Field, Value columns)
+            const fieldIndex = headers.findIndex(h => h.includes('field') || h.includes('name') || h.includes('parameter'));
+            const valueIndex = headers.findIndex(h => h.includes('value') || h.includes('amount') || h.includes('count'));
+            
+            let parsedData = {};
+            
+            if (fieldIndex !== -1 && valueIndex !== -1) {
+                // Key-value format
+                for (let i = 1; i < data.length; i++) {
+                    const row = data[i];
+                    if (row[fieldIndex] && row[valueIndex] !== undefined) {
+                        const field = String(row[fieldIndex]).toLowerCase().trim();
+                        const value = row[valueIndex];
+                        
+                        if (field.includes('entit')) {
+                            parsedData.entities = parseInt(value) || 0;
+                        } else if (field.includes('screen')) {
+                            parsedData.screening = parseInt(value) || 0;
+                        } else if (field.includes('idd') && !field.includes('type')) {
+                            parsedData.iddReports = parseInt(value) || 0;
+                        } else if (field.includes('idd') && field.includes('type')) {
+                            parsedData.iddType = String(value).toLowerCase().trim();
+                        }
+                    }
+                }
+            } else {
+                // Column-based format - look for specific column names
+                const entitiesIndex = headers.findIndex(h => h.includes('entit'));
+                const screeningIndex = headers.findIndex(h => h.includes('screen'));
+                const iddIndex = headers.findIndex(h => h.includes('idd') && !h.includes('type'));
+                const iddTypeIndex = headers.findIndex(h => h.includes('idd') && h.includes('type'));
+                
+                // Take values from first data row
+                const dataRow = data[1];
+                
+                if (entitiesIndex !== -1 && dataRow[entitiesIndex] !== undefined) {
+                    parsedData.entities = parseInt(dataRow[entitiesIndex]) || 0;
+                }
+                if (screeningIndex !== -1 && dataRow[screeningIndex] !== undefined) {
+                    parsedData.screening = parseInt(dataRow[screeningIndex]) || 0;
+                }
+                if (iddIndex !== -1 && dataRow[iddIndex] !== undefined) {
+                    parsedData.iddReports = parseInt(dataRow[iddIndex]) || 0;
+                }
+                if (iddTypeIndex !== -1 && dataRow[iddTypeIndex] !== undefined) {
+                    parsedData.iddType = String(dataRow[iddTypeIndex]).toLowerCase().trim();
+                }
+            }
+            
+            // Populate form fields
+            if (parsedData.entities) {
+                document.getElementById('volume-entities').value = parsedData.entities;
+            }
+            if (parsedData.screening) {
+                document.getElementById('volume-screening').value = parsedData.screening;
+            }
+            if (parsedData.iddReports) {
+                document.getElementById('volume-idd').value = parsedData.iddReports;
+            }
+            if (parsedData.iddType) {
+                const iddType = parsedData.iddType;
+                if (iddType.includes('lite')) {
+                    selectRadio('iddType', 'lite');
+                } else if (iddType.includes('full')) {
+                    selectRadio('iddType', 'full');
+                } else if (iddType.includes('mix')) {
+                    selectRadio('iddType', 'mix');
+                }
+            }
+            
+            // Recalculate consumption
+            calculateConsumption();
+            
+            // Log what was imported
+            console.log('Imported Excel data:', parsedData);
+        }
+        
+        function showImportStatus(message, type) {
+            const statusEl = document.getElementById('excel-import-status');
+            const messageEl = document.getElementById('excel-import-message');
+            
+            messageEl.textContent = message;
+            statusEl.style.display = 'flex';
+            
+            if (type === 'error') {
+                statusEl.style.background = 'linear-gradient(135deg, rgba(252, 129, 129, 0.2) 0%, rgba(252, 129, 129, 0.1) 100%)';
+                statusEl.style.borderColor = '#fc8181';
+            } else {
+                statusEl.style.background = 'linear-gradient(135deg, rgba(72, 187, 120, 0.2) 0%, rgba(72, 187, 120, 0.1) 100%)';
+                statusEl.style.borderColor = '#48bb78';
+            }
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        function removeExcelFile(event) {
+            event.stopPropagation();
+            document.getElementById('excel-file-input').value = '';
+            document.getElementById('excel-file-info').classList.remove('visible');
+            document.getElementById('excel-import-status').style.display = 'none';
+        }
+        
+        function downloadTemplate(event) {
+            event.stopPropagation();
+            
+            // Create template data
+            const templateData = [
+                ['Field', 'Value', 'Description'],
+                ['Entities per Year', 5000, 'Number of unique entities to work with annually'],
+                ['Screening Entities', 10000, 'Number of entities to screen & monitor'],
+                ['IDD Reports', 100, 'Number of IDD reports per year'],
+                ['IDD Type', 'mix', 'Options: lite, full, or mix']
+            ];
+            
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_array ? XLSX.utils.aoa_to_sheet(templateData) : XLSX.utils.aoa_to_sheet(templateData);
+            
+            // Set column widths
+            ws['!cols'] = [
+                { wch: 20 },
+                { wch: 15 },
+                { wch: 50 }
+            ];
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Volume Data');
+            
+            // Download
+            XLSX.writeFile(wb, 'volume_template.xlsx');
         }
 
         // ==========================================
