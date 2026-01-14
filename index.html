@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Solutions - Pricing Configurator</title>
+    <title>Security, Intelligence & Law Enforcement - Pricing & Packaging Configurator</title>
     <style>
         /* Reset */
         *, *::before, *::after {
@@ -15,7 +15,7 @@
         /* Base */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
             min-height: 100vh;
             color: #1a202c;
             line-height: 1.6;
@@ -36,19 +36,27 @@
             margin-bottom: 30px;
         }
 
+        .header-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #60a5fa;
+        }
+
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             font-weight: 700;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #fff 0%, #a8d4ff 100%);
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            opacity: 0.85;
         }
 
         /* Package Showcase Section */
@@ -62,15 +70,15 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #1e3a5f;
+            color: #1a365d;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #64748b;
             margin-bottom: 40px;
         }
@@ -78,8 +86,8 @@
         /* Package Cards */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
@@ -93,136 +101,143 @@
 
         .package-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
         }
 
         .package-card.intelligence {
-            border-color: #3b82f6;
+            border-color: #1d4ed8;
         }
 
         .package-card.investigations {
-            border-color: #8b5cf6;
+            border-color: #7c3aed;
         }
 
         .package-card.supply-chain {
-            border-color: #10b981;
+            border-color: #059669;
         }
 
         .package-header {
-            padding: 30px;
+            padding: 28px;
             color: white;
         }
 
         .package-card.intelligence .package-header {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
         }
 
         .package-card.investigations .package-header {
-            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
         }
 
         .package-card.supply-chain .package-header {
-            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
         }
 
         .package-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
         }
 
         .package-name {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .package-tagline {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
 
         .package-body {
-            padding: 30px;
-        }
-
-        .package-price-range {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .price-from {
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-
-        .price-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e3a5f;
-        }
-
-        .price-to {
-            font-size: 0.9rem;
-            color: #64748b;
+            padding: 25px;
         }
 
         .package-features {
             list-style: none;
-            margin-bottom: 25px;
         }
 
         .package-features li {
-            padding: 10px 0;
+            padding: 8px 0;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            font-size: 0.95rem;
+            gap: 10px;
+            font-size: 0.9rem;
             color: #475569;
         }
 
         .package-features li::before {
             content: '✓';
-            color: #10b981;
+            color: #059669;
             font-weight: bold;
             flex-shrink: 0;
         }
 
         /* Base Offering Box */
         .base-offering {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 1px solid #0ea5e9;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #3b82f6;
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 40px;
         }
 
         .base-offering h3 {
-            color: #0369a1;
+            color: #1e40af;
             margin-bottom: 15px;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         .base-items {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
         }
 
         .base-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 15px;
+            padding: 10px 14px;
             background: white;
             border-radius: 8px;
-            font-size: 0.95rem;
-            color: #1e3a5f;
+            font-size: 0.9rem;
+            color: #1a365d;
+            font-weight: 500;
         }
 
         .base-item::before {
             content: '📦';
+        }
+
+        /* Add-On Options Box */
+        .addon-options-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-top: 30px;
+        }
+
+        .addon-options-box h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .addon-options-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .addon-option-tag {
+            background: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #92400e;
+            font-weight: 500;
         }
 
         /* Configurator Card */
@@ -251,19 +266,19 @@
             padding: 12px 24px;
             border-radius: 30px;
             background: #e2e8f0;
-            color: #718096;
+            color: #64748b;
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
         .progress-step.active {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #0a1628 100%);
             color: white;
         }
 
         .progress-step.completed {
-            background: #10b981;
+            background: #059669;
             color: white;
         }
 
@@ -271,7 +286,7 @@
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -307,10 +322,10 @@
         }
 
         .step-title {
-            font-size: 1.9rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: #1e3a5f;
+            color: #1a365d;
         }
 
         .step-subtitle {
@@ -361,13 +376,13 @@
         .selection-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #1e3a5f;
+            border-color: #1a365d;
         }
 
         .selection-card.selected {
-            border-color: #1e3a5f;
-            background: linear-gradient(135deg, rgba(30,58,95,0.05) 0%, rgba(13,33,55,0.05) 100%);
-            box-shadow: 0 10px 30px rgba(30,58,95,0.2);
+            border-color: #1d4ed8;
+            background: linear-gradient(135deg, rgba(29,78,216,0.05) 0%, rgba(30,64,175,0.05) 100%);
+            box-shadow: 0 10px 30px rgba(29,78,216,0.2);
         }
 
         .selection-card input {
@@ -396,8 +411,8 @@
         }
 
         .selection-card.selected .card-radio {
-            background: #1e3a5f;
-            border-color: #1e3a5f;
+            background: #1d4ed8;
+            border-color: #1d4ed8;
         }
 
         .card-radio::after {
@@ -415,7 +430,7 @@
         .card-title {
             font-size: 1.15rem;
             font-weight: 600;
-            color: #1e3a5f;
+            color: #1a365d;
         }
 
         .card-description {
@@ -424,21 +439,66 @@
             line-height: 1.5;
         }
 
-        .card-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1e3a5f;
-            margin: 12px 0 8px;
+        /* Feature list in cards */
+        .card-features {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .card-multiplier {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 4px 12px;
-            border-radius: 20px;
+        .card-features-title {
             font-size: 0.8rem;
             font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .card-features ul {
+            list-style: none;
+        }
+
+        .card-features li {
+            font-size: 0.85rem;
+            color: #475569;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-features li::before {
+            content: '•';
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Tier Badge */
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .tier-badge.standard {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tier-badge.plus {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .tier-badge.premium {
+            background: #fef3c7;
+            color: #92400e;
         }
 
         /* Form Section */
@@ -450,9 +510,9 @@
         }
 
         .form-section-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            color: #1e3a5f;
+            color: #1a365d;
             margin-bottom: 20px;
             padding-bottom: 12px;
             border-bottom: 2px solid #e2e8f0;
@@ -466,7 +526,7 @@
             display: block;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #1e3a5f;
+            color: #1a365d;
         }
 
         .form-help {
@@ -493,14 +553,14 @@
 
         select.form-select:focus {
             outline: none;
-            border-color: #1e3a5f;
-            box-shadow: 0 0 0 3px rgba(30,58,95,0.2);
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29,78,216,0.2);
         }
 
         /* Info Alert */
         .info-alert {
-            background: linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(14,165,233,0.05) 100%);
-            border: 1px solid #0ea5e9;
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.05) 100%);
+            border: 1px solid #3b82f6;
             border-radius: 12px;
             padding: 18px 22px;
             display: flex;
@@ -516,7 +576,7 @@
 
         .info-alert-text {
             font-size: 0.95rem;
-            color: #1e3a5f;
+            color: #1a365d;
         }
 
         /* Data Feed Options */
@@ -550,9 +610,9 @@
         }
 
         .quote-section-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #1e3a5f;
+            color: #1a365d;
             margin-bottom: 18px;
             padding-bottom: 12px;
             border-bottom: 2px solid #e2e8f0;
@@ -575,12 +635,29 @@
 
         .quote-item-value {
             font-weight: 600;
-            color: #1e3a5f;
+            color: #1a365d;
+        }
+
+        /* Feature Pills */
+        .feature-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .feature-pill {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         /* Pricing Card */
         .pricing-card {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #0a1628 100%);
             color: white;
             border-radius: 16px;
             padding: 35px;
@@ -621,44 +698,8 @@
         }
 
         .pricing-row.total .pricing-value {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 700;
-        }
-
-        /* Breakdown Box */
-        .breakdown-box {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-
-        .breakdown-box h4 {
-            color: #0369a1;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .breakdown-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #e0f2fe;
-        }
-
-        .breakdown-item:last-child {
-            border-bottom: none;
-        }
-
-        .breakdown-item-label {
-            color: #475569;
-        }
-
-        .breakdown-item-value {
-            font-weight: 600;
-            color: #1e3a5f;
         }
 
         /* Navigation */
@@ -684,13 +725,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #0a1628 100%);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(30,58,95,0.4);
+            box-shadow: 0 10px 25px rgba(26,54,93,0.4);
         }
 
         .btn-secondary {
@@ -703,12 +744,12 @@
         }
 
         .btn-success {
-            background: #10b981;
+            background: #059669;
             color: white;
         }
 
         .btn-success:hover {
-            background: #059669;
+            background: #047857;
         }
 
         .btn:disabled {
@@ -732,7 +773,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .content-area {
@@ -771,20 +812,37 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Package Features List */
+        .package-features-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        .features-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>🏛️ Government Solutions</h1>
-            <p>Pricing Configurator - Build Your Custom Package</p>
+            <div class="header-logo">MOODY'S</div>
+            <h1>🛡️ Security, Intelligence & Law Enforcement</h1>
+            <p>Pricing & Packaging Configurator</p>
         </header>
 
         <!-- Package Showcase Section -->
         <section class="packages-section">
-            <h2 class="section-title">Our Government Solutions Packages</h2>
-            <p class="section-subtitle">Choose from three specialized solutions designed for government agencies</p>
+            <h2 class="section-title">Use Case Specific Bundles</h2>
+            <p class="section-subtitle">Choose from three specialized solutions designed for security, intelligence, and law enforcement agencies</p>
 
             <!-- Base Offering -->
             <div class="base-offering">
@@ -807,11 +865,6 @@
                         <div class="package-tagline">Strategic insights for national security & policy</div>
                     </div>
                     <div class="package-body">
-                        <div class="package-price-range">
-                            <span class="price-from">From</span>
-                            <span class="price-value">$70,000</span>
-                            <span class="price-to">to $125,000/year</span>
-                        </div>
                         <ul class="package-features">
                             <li>Advanced entity intelligence gathering</li>
                             <li>Cross-border ownership analysis</li>
@@ -819,6 +872,13 @@
                             <li>Strategic partnership intelligence</li>
                             <li>Custom analyst workflows</li>
                         </ul>
+                        <div class="package-features-section">
+                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="feature-pills">
+                                <span class="feature-pill">T-Rank Power & Coalitions</span>
+                                <span class="feature-pill">Orbis IP</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -830,11 +890,6 @@
                         <div class="package-tagline">Deep-dive investigations & compliance checks</div>
                     </div>
                     <div class="package-body">
-                        <div class="package-price-range">
-                            <span class="price-from">From</span>
-                            <span class="price-value">$56,000</span>
-                            <span class="price-to">to $100,000/year</span>
-                        </div>
                         <ul class="package-features">
                             <li>Detailed entity investigations</li>
                             <li>Beneficial ownership mapping</li>
@@ -842,22 +897,25 @@
                             <li>Regulatory compliance checks</li>
                             <li>Case management tools</li>
                         </ul>
+                        <div class="package-features-section">
+                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="feature-pills">
+                                <span class="feature-pill">T-Rank Power & Coalitions</span>
+                                <span class="feature-pill">State Owned Entities</span>
+                                <span class="feature-pill">ICIJ</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Supply Chain Package -->
+                <!-- Supply Chain Risk Package -->
                 <div class="package-card supply-chain">
                     <div class="package-header">
                         <div class="package-icon">🔗</div>
-                        <div class="package-name">Supply Chain</div>
+                        <div class="package-name">Supply Chain Risk</div>
                         <div class="package-tagline">Vendor risk & supply chain integrity</div>
                     </div>
                     <div class="package-body">
-                        <div class="package-price-range">
-                            <span class="price-from">From</span>
-                            <span class="price-value">$42,000</span>
-                            <span class="price-to">to $75,000/year</span>
-                        </div>
                         <ul class="package-features">
                             <li>Vendor & supplier screening</li>
                             <li>Entity volume monitoring</li>
@@ -865,7 +923,28 @@
                             <li>Procurement compliance</li>
                             <li>Bulk entity processing</li>
                         </ul>
+                        <div class="package-features-section">
+                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="feature-pills">
+                                <span class="feature-pill">Financial Strength</span>
+                                <span class="feature-pill">ESG Score</span>
+                                <span class="feature-pill">Probability of Default</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Add-On Options -->
+            <div class="addon-options-box">
+                <h4>➕ Additional Add-On Options Available</h4>
+                <div class="addon-options-list">
+                    <span class="addon-option-tag">Maxsight</span>
+                    <span class="addon-option-tag">Investigation</span>
+                    <span class="addon-option-tag">Kompany</span>
+                    <span class="addon-option-tag">EVA</span>
+                    <span class="addon-option-tag">Supplier Insights</span>
+                    <span class="addon-option-tag">EDD Agent</span>
                 </div>
             </div>
         </section>
@@ -881,12 +960,12 @@
                 <span class="progress-arrow">→</span>
                 <div class="progress-step" id="progress-2">
                     <span class="step-number">2</span>
-                    Users & Add-Ons
+                    Users & Package
                 </div>
                 <span class="progress-arrow">→</span>
                 <div class="progress-step" id="progress-3">
                     <span class="step-number">3</span>
-                    Attributes
+                    Configuration
                 </div>
                 <span class="progress-arrow">→</span>
                 <div class="progress-step" id="progress-4">
@@ -900,7 +979,7 @@
                 <!-- Step 1: Use Case Selection -->
                 <div class="step-content active" id="step-1">
                     <h2 class="step-title">Select Your Primary Use Case</h2>
-                    <p class="step-subtitle">Choose the solution that best fits your agency's needs</p>
+                    <p class="step-subtitle">Choose the solution that best fits your agency's mission</p>
 
                     <div class="cards-grid cards-grid-3">
                         <!-- Intelligence -->
@@ -911,7 +990,6 @@
                                 <div class="card-title">🔍 Intelligence</div>
                             </div>
                             <p class="card-description">Strategic insights for national security, policy analysis, and threat detection. Ideal for intelligence agencies and strategic planning units.</p>
-                            <div class="card-price">$70,000 - $125,000/year</div>
                         </div>
 
                         <!-- Investigations -->
@@ -922,18 +1000,16 @@
                                 <div class="card-title">🔎 Investigations</div>
                             </div>
                             <p class="card-description">Deep-dive investigations and compliance verification. Perfect for law enforcement, regulatory bodies, and audit departments.</p>
-                            <div class="card-price">$56,000 - $100,000/year</div>
                         </div>
 
-                        <!-- Supply Chain -->
+                        <!-- Supply Chain Risk -->
                         <div class="selection-card" onclick="selectUseCase('supplyChain')">
                             <input type="radio" id="supplyChain" name="useCase">
                             <div class="card-header">
                                 <div class="card-radio"></div>
-                                <div class="card-title">🔗 Supply Chain</div>
+                                <div class="card-title">🔗 Supply Chain Risk</div>
                             </div>
                             <p class="card-description">Vendor risk assessment and supply chain integrity monitoring. Best for procurement offices and contract management.</p>
-                            <div class="card-price">$42,000 - $75,000/year</div>
                         </div>
                     </div>
 
@@ -943,10 +1019,10 @@
                     </div>
                 </div>
 
-                <!-- Step 2: User Band & Add-Ons -->
+                <!-- Step 2: User Band & Add-On Package -->
                 <div class="step-content" id="step-2">
-                    <h2 class="step-title">Users & Add-On Packages</h2>
-                    <p class="step-subtitle">Select your user count and optional add-on packages</p>
+                    <h2 class="step-title">Users & Package Selection</h2>
+                    <p class="step-subtitle">Select your team size and add-on package level</p>
 
                     <!-- User Band Selection -->
                     <div class="form-section">
@@ -959,7 +1035,6 @@
                                     <div class="card-title">1-2 Users</div>
                                 </div>
                                 <p class="card-description">Small team or individual analyst</p>
-                                <div class="card-price" id="price-1-2">$125,000</div>
                             </div>
 
                             <div class="selection-card" onclick="selectUserBand('3-5')">
@@ -969,7 +1044,6 @@
                                     <div class="card-title">3-5 Users</div>
                                 </div>
                                 <p class="card-description">Department or small unit</p>
-                                <div class="card-price" id="price-3-5">$100,000</div>
                             </div>
 
                             <div class="selection-card" onclick="selectUserBand('6-10')">
@@ -979,7 +1053,6 @@
                                     <div class="card-title">6-10 Users</div>
                                 </div>
                                 <p class="card-description">Division or multiple teams</p>
-                                <div class="card-price" id="price-6-10">$85,000</div>
                             </div>
 
                             <div class="selection-card" onclick="selectUserBand('11-14')">
@@ -989,7 +1062,6 @@
                                     <div class="card-title">11-14 Users</div>
                                 </div>
                                 <p class="card-description">Large department</p>
-                                <div class="card-price" id="price-11-14">$80,000</div>
                             </div>
 
                             <div class="selection-card" onclick="selectUserBand('15-19')">
@@ -999,7 +1071,6 @@
                                     <div class="card-title">15-19 Users</div>
                                 </div>
                                 <p class="card-description">Agency-wide deployment</p>
-                                <div class="card-price" id="price-15-19">$75,000</div>
                             </div>
 
                             <div class="selection-card" onclick="selectUserBand('20+')">
@@ -1009,7 +1080,6 @@
                                     <div class="card-title">20+ Users</div>
                                 </div>
                                 <p class="card-description">Enterprise deployment</p>
-                                <div class="card-price" id="price-20+">$70,000</div>
                             </div>
                         </div>
                     </div>
@@ -1017,75 +1087,32 @@
                     <!-- Add-On Packages -->
                     <div class="form-section">
                         <h3 class="form-section-title">📦 Add-On Package</h3>
-                        <p class="form-help" style="margin-bottom: 20px;">Enhance your base package with additional features and capabilities</p>
+                        <p class="form-help" style="margin-bottom: 20px;">Enhance your base package with additional capabilities</p>
                         
-                        <div class="cards-grid cards-grid-4">
-                            <div class="selection-card selected" onclick="selectAddOn('base')">
-                                <input type="radio" id="addon-base" name="addOn" checked>
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">Base Only</div>
-                                </div>
-                                <p class="card-description">Core functionality without add-ons</p>
-                                <div class="card-multiplier">1.0x Multiplier</div>
-                                <div class="card-price" id="addon-price-base">$0</div>
-                            </div>
-
-                            <div class="selection-card" onclick="selectAddOn('standard')">
-                                <input type="radio" id="addon-standard" name="addOn">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">Standard</div>
-                                </div>
-                                <p class="card-description">Enhanced monitoring & alerts</p>
-                                <div class="card-multiplier">1.15x Multiplier</div>
-                                <div class="card-price" id="addon-price-standard">+$18,750</div>
-                            </div>
-
-                            <div class="selection-card" onclick="selectAddOn('plus')">
-                                <input type="radio" id="addon-plus" name="addOn">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">Plus</div>
-                                </div>
-                                <p class="card-description">Advanced analytics & reporting</p>
-                                <div class="card-multiplier">1.3x Multiplier</div>
-                                <div class="card-price" id="addon-price-plus">+$37,500</div>
-                            </div>
-
-                            <div class="selection-card" onclick="selectAddOn('premium')">
-                                <input type="radio" id="addon-premium" name="addOn">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">Premium</div>
-                                </div>
-                                <p class="card-description">Full suite with priority support</p>
-                                <div class="card-multiplier">1.65x Multiplier</div>
-                                <div class="card-price" id="addon-price-premium">+$81,250</div>
-                            </div>
+                        <div class="cards-grid cards-grid-4" id="addon-cards">
+                            <!-- Cards will be populated dynamically based on use case -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3: Attributes -->
+                <!-- Step 3: Configuration -->
                 <div class="step-content" id="step-3">
-                    <h2 class="step-title">Configuration Attributes</h2>
-                    <p class="step-subtitle">Customize your deployment with these attribute selections</p>
+                    <h2 class="step-title">Configuration</h2>
+                    <p class="step-subtitle">Customize your deployment settings</p>
 
                     <div class="form-section">
                         <h3 class="form-section-title">🌍 Region</h3>
                         <div class="form-group">
                             <label class="form-label">Select your primary region</label>
-                            <select class="form-select" id="region" onchange="updateCalculation()">
-                                <option value="north-america">North America (1.0x)</option>
-                                <option value="west-north-europe">West/North Europe (1.0x)</option>
-                                <option value="middle-east">Middle East (0.9x)</option>
-                                <option value="north-asia-oceania">North Asia & Oceania (0.9x)</option>
-                                <option value="east-south-europe">East/South Europe (0.8x)</option>
-                                <option value="south-america-africa">South America & Africa (0.7x)</option>
-                                <option value="south-asia">South Asia (0.7x)</option>
+                            <select class="form-select" id="region">
+                                <option value="north-america">North America</option>
+                                <option value="west-north-europe">West/North Europe</option>
+                                <option value="middle-east">Middle East</option>
+                                <option value="north-asia-oceania">North Asia & Oceania</option>
+                                <option value="east-south-europe">East/South Europe</option>
+                                <option value="south-america-africa">South America & Africa</option>
+                                <option value="south-asia">South Asia</option>
                             </select>
-                            <p class="form-help">Regional pricing adjustments based on operational costs</p>
                         </div>
                     </div>
 
@@ -1094,41 +1121,41 @@
                         <div class="form-group">
                             <label class="form-label">How will you access the solution?</label>
                             <select class="form-select" id="delivery" onchange="handleDeliveryChange()">
-                                <option value="web">Web/UI (1.0x)</option>
-                                <option value="hybrid">Hybrid - UI + API (1.15x)</option>
-                                <option value="api">API Direct Integration (1.2x)</option>
-                                <option value="datafeed">Data Feed (1.35x)</option>
+                                <option value="web">Web/UI</option>
+                                <option value="hybrid">Hybrid - UI + API</option>
+                                <option value="api">API Direct Integration</option>
+                                <option value="datafeed">Data Feed</option>
                             </select>
-                            <p class="form-help">Different delivery methods have varying infrastructure requirements</p>
+                            <p class="form-help">Choose the access method that fits your workflow</p>
                         </div>
 
-                        <!-- Data Feed Options (shown only when Data Feed is selected) -->
+                        <!-- Data Feed Options -->
                         <div class="data-feed-section" id="datafeed-options">
-                            <h4 style="color: #1e3a5f; margin-bottom: 20px;">📊 Data Feed Configuration</h4>
+                            <h4 style="color: #1a365d; margin-bottom: 20px;">📊 Data Feed Configuration</h4>
                             
                             <div class="form-group">
                                 <label class="form-label">Usage Rights</label>
-                                <select class="form-select" id="usage-rights" onchange="updateCalculation()">
-                                    <option value="internal">Internal Analytics (1.0x)</option>
-                                    <option value="operational">Operational Integration (1.8x)</option>
-                                    <option value="classified">Classified Fusion (2.5x)</option>
+                                <select class="form-select" id="usage-rights">
+                                    <option value="internal">Internal Analytics</option>
+                                    <option value="operational">Operational Integration</option>
+                                    <option value="classified">Classified Fusion</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Scope</label>
-                                <select class="form-select" id="scope" onchange="updateCalculation()">
-                                    <option value="regional">Regional (1.0x)</option>
-                                    <option value="global">Global (2.0x)</option>
+                                <select class="form-select" id="scope">
+                                    <option value="regional">Regional</option>
+                                    <option value="global">Global</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Refresh Frequency</label>
-                                <select class="form-select" id="refresh" onchange="updateCalculation()">
-                                    <option value="annual">Annual (1.0x)</option>
-                                    <option value="quarterly">Quarterly (1.5x)</option>
-                                    <option value="monthly">Monthly (2.5x)</option>
+                                <select class="form-select" id="refresh">
+                                    <option value="annual">Annual</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="monthly">Monthly</option>
                                 </select>
                             </div>
                         </div>
@@ -1138,52 +1165,25 @@
                         <h3 class="form-section-title">🏛️ Agency Type</h3>
                         <div class="form-group">
                             <label class="form-label">What type of government agency?</label>
-                            <select class="form-select" id="agency-type" onchange="updateCalculation()">
-                                <option value="federal">Federal/Central Government (1.0x)</option>
-                                <option value="state">State Government (0.8x)</option>
-                                <option value="local">Local Government (0.7x)</option>
+                            <select class="form-select" id="agency-type">
+                                <option value="federal">Federal/Central Government</option>
+                                <option value="state">State Government</option>
+                                <option value="local">Local Government</option>
                             </select>
-                            <p class="form-help">Pricing tiers based on agency scope and budget considerations</p>
                         </div>
                     </div>
 
                     <!-- Entity Volume (Supply Chain Only) -->
                     <div class="form-section hidden" id="entity-volume-section">
-                        <h3 class="form-section-title">📈 Entity Volume (Supply Chain)</h3>
+                        <h3 class="form-section-title">📈 Entity Volume</h3>
                         <div class="form-group">
                             <label class="form-label">Expected entity volume per year</label>
-                            <select class="form-select" id="entity-volume" onchange="updateCalculation()">
-                                <option value="small">&lt;10K Entities (0.9x)</option>
-                                <option value="medium">10K-50K Entities (1.0x)</option>
-                                <option value="large">50K-250K Entities (1.2x)</option>
-                                <option value="enterprise">250K-1M+ Entities (1.3x)</option>
+                            <select class="form-select" id="entity-volume">
+                                <option value="small">&lt;10K Entities</option>
+                                <option value="medium">10K-50K Entities</option>
+                                <option value="large">50K-250K Entities</option>
+                                <option value="enterprise">250K-1M+ Entities</option>
                             </select>
-                            <p class="form-help">Higher volumes receive adjusted pricing</p>
-                        </div>
-                    </div>
-
-                    <!-- Real-time Price Preview -->
-                    <div class="breakdown-box">
-                        <h4>💰 Real-Time Price Calculation</h4>
-                        <div class="breakdown-item">
-                            <span class="breakdown-item-label">Base Price (<span id="preview-usecase">-</span>)</span>
-                            <span class="breakdown-item-value" id="preview-base">$0</span>
-                        </div>
-                        <div class="breakdown-item">
-                            <span class="breakdown-item-label">Add-On Package (<span id="preview-addon">Base Only</span>)</span>
-                            <span class="breakdown-item-value" id="preview-addon-cost">$0</span>
-                        </div>
-                        <div class="breakdown-item">
-                            <span class="breakdown-item-label">Subtotal (before multipliers)</span>
-                            <span class="breakdown-item-value" id="preview-subtotal">$0</span>
-                        </div>
-                        <div class="breakdown-item">
-                            <span class="breakdown-item-label">Combined Multiplier</span>
-                            <span class="breakdown-item-value" id="preview-multiplier">1.00x</span>
-                        </div>
-                        <div class="breakdown-item" style="font-weight: 700; font-size: 1.1rem; padding-top: 15px; border-top: 2px solid #0ea5e9;">
-                            <span class="breakdown-item-label">Estimated Annual Price</span>
-                            <span class="breakdown-item-value" id="preview-total" style="color: #0369a1; font-size: 1.3rem;">$0</span>
                         </div>
                     </div>
                 </div>
@@ -1191,7 +1191,7 @@
                 <!-- Step 4: Quote Summary -->
                 <div class="step-content" id="step-4">
                     <h2 class="step-title">📋 Your Custom Quote</h2>
-                    <p class="step-subtitle">Review your configured package and pricing</p>
+                    <p class="step-subtitle">Review your configured package</p>
 
                     <div class="quote-grid">
                         <div>
@@ -1212,7 +1212,7 @@
                             </div>
 
                             <div class="quote-section">
-                                <h3 class="quote-section-title">⚙️ Attributes</h3>
+                                <h3 class="quote-section-title">⚙️ Configuration</h3>
                                 <div class="quote-item">
                                     <span class="quote-item-label">Region</span>
                                     <span class="quote-item-value" id="quote-region">-</span>
@@ -1230,21 +1230,9 @@
                                     <span class="quote-item-value" id="quote-volume">-</span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div>
-                            <div class="quote-section">
-                                <h3 class="quote-section-title">📦 What's Included</h3>
-                                <ul class="package-features" id="quote-includes">
-                                    <li>Orbis Global</li>
-                                    <li>BFO</li>
-                                    <li>Orbis T-Rank</li>
-                                    <li>GRID Review</li>
-                                </ul>
-                            </div>
 
                             <div class="quote-section hidden" id="quote-datafeed-section">
-                                <h3 class="quote-section-title">📊 Data Feed Configuration</h3>
+                                <h3 class="quote-section-title">📊 Data Feed Settings</h3>
                                 <div class="quote-item">
                                     <span class="quote-item-label">Usage Rights</span>
                                     <span class="quote-item-value" id="quote-usage-rights">-</span>
@@ -1259,36 +1247,31 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div>
+                            <div class="quote-section">
+                                <h3 class="quote-section-title">📦 Base Offering Included</h3>
+                                <ul class="package-features">
+                                    <li>Orbis Global</li>
+                                    <li>BFO</li>
+                                    <li>Orbis T-Rank</li>
+                                    <li>GRID Review</li>
+                                </ul>
+                            </div>
+
+                            <div class="quote-section">
+                                <h3 class="quote-section-title">✨ Add-On Features Included</h3>
+                                <div id="quote-addon-features"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Pricing Card -->
                     <div class="pricing-card">
-                        <div class="pricing-row">
-                            <span class="pricing-label">Base Package Price</span>
-                            <span class="pricing-value" id="final-base">$0</span>
-                        </div>
-                        <div class="pricing-row">
-                            <span class="pricing-label">Add-On Package</span>
-                            <span class="pricing-value" id="final-addon">$0</span>
-                        </div>
-                        <div class="pricing-row">
-                            <span class="pricing-label">Subtotal</span>
-                            <span class="pricing-value" id="final-subtotal">$0</span>
-                        </div>
-                        <div class="pricing-row">
-                            <span class="pricing-label">Applied Multipliers</span>
-                            <span class="pricing-value" id="final-multiplier">1.00x</span>
-                        </div>
                         <div class="pricing-row total">
-                            <span class="pricing-label">TOTAL ANNUAL PRICE</span>
+                            <span class="pricing-label">ANNUAL SUBSCRIPTION</span>
                             <span class="pricing-value" id="final-total">$0</span>
                         </div>
-                    </div>
-
-                    <!-- Breakdown Box -->
-                    <div class="breakdown-box">
-                        <h4>📊 Multiplier Breakdown</h4>
-                        <div id="multiplier-breakdown"></div>
                     </div>
 
                     <!-- Action Buttons -->
@@ -1330,32 +1313,20 @@
         };
 
         // ==========================================
-        // PRICING DATA (from Excel)
+        // PRICING DATA (hidden from user)
         // ==========================================
         const basePricing = {
             intelligence: {
-                '1-2': 125000,
-                '3-5': 100000,
-                '6-10': 85000,
-                '11-14': 80000,
-                '15-19': 75000,
-                '20+': 70000
+                '1-2': 125000, '3-5': 100000, '6-10': 85000,
+                '11-14': 80000, '15-19': 75000, '20+': 70000
             },
             investigations: {
-                '1-2': 100000,
-                '3-5': 80000,
-                '6-10': 68000,
-                '11-14': 64000,
-                '15-19': 60000,
-                '20+': 56000
+                '1-2': 100000, '3-5': 80000, '6-10': 68000,
+                '11-14': 64000, '15-19': 60000, '20+': 56000
             },
             supplyChain: {
-                '1-2': 75000,
-                '3-5': 60000,
-                '6-10': 51000,
-                '11-14': 48000,
-                '15-19': 45000,
-                '20+': 42000
+                '1-2': 75000, '3-5': 60000, '6-10': 51000,
+                '11-14': 48000, '15-19': 45000, '20+': 42000
             }
         };
 
@@ -1368,122 +1339,69 @@
             '20+': { standard: 10500, plus: 21000, premium: 45500 }
         };
 
-        const addOnMultipliers = {
-            base: 1.0,
-            standard: 1.15,
-            plus: 1.3,
-            premium: 1.65
-        };
-
-        const regionMultipliers = {
-            'north-america': 1.0,
-            'west-north-europe': 1.0,
-            'middle-east': 0.9,
-            'north-asia-oceania': 0.9,
-            'east-south-europe': 0.8,
-            'south-america-africa': 0.7,
-            'south-asia': 0.7
-        };
-
-        const deliveryMultipliers = {
-            'web': 1.0,
-            'hybrid': 1.15,
-            'api': 1.2,
-            'datafeed': 1.35
-        };
-
-        const agencyMultipliers = {
-            'federal': 1.0,
-            'state': 0.8,
-            'local': 0.7
-        };
-
-        const entityVolumeMultipliers = {
-            'small': 0.9,
-            'medium': 1.0,
-            'large': 1.2,
-            'enterprise': 1.3
-        };
-
-        const dataFeedMultipliers = {
-            usageRights: {
-                'internal': 1.0,
-                'operational': 1.8,
-                'classified': 2.5
+        const multipliers = {
+            addOn: { base: 1.0, standard: 1.15, plus: 1.3, premium: 1.65 },
+            region: {
+                'north-america': 1.0, 'west-north-europe': 1.0, 'middle-east': 0.9,
+                'north-asia-oceania': 0.9, 'east-south-europe': 0.8,
+                'south-america-africa': 0.7, 'south-asia': 0.7
             },
-            scope: {
-                'regional': 1.0,
-                'global': 2.0
-            },
-            refresh: {
-                'annual': 1.0,
-                'quarterly': 1.5,
-                'monthly': 2.5
+            delivery: { 'web': 1.0, 'hybrid': 1.15, 'api': 1.2, 'datafeed': 1.35 },
+            agency: { 'federal': 1.0, 'state': 0.8, 'local': 0.7 },
+            entityVolume: { 'small': 0.9, 'medium': 1.0, 'large': 1.2, 'enterprise': 1.3 },
+            dataFeed: {
+                usageRights: { 'internal': 1.0, 'operational': 1.8, 'classified': 2.5 },
+                scope: { 'regional': 1.0, 'global': 2.0 },
+                refresh: { 'annual': 1.0, 'quarterly': 1.5, 'monthly': 2.5 }
             }
         };
 
-        const useCaseLabels = {
-            'intelligence': 'Intelligence',
-            'investigations': 'Investigations',
-            'supplyChain': 'Supply Chain'
-        };
-
-        const regionLabels = {
-            'north-america': 'North America',
-            'west-north-europe': 'West/North Europe',
-            'middle-east': 'Middle East',
-            'north-asia-oceania': 'North Asia & Oceania',
-            'east-south-europe': 'East/South Europe',
-            'south-america-africa': 'South America & Africa',
-            'south-asia': 'South Asia'
-        };
-
-        const deliveryLabels = {
-            'web': 'Web/UI',
-            'hybrid': 'Hybrid (UI + API)',
-            'api': 'API Direct Integration',
-            'datafeed': 'Data Feed'
-        };
-
-        const agencyLabels = {
-            'federal': 'Federal/Central',
-            'state': 'State',
-            'local': 'Local'
-        };
-
-        const volumeLabels = {
-            'small': '<10K Entities',
-            'medium': '10K-50K Entities',
-            'large': '50K-250K Entities',
-            'enterprise': '250K-1M+ Entities'
-        };
-
-        const addOnLabels = {
-            'base': 'Base Only',
-            'standard': 'Standard',
-            'plus': 'Plus',
-            'premium': 'Premium'
-        };
-
-        const usageRightsLabels = {
-            'internal': 'Internal Analytics',
-            'operational': 'Operational Integration',
-            'classified': 'Classified Fusion'
-        };
-
-        const scopeLabels = {
-            'regional': 'Regional',
-            'global': 'Global'
-        };
-
-        const refreshLabels = {
-            'annual': 'Annual',
-            'quarterly': 'Quarterly',
-            'monthly': 'Monthly'
+        // ==========================================
+        // ADD-ON PACKAGE FEATURES (from image)
+        // ==========================================
+        const addOnFeatures = {
+            intelligence: {
+                base: [],
+                standard: ['T-Rank Power & Coalitions', 'Orbis IP'],
+                plus: ['T-Rank Power & Coalitions', 'Orbis IP', 'Pathfinder', 'News Edge', 'Shell Company Indicator'],
+                premium: ['T-Rank Power & Coalitions', 'Orbis IP', 'Pathfinder', 'News Edge', 'Shell Company Indicator', 'Cyber Risk (Bitsight)', 'Orbis Cross Border', 'Orbis M&A']
+            },
+            investigations: {
+                base: [],
+                standard: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ'],
+                plus: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ', 'Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard'],
+                premium: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ', 'Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard', 'Orbis M&A', 'Cyber Risk (Bitsight)', 'Orbis Cross Border']
+            },
+            supplyChain: {
+                base: [],
+                standard: ['Financial Strength', 'ESG Score', 'Probability of Default'],
+                plus: ['Financial Strength', 'ESG Score', 'Probability of Default', 'Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator'],
+                premium: ['Financial Strength', 'ESG Score', 'Probability of Default', 'Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator', 'ORBIS M&A', 'Orbis Cross Border', 'Sanctions 360']
+            }
         };
 
         // ==========================================
-        // NAVIGATION FUNCTIONS
+        // LABELS
+        // ==========================================
+        const labels = {
+            useCase: { 'intelligence': 'Intelligence', 'investigations': 'Investigations', 'supplyChain': 'Supply Chain Risk' },
+            region: {
+                'north-america': 'North America', 'west-north-europe': 'West/North Europe',
+                'middle-east': 'Middle East', 'north-asia-oceania': 'North Asia & Oceania',
+                'east-south-europe': 'East/South Europe', 'south-america-africa': 'South America & Africa',
+                'south-asia': 'South Asia'
+            },
+            delivery: { 'web': 'Web/UI', 'hybrid': 'Hybrid (UI + API)', 'api': 'API Direct Integration', 'datafeed': 'Data Feed' },
+            agency: { 'federal': 'Federal/Central', 'state': 'State', 'local': 'Local' },
+            volume: { 'small': '<10K Entities', 'medium': '10K-50K Entities', 'large': '50K-250K Entities', 'enterprise': '250K-1M+ Entities' },
+            addOn: { 'base': 'Base Only', 'standard': 'Standard', 'plus': 'Plus', 'premium': 'Premium' },
+            usageRights: { 'internal': 'Internal Analytics', 'operational': 'Operational Integration', 'classified': 'Classified Fusion' },
+            scope: { 'regional': 'Regional', 'global': 'Global' },
+            refresh: { 'annual': 'Annual', 'quarterly': 'Quarterly', 'monthly': 'Monthly' }
+        };
+
+        // ==========================================
+        // NAVIGATION
         // ==========================================
         function nextStep() {
             if (!validateStep(currentStep)) return;
@@ -1493,13 +1411,11 @@
                 updateStep();
                 
                 if (currentStep === 2) {
-                    updateUserBandPrices();
-                    updateAddOnPrices();
+                    renderAddOnCards();
                 }
                 
                 if (currentStep === 3) {
                     toggleEntityVolumeSection();
-                    updateCalculation();
                 }
                 
                 if (currentStep === 4) {
@@ -1516,29 +1432,17 @@
         }
 
         function updateStep() {
-            // Hide all steps
-            document.querySelectorAll('.step-content').forEach(step => {
-                step.classList.remove('active');
-            });
-            
-            // Show current step
+            document.querySelectorAll('.step-content').forEach(step => step.classList.remove('active'));
             document.getElementById(`step-${currentStep}`).classList.add('active');
             
-            // Update progress bar
             for (let i = 1; i <= 4; i++) {
                 const progressStep = document.getElementById(`progress-${i}`);
                 progressStep.classList.remove('active', 'completed');
-                
-                if (i < currentStep) {
-                    progressStep.classList.add('completed');
-                } else if (i === currentStep) {
-                    progressStep.classList.add('active');
-                }
+                if (i < currentStep) progressStep.classList.add('completed');
+                else if (i === currentStep) progressStep.classList.add('active');
             }
             
-            // Update navigation buttons
             document.getElementById('btn-prev').disabled = currentStep === 1;
-            
             const btnNext = document.getElementById('btn-next');
             if (currentStep === 4) {
                 btnNext.innerHTML = '✓ Complete';
@@ -1552,19 +1456,11 @@
         function validateStep(step) {
             switch(step) {
                 case 1:
-                    if (!configData.useCase) {
-                        alert('Please select a use case to continue.');
-                        return false;
-                    }
+                    if (!configData.useCase) { alert('Please select a use case to continue.'); return false; }
                     return true;
-                    
                 case 2:
-                    if (!configData.userBand) {
-                        alert('Please select a user band to continue.');
-                        return false;
-                    }
+                    if (!configData.userBand) { alert('Please select a user band to continue.'); return false; }
                     return true;
-                    
                 default:
                     return true;
             }
@@ -1574,89 +1470,91 @@
         // SELECTION FUNCTIONS
         // ==========================================
         function selectUseCase(useCase) {
-            // Clear all selections
             document.querySelectorAll('#step-1 .selection-card').forEach(card => {
                 card.classList.remove('selected');
                 card.querySelector('input').checked = false;
             });
             
-            // Select the clicked one
             const card = document.querySelector(`#${useCase}`).closest('.selection-card');
-            const radio = document.getElementById(useCase);
-            
-            radio.checked = true;
+            document.getElementById(useCase).checked = true;
             card.classList.add('selected');
-            
             configData.useCase = useCase;
         }
 
         function selectUserBand(band) {
-            // Clear all selections
             document.querySelectorAll('[name="userBand"]').forEach(input => {
                 input.closest('.selection-card').classList.remove('selected');
                 input.checked = false;
             });
             
-            // Select the clicked one
             const bandId = `users-${band}`;
             const card = document.querySelector(`#${bandId}`).closest('.selection-card');
-            const radio = document.getElementById(bandId);
-            
-            radio.checked = true;
+            document.getElementById(bandId).checked = true;
             card.classList.add('selected');
-            
             configData.userBand = band;
-            updateAddOnPrices();
-            updateCalculation();
         }
 
         function selectAddOn(addon) {
-            // Clear all selections
             document.querySelectorAll('[name="addOn"]').forEach(input => {
                 input.closest('.selection-card').classList.remove('selected');
                 input.checked = false;
             });
             
-            // Select the clicked one
             const addonId = `addon-${addon}`;
             const card = document.querySelector(`#${addonId}`).closest('.selection-card');
-            const radio = document.getElementById(addonId);
-            
-            radio.checked = true;
+            document.getElementById(addonId).checked = true;
             card.classList.add('selected');
-            
             configData.addOn = addon;
-            updateCalculation();
         }
 
         // ==========================================
-        // UPDATE FUNCTIONS
+        // RENDER ADD-ON CARDS
         // ==========================================
-        function updateUserBandPrices() {
+        function renderAddOnCards() {
+            const container = document.getElementById('addon-cards');
             const useCase = configData.useCase;
-            if (!useCase) return;
-
-            const prices = basePricing[useCase];
-            Object.keys(prices).forEach(band => {
-                const priceEl = document.getElementById(`price-${band}`);
-                if (priceEl) {
-                    priceEl.textContent = '$' + prices[band].toLocaleString();
-                }
-            });
-        }
-
-        function updateAddOnPrices() {
-            const band = configData.userBand;
-            if (!band) return;
-
-            const prices = addOnPricing[band];
+            const features = addOnFeatures[useCase];
             
-            document.getElementById('addon-price-base').textContent = '$0';
-            document.getElementById('addon-price-standard').textContent = '+$' + prices.standard.toLocaleString();
-            document.getElementById('addon-price-plus').textContent = '+$' + prices.plus.toLocaleString();
-            document.getElementById('addon-price-premium').textContent = '+$' + prices.premium.toLocaleString();
+            const addOns = [
+                { key: 'base', name: 'Base Only', desc: 'Core functionality only', tier: '' },
+                { key: 'standard', name: 'Standard', desc: 'Enhanced monitoring & analysis', tier: 'standard' },
+                { key: 'plus', name: 'Plus', desc: 'Advanced analytics & reporting', tier: 'plus' },
+                { key: 'premium', name: 'Premium', desc: 'Full suite with priority support', tier: 'premium' }
+            ];
+
+            let html = '';
+            addOns.forEach(addon => {
+                const isSelected = addon.key === configData.addOn;
+                const featureList = features[addon.key];
+                
+                html += `
+                    <div class="selection-card ${isSelected ? 'selected' : ''}" onclick="selectAddOn('${addon.key}')">
+                        <input type="radio" id="addon-${addon.key}" name="addOn" ${isSelected ? 'checked' : ''}>
+                        <div class="card-header">
+                            <div class="card-radio"></div>
+                            <div class="card-title">${addon.name}</div>
+                        </div>
+                        <p class="card-description">${addon.desc}</p>
+                        ${addon.tier ? `<span class="tier-badge ${addon.tier}">${addon.tier}</span>` : ''}
+                        ${featureList.length > 0 ? `
+                            <div class="card-features">
+                                <div class="card-features-title">Includes</div>
+                                <ul>
+                                    ${featureList.slice(0, 4).map(f => `<li>${f}</li>`).join('')}
+                                    ${featureList.length > 4 ? `<li>+${featureList.length - 4} more...</li>` : ''}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
         }
 
+        // ==========================================
+        // HELPER FUNCTIONS
+        // ==========================================
         function toggleEntityVolumeSection() {
             const section = document.getElementById('entity-volume-section');
             if (configData.useCase === 'supplyChain') {
@@ -1676,12 +1574,13 @@
             } else {
                 datafeedOptions.classList.remove('visible');
             }
-            
-            updateCalculation();
         }
 
-        function updateCalculation() {
-            // Get current values from dropdowns
+        // ==========================================
+        // QUOTE GENERATION
+        // ==========================================
+        function generateQuote() {
+            // Get current values
             configData.region = document.getElementById('region').value;
             configData.delivery = document.getElementById('delivery').value;
             configData.agencyType = document.getElementById('agency-type').value;
@@ -1690,149 +1589,41 @@
             configData.scope = document.getElementById('scope').value;
             configData.refresh = document.getElementById('refresh').value;
 
-            // Calculate base price
-            let basePrice = 0;
-            if (configData.useCase && configData.userBand) {
-                basePrice = basePricing[configData.useCase][configData.userBand];
-            }
+            // Calculate price
+            let basePrice = basePricing[configData.useCase][configData.userBand];
+            let addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
+            let subtotal = basePrice + addOnPrice;
 
-            // Calculate add-on price
-            let addOnPrice = 0;
-            if (configData.userBand && configData.addOn !== 'base') {
-                addOnPrice = addOnPricing[configData.userBand][configData.addOn] || 0;
-            }
+            let combinedMultiplier = multipliers.addOn[configData.addOn]
+                * multipliers.region[configData.region]
+                * multipliers.delivery[configData.delivery]
+                * multipliers.agency[configData.agencyType];
 
-            // Calculate subtotal
-            const subtotal = basePrice + addOnPrice;
-
-            // Calculate combined multiplier
-            let combinedMultiplier = 1.0;
-            
-            // Add-on multiplier
-            combinedMultiplier *= addOnMultipliers[configData.addOn];
-            
-            // Region multiplier
-            combinedMultiplier *= regionMultipliers[configData.region];
-            
-            // Delivery multiplier
-            combinedMultiplier *= deliveryMultipliers[configData.delivery];
-            
-            // Agency type multiplier
-            combinedMultiplier *= agencyMultipliers[configData.agencyType];
-            
-            // Entity volume multiplier (Supply Chain only)
             if (configData.useCase === 'supplyChain') {
-                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
+                combinedMultiplier *= multipliers.entityVolume[configData.entityVolume];
             }
-            
-            // Data Feed multipliers (only if Data Feed delivery)
+
             if (configData.delivery === 'datafeed') {
-                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
-                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
-                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
-            }
-
-            // Calculate final total
-            const total = subtotal * combinedMultiplier;
-
-            // Update preview display
-            document.getElementById('preview-usecase').textContent = useCaseLabels[configData.useCase] || '-';
-            document.getElementById('preview-base').textContent = '$' + basePrice.toLocaleString();
-            document.getElementById('preview-addon').textContent = addOnLabels[configData.addOn];
-            document.getElementById('preview-addon-cost').textContent = '$' + addOnPrice.toLocaleString();
-            document.getElementById('preview-subtotal').textContent = '$' + subtotal.toLocaleString();
-            document.getElementById('preview-multiplier').textContent = combinedMultiplier.toFixed(2) + 'x';
-            document.getElementById('preview-total').textContent = '$' + Math.round(total).toLocaleString();
-        }
-
-        // ==========================================
-        // QUOTE GENERATION
-        // ==========================================
-        function generateQuote() {
-            // Calculate all values
-            const basePrice = basePricing[configData.useCase][configData.userBand];
-            const addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
-            const subtotal = basePrice + addOnPrice;
-
-            // Build multiplier breakdown
-            let multiplierBreakdown = [];
-            let combinedMultiplier = 1.0;
-
-            // Add-on multiplier
-            if (configData.addOn !== 'base') {
-                multiplierBreakdown.push({
-                    label: `Add-On Package (${addOnLabels[configData.addOn]})`,
-                    value: addOnMultipliers[configData.addOn]
-                });
-            }
-            combinedMultiplier *= addOnMultipliers[configData.addOn];
-
-            // Region
-            multiplierBreakdown.push({
-                label: `Region (${regionLabels[configData.region]})`,
-                value: regionMultipliers[configData.region]
-            });
-            combinedMultiplier *= regionMultipliers[configData.region];
-
-            // Delivery
-            multiplierBreakdown.push({
-                label: `Delivery Method (${deliveryLabels[configData.delivery]})`,
-                value: deliveryMultipliers[configData.delivery]
-            });
-            combinedMultiplier *= deliveryMultipliers[configData.delivery];
-
-            // Agency Type
-            multiplierBreakdown.push({
-                label: `Agency Type (${agencyLabels[configData.agencyType]})`,
-                value: agencyMultipliers[configData.agencyType]
-            });
-            combinedMultiplier *= agencyMultipliers[configData.agencyType];
-
-            // Entity Volume (Supply Chain)
-            if (configData.useCase === 'supplyChain') {
-                multiplierBreakdown.push({
-                    label: `Entity Volume (${volumeLabels[configData.entityVolume]})`,
-                    value: entityVolumeMultipliers[configData.entityVolume]
-                });
-                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
-            }
-
-            // Data Feed attributes
-            if (configData.delivery === 'datafeed') {
-                multiplierBreakdown.push({
-                    label: `Usage Rights (${usageRightsLabels[configData.usageRights]})`,
-                    value: dataFeedMultipliers.usageRights[configData.usageRights]
-                });
-                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
-
-                multiplierBreakdown.push({
-                    label: `Scope (${scopeLabels[configData.scope]})`,
-                    value: dataFeedMultipliers.scope[configData.scope]
-                });
-                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
-
-                multiplierBreakdown.push({
-                    label: `Refresh Frequency (${refreshLabels[configData.refresh]})`,
-                    value: dataFeedMultipliers.refresh[configData.refresh]
-                });
-                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
+                combinedMultiplier *= multipliers.dataFeed.usageRights[configData.usageRights];
+                combinedMultiplier *= multipliers.dataFeed.scope[configData.scope];
+                combinedMultiplier *= multipliers.dataFeed.refresh[configData.refresh];
             }
 
             const total = subtotal * combinedMultiplier;
 
-            // Update quote display
-            document.getElementById('quote-usecase').textContent = useCaseLabels[configData.useCase];
+            // Update display
+            document.getElementById('quote-usecase').textContent = labels.useCase[configData.useCase];
             document.getElementById('quote-userband').textContent = configData.userBand + ' Users';
-            document.getElementById('quote-addon').textContent = addOnLabels[configData.addOn];
-            document.getElementById('quote-region').textContent = regionLabels[configData.region] + ` (${regionMultipliers[configData.region]}x)`;
-            document.getElementById('quote-delivery').textContent = deliveryLabels[configData.delivery] + ` (${deliveryMultipliers[configData.delivery]}x)`;
-            document.getElementById('quote-agency').textContent = agencyLabels[configData.agencyType] + ` (${agencyMultipliers[configData.agencyType]}x)`;
+            document.getElementById('quote-addon').textContent = labels.addOn[configData.addOn];
+            document.getElementById('quote-region').textContent = labels.region[configData.region];
+            document.getElementById('quote-delivery').textContent = labels.delivery[configData.delivery];
+            document.getElementById('quote-agency').textContent = labels.agency[configData.agencyType];
 
-            // Entity Volume row
+            // Entity Volume
             const volumeRow = document.getElementById('quote-volume-row');
             if (configData.useCase === 'supplyChain') {
                 volumeRow.classList.remove('hidden');
-                document.getElementById('quote-volume').textContent = volumeLabels[configData.entityVolume] + ` (${entityVolumeMultipliers[configData.entityVolume]}x)`;
+                document.getElementById('quote-volume').textContent = labels.volume[configData.entityVolume];
             } else {
                 volumeRow.classList.add('hidden');
             }
@@ -1841,92 +1632,86 @@
             const datafeedSection = document.getElementById('quote-datafeed-section');
             if (configData.delivery === 'datafeed') {
                 datafeedSection.classList.remove('hidden');
-                document.getElementById('quote-usage-rights').textContent = usageRightsLabels[configData.usageRights] + ` (${dataFeedMultipliers.usageRights[configData.usageRights]}x)`;
-                document.getElementById('quote-scope').textContent = scopeLabels[configData.scope] + ` (${dataFeedMultipliers.scope[configData.scope]}x)`;
-                document.getElementById('quote-refresh').textContent = refreshLabels[configData.refresh] + ` (${dataFeedMultipliers.refresh[configData.refresh]}x)`;
+                document.getElementById('quote-usage-rights').textContent = labels.usageRights[configData.usageRights];
+                document.getElementById('quote-scope').textContent = labels.scope[configData.scope];
+                document.getElementById('quote-refresh').textContent = labels.refresh[configData.refresh];
             } else {
                 datafeedSection.classList.add('hidden');
             }
 
-            // Pricing card
-            document.getElementById('final-base').textContent = '$' + basePrice.toLocaleString();
-            document.getElementById('final-addon').textContent = '$' + addOnPrice.toLocaleString();
-            document.getElementById('final-subtotal').textContent = '$' + subtotal.toLocaleString();
-            document.getElementById('final-multiplier').textContent = combinedMultiplier.toFixed(2) + 'x';
-            document.getElementById('final-total').textContent = '$' + Math.round(total).toLocaleString();
-
-            // Multiplier breakdown
-            let breakdownHTML = '';
-            multiplierBreakdown.forEach(item => {
-                breakdownHTML += `
-                    <div class="breakdown-item">
-                        <span class="breakdown-item-label">${item.label}</span>
-                        <span class="breakdown-item-value">${item.value}x</span>
+            // Add-on features
+            const features = addOnFeatures[configData.useCase][configData.addOn];
+            const featuresContainer = document.getElementById('quote-addon-features');
+            if (features.length > 0) {
+                featuresContainer.innerHTML = `
+                    <div class="feature-pills">
+                        ${features.map(f => `<span class="feature-pill">${f}</span>`).join('')}
                     </div>
                 `;
-            });
-            breakdownHTML += `
-                <div class="breakdown-item" style="font-weight: 700; border-top: 2px solid #0ea5e9; padding-top: 12px; margin-top: 8px;">
-                    <span class="breakdown-item-label">Combined Multiplier</span>
-                    <span class="breakdown-item-value">${combinedMultiplier.toFixed(2)}x</span>
-                </div>
-            `;
-            document.getElementById('multiplier-breakdown').innerHTML = breakdownHTML;
+            } else {
+                featuresContainer.innerHTML = '<p style="color: #64748b; font-style: italic;">No additional add-on features selected</p>';
+            }
+
+            // Final price
+            document.getElementById('final-total').textContent = '$' + Math.round(total).toLocaleString() + '/year';
         }
 
         // ==========================================
         // EXPORT FUNCTIONS
         // ==========================================
         function copyQuote() {
-            const basePrice = basePricing[configData.useCase][configData.userBand];
-            const addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
-            const subtotal = basePrice + addOnPrice;
-            
-            let combinedMultiplier = addOnMultipliers[configData.addOn] 
-                * regionMultipliers[configData.region] 
-                * deliveryMultipliers[configData.delivery] 
-                * agencyMultipliers[configData.agencyType];
-            
-            if (configData.useCase === 'supplyChain') {
-                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
-            }
-            
-            if (configData.delivery === 'datafeed') {
-                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
-                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
-                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
-            }
-            
-            const total = subtotal * combinedMultiplier;
+            // Calculate price
+            let basePrice = basePricing[configData.useCase][configData.userBand];
+            let addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
+            let subtotal = basePrice + addOnPrice;
 
-            let summary = `GOVERNMENT SOLUTIONS - PRICING QUOTE
+            let combinedMultiplier = multipliers.addOn[configData.addOn]
+                * multipliers.region[configData.region]
+                * multipliers.delivery[configData.delivery]
+                * multipliers.agency[configData.agencyType];
+
+            if (configData.useCase === 'supplyChain') {
+                combinedMultiplier *= multipliers.entityVolume[configData.entityVolume];
+            }
+
+            if (configData.delivery === 'datafeed') {
+                combinedMultiplier *= multipliers.dataFeed.usageRights[configData.usageRights];
+                combinedMultiplier *= multipliers.dataFeed.scope[configData.scope];
+                combinedMultiplier *= multipliers.dataFeed.refresh[configData.refresh];
+            }
+
+            const total = subtotal * combinedMultiplier;
+            const features = addOnFeatures[configData.useCase][configData.addOn];
+
+            let summary = `SECURITY, INTELLIGENCE & LAW ENFORCEMENT
+PRICING & PACKAGING QUOTE
 ========================================
 
 PACKAGE CONFIGURATION
 ---------------------
-Use Case: ${useCaseLabels[configData.useCase]}
+Use Case: ${labels.useCase[configData.useCase]}
 User Band: ${configData.userBand} Users
-Add-On Package: ${addOnLabels[configData.addOn]}
+Add-On Package: ${labels.addOn[configData.addOn]}
 
-ATTRIBUTES
-----------
-Region: ${regionLabels[configData.region]} (${regionMultipliers[configData.region]}x)
-Delivery Method: ${deliveryLabels[configData.delivery]} (${deliveryMultipliers[configData.delivery]}x)
-Agency Type: ${agencyLabels[configData.agencyType]} (${agencyMultipliers[configData.agencyType]}x)`;
+CONFIGURATION
+-------------
+Region: ${labels.region[configData.region]}
+Delivery Method: ${labels.delivery[configData.delivery]}
+Agency Type: ${labels.agency[configData.agencyType]}`;
 
             if (configData.useCase === 'supplyChain') {
                 summary += `
-Entity Volume: ${volumeLabels[configData.entityVolume]} (${entityVolumeMultipliers[configData.entityVolume]}x)`;
+Entity Volume: ${labels.volume[configData.entityVolume]}`;
             }
 
             if (configData.delivery === 'datafeed') {
                 summary += `
 
-DATA FEED CONFIGURATION
------------------------
-Usage Rights: ${usageRightsLabels[configData.usageRights]} (${dataFeedMultipliers.usageRights[configData.usageRights]}x)
-Scope: ${scopeLabels[configData.scope]} (${dataFeedMultipliers.scope[configData.scope]}x)
-Refresh Frequency: ${refreshLabels[configData.refresh]} (${dataFeedMultipliers.refresh[configData.refresh]}x)`;
+DATA FEED SETTINGS
+------------------
+Usage Rights: ${labels.usageRights[configData.usageRights]}
+Scope: ${labels.scope[configData.scope]}
+Refresh Frequency: ${labels.refresh[configData.refresh]}`;
             }
 
             summary += `
@@ -1936,16 +1721,20 @@ BASE OFFERING INCLUDED
 • Orbis Global
 • BFO
 • Orbis T-Rank
-• GRID Review
+• GRID Review`;
 
-PRICING SUMMARY
----------------
-Base Package Price: $${basePrice.toLocaleString()}
-Add-On Package: $${addOnPrice.toLocaleString()}
-Subtotal: $${subtotal.toLocaleString()}
-Combined Multiplier: ${combinedMultiplier.toFixed(2)}x
+            if (features.length > 0) {
+                summary += `
 
-TOTAL ANNUAL PRICE: $${Math.round(total).toLocaleString()}
+ADD-ON FEATURES INCLUDED
+------------------------
+${features.map(f => '• ' + f).join('\n')}`;
+            }
+
+            summary += `
+
+========================================
+ANNUAL SUBSCRIPTION: $${Math.round(total).toLocaleString()}/year
 ========================================`;
 
             navigator.clipboard.writeText(summary).then(() => {
