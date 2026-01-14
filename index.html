@@ -96,7 +96,6 @@
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .package-card:hover {
@@ -104,17 +103,9 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.12);
         }
 
-        .package-card.intelligence {
-            border-color: #1d4ed8;
-        }
-
-        .package-card.investigations {
-            border-color: #7c3aed;
-        }
-
-        .package-card.supply-chain {
-            border-color: #059669;
-        }
+        .package-card.intelligence { border-color: #1d4ed8; }
+        .package-card.investigations { border-color: #7c3aed; }
+        .package-card.supply-chain { border-color: #059669; }
 
         .package-header {
             padding: 28px;
@@ -133,29 +124,13 @@
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
         }
 
-        .package-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
+        .package-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .package-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+        .package-tagline { font-size: 0.9rem; opacity: 0.9; }
 
-        .package-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
+        .package-body { padding: 25px; }
 
-        .package-tagline {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .package-body {
-            padding: 25px;
-        }
-
-        .package-features {
-            list-style: none;
-        }
+        .package-features { list-style: none; }
 
         .package-features li {
             padding: 8px 0;
@@ -206,9 +181,7 @@
             font-weight: 500;
         }
 
-        .base-item::before {
-            content: '📦';
-        }
+        .base-item::before { content: '📦'; }
 
         /* Add-On Options Box */
         .addon-options-box {
@@ -312,9 +285,7 @@
             animation: fadeIn 0.4s ease;
         }
 
-        .step-content.active {
-            display: block;
-        }
+        .step-content.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
@@ -342,24 +313,15 @@
             margin-bottom: 30px;
         }
 
-        .cards-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cards-grid-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
+        .cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
 
         @media (max-width: 1200px) {
-            .cards-grid-3, .cards-grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .cards-grid-3, .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .cards-grid-3, .cards-grid-4 {
-                grid-template-columns: 1fr;
-            }
+            .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
         }
 
         /* Selection Card */
@@ -423,9 +385,7 @@
             transition: opacity 0.2s ease;
         }
 
-        .selection-card.selected .card-radio::after {
-            opacity: 1;
-        }
+        .selection-card.selected .card-radio::after { opacity: 1; }
 
         .card-title {
             font-size: 1.15rem;
@@ -455,9 +415,7 @@
             margin-bottom: 10px;
         }
 
-        .card-features ul {
-            list-style: none;
-        }
+        .card-features ul { list-style: none; }
 
         .card-features li {
             font-size: 0.85rem;
@@ -486,20 +444,9 @@
             margin-top: 10px;
         }
 
-        .tier-badge.standard {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .tier-badge.plus {
-            background: #ede9fe;
-            color: #5b21b6;
-        }
-
-        .tier-badge.premium {
-            background: #fef3c7;
-            color: #92400e;
-        }
+        .tier-badge.standard { background: #dbeafe; color: #1e40af; }
+        .tier-badge.plus { background: #ede9fe; color: #5b21b6; }
+        .tier-badge.premium { background: #fef3c7; color: #92400e; }
 
         /* Form Section */
         .form-section {
@@ -518,9 +465,7 @@
             border-bottom: 2px solid #e2e8f0;
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+        .form-group { margin-bottom: 25px; }
 
         .form-label {
             display: block;
@@ -533,6 +478,49 @@
             font-size: 0.85rem;
             color: #64748b;
             margin-top: 8px;
+        }
+
+        /* Number Input */
+        .user-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        input.form-input {
+            width: 150px;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        input.form-input:focus {
+            outline: none;
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29,78,216,0.2);
+        }
+
+        .volume-tier-display {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .volume-tier-display strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            color: #64748b;
         }
 
         select.form-select {
@@ -569,10 +557,7 @@
             margin: 25px 0;
         }
 
-        .info-alert-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
+        .info-alert-icon { font-size: 1.3rem; flex-shrink: 0; }
 
         .info-alert-text {
             font-size: 0.95rem;
@@ -587,9 +572,7 @@
             border-top: 2px dashed #e2e8f0;
         }
 
-        .data-feed-section.visible {
-            display: block;
-        }
+        .data-feed-section.visible { display: block; }
 
         /* Quote Summary Styles */
         .quote-grid {
@@ -600,14 +583,10 @@
         }
 
         @media (max-width: 900px) {
-            .quote-grid {
-                grid-template-columns: 1fr;
-            }
+            .quote-grid { grid-template-columns: 1fr; }
         }
 
-        .quote-section {
-            margin-bottom: 25px;
-        }
+        .quote-section { margin-bottom: 25px; }
 
         .quote-section-title {
             font-size: 1.1rem;
@@ -625,18 +604,9 @@
             border-bottom: 1px solid #f1f5f9;
         }
 
-        .quote-item:last-child {
-            border-bottom: none;
-        }
-
-        .quote-item-label {
-            color: #475569;
-        }
-
-        .quote-item-value {
-            font-weight: 600;
-            color: #1a365d;
-        }
+        .quote-item:last-child { border-bottom: none; }
+        .quote-item-label { color: #475569; }
+        .quote-item-value { font-weight: 600; color: #1a365d; }
 
         /* Feature Pills */
         .feature-pills {
@@ -672,9 +642,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.15);
         }
 
-        .pricing-row:last-child {
-            border-bottom: none;
-        }
+        .pricing-row:last-child { border-bottom: none; }
 
         .pricing-row.total {
             margin-top: 15px;
@@ -683,24 +651,11 @@
             border-bottom: none;
         }
 
-        .pricing-label {
-            font-size: 1rem;
-        }
+        .pricing-label { font-size: 1rem; }
+        .pricing-value { font-size: 1.1rem; font-weight: 600; }
 
-        .pricing-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .pricing-row.total .pricing-label {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .pricing-row.total .pricing-value {
-            font-size: 2.4rem;
-            font-weight: 700;
-        }
+        .pricing-row.total .pricing-label { font-size: 1.3rem; font-weight: 700; }
+        .pricing-row.total .pricing-value { font-size: 2.4rem; font-weight: 700; }
 
         /* Navigation */
         .navigation {
@@ -734,23 +689,11 @@
             box-shadow: 0 10px 25px rgba(26,54,93,0.4);
         }
 
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #475569;
-        }
+        .btn-secondary { background: #e2e8f0; color: #475569; }
+        .btn-secondary:hover { background: #cbd5e0; }
 
-        .btn-secondary:hover {
-            background: #cbd5e0;
-        }
-
-        .btn-success {
-            background: #059669;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #047857;
-        }
+        .btn-success { background: #059669; color: white; }
+        .btn-success:hover { background: #047857; }
 
         .btn:disabled {
             opacity: 0.5;
@@ -765,55 +708,25 @@
             margin-top: 30px;
         }
 
-        /* Hidden */
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .content-area {
-                padding: 30px 20px;
-            }
-
-            .packages-section {
-                padding: 30px 20px;
-            }
-
-            .progress-bar {
-                padding: 15px;
-            }
-
-            .progress-step {
-                padding: 10px 16px;
-                font-size: 0.8rem;
-            }
-
-            .progress-arrow {
-                display: none;
-            }
-
+            .header h1 { font-size: 1.8rem; }
+            .content-area { padding: 30px 20px; }
+            .packages-section { padding: 30px 20px; }
+            .progress-bar { padding: 15px; }
+            .progress-step { padding: 10px 16px; font-size: 0.8rem; }
+            .progress-arrow { display: none; }
             .navigation {
                 flex-direction: column;
                 gap: 15px;
                 padding: 20px;
             }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
+            .btn { width: 100%; justify-content: center; }
+            .packages-grid { grid-template-columns: 1fr; }
         }
 
-        /* Package Features List */
         .package-features-section {
             margin-top: 15px;
             padding-top: 15px;
@@ -870,10 +783,9 @@
                             <li>Cross-border ownership analysis</li>
                             <li>Risk assessment & threat detection</li>
                             <li>Strategic partnership intelligence</li>
-                            <li>Custom analyst workflows</li>
                         </ul>
                         <div class="package-features-section">
-                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="features-label">Standard Add-On</div>
                             <div class="feature-pills">
                                 <span class="feature-pill">T-Rank Power & Coalitions</span>
                                 <span class="feature-pill">Orbis IP</span>
@@ -895,10 +807,9 @@
                             <li>Beneficial ownership mapping</li>
                             <li>Financial crime detection</li>
                             <li>Regulatory compliance checks</li>
-                            <li>Case management tools</li>
                         </ul>
                         <div class="package-features-section">
-                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="features-label">Standard Add-On</div>
                             <div class="feature-pills">
                                 <span class="feature-pill">T-Rank Power & Coalitions</span>
                                 <span class="feature-pill">State Owned Entities</span>
@@ -921,10 +832,9 @@
                             <li>Entity volume monitoring</li>
                             <li>Supply chain risk mapping</li>
                             <li>Procurement compliance</li>
-                            <li>Bulk entity processing</li>
                         </ul>
                         <div class="package-features-section">
-                            <div class="features-label">Standard Add-On Includes</div>
+                            <div class="features-label">Standard Add-On</div>
                             <div class="feature-pills">
                                 <span class="feature-pill">Financial Strength</span>
                                 <span class="feature-pill">ESG Score</span>
@@ -1019,75 +929,31 @@
                     </div>
                 </div>
 
-                <!-- Step 2: User Band & Add-On Package -->
+                <!-- Step 2: Users & Add-On Package -->
                 <div class="step-content" id="step-2">
                     <h2 class="step-title">Users & Package Selection</h2>
-                    <p class="step-subtitle">Select your team size and add-on package level</p>
+                    <p class="step-subtitle">Enter your number of users and select an add-on package</p>
 
-                    <!-- User Band Selection -->
+                    <!-- User Count Input -->
                     <div class="form-section">
                         <h3 class="form-section-title">👥 Number of Users</h3>
-                        <div class="cards-grid">
-                            <div class="selection-card" onclick="selectUserBand('1-2')">
-                                <input type="radio" id="users-1-2" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">1-2 Users</div>
+                        <div class="form-group">
+                            <label class="form-label">How many users will need access?</label>
+                            <div class="user-input-wrapper">
+                                <input type="number" class="form-input" id="user-count" min="1" max="100" value="1" oninput="updateVolumeTier()">
+                                <div class="volume-tier-display" id="volume-tier-display">
+                                    <strong>Volume Tier</strong>
+                                    <span id="volume-tier-text">1-2 Users</span>
                                 </div>
-                                <p class="card-description">Small team or individual analyst</p>
                             </div>
-
-                            <div class="selection-card" onclick="selectUserBand('3-5')">
-                                <input type="radio" id="users-3-5" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">3-5 Users</div>
-                                </div>
-                                <p class="card-description">Department or small unit</p>
-                            </div>
-
-                            <div class="selection-card" onclick="selectUserBand('6-10')">
-                                <input type="radio" id="users-6-10" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">6-10 Users</div>
-                                </div>
-                                <p class="card-description">Division or multiple teams</p>
-                            </div>
-
-                            <div class="selection-card" onclick="selectUserBand('11-14')">
-                                <input type="radio" id="users-11-14" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">11-14 Users</div>
-                                </div>
-                                <p class="card-description">Large department</p>
-                            </div>
-
-                            <div class="selection-card" onclick="selectUserBand('15-19')">
-                                <input type="radio" id="users-15-19" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">15-19 Users</div>
-                                </div>
-                                <p class="card-description">Agency-wide deployment</p>
-                            </div>
-
-                            <div class="selection-card" onclick="selectUserBand('20+')">
-                                <input type="radio" id="users-20+" name="userBand">
-                                <div class="card-header">
-                                    <div class="card-radio"></div>
-                                    <div class="card-title">20+ Users</div>
-                                </div>
-                                <p class="card-description">Enterprise deployment</p>
-                            </div>
+                            <p class="form-help">Enter the total number of users. Pricing per user adjusts based on volume tiers.</p>
                         </div>
                     </div>
 
                     <!-- Add-On Packages -->
                     <div class="form-section">
                         <h3 class="form-section-title">📦 Add-On Package</h3>
-                        <p class="form-help" style="margin-bottom: 20px;">Enhance your base package with additional capabilities</p>
+                        <p class="form-help" style="margin-bottom: 20px;">Select an add-on package to enhance your solution. Each package is an independent bundle.</p>
                         
                         <div class="cards-grid cards-grid-4" id="addon-cards">
                             <!-- Cards will be populated dynamically based on use case -->
@@ -1202,8 +1068,12 @@
                                     <span class="quote-item-value" id="quote-usecase">-</span>
                                 </div>
                                 <div class="quote-item">
-                                    <span class="quote-item-label">User Band</span>
-                                    <span class="quote-item-value" id="quote-userband">-</span>
+                                    <span class="quote-item-label">Number of Users</span>
+                                    <span class="quote-item-value" id="quote-users">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Volume Tier</span>
+                                    <span class="quote-item-value" id="quote-tier">-</span>
                                 </div>
                                 <div class="quote-item">
                                     <span class="quote-item-label">Add-On Package</span>
@@ -1260,7 +1130,7 @@
                             </div>
 
                             <div class="quote-section">
-                                <h3 class="quote-section-title">✨ Add-On Features Included</h3>
+                                <h3 class="quote-section-title">✨ Add-On Features</h3>
                                 <div id="quote-addon-features"></div>
                             </div>
                         </div>
@@ -1301,7 +1171,7 @@
         let currentStep = 1;
         let configData = {
             useCase: '',
-            userBand: '',
+            userCount: 1,
             addOn: 'base',
             region: 'north-america',
             delivery: 'web',
@@ -1313,24 +1183,37 @@
         };
 
         // ==========================================
-        // PRICING DATA (hidden from user)
+        // PRICING DATA - Per User Rates by Volume Tier
         // ==========================================
-        const basePricing = {
+        const perUserPricing = {
             intelligence: {
-                '1-2': 125000, '3-5': 100000, '6-10': 85000,
-                '11-14': 80000, '15-19': 75000, '20+': 70000
+                '1-2': 125000,
+                '3-5': 118000,
+                '6-10': 112800,
+                '11-14': 108000,
+                '15-19': 104000,
+                '20+': 100000
             },
             investigations: {
-                '1-2': 100000, '3-5': 80000, '6-10': 68000,
-                '11-14': 64000, '15-19': 60000, '20+': 56000
+                '1-2': 100000,
+                '3-5': 94000,
+                '6-10': 90000,
+                '11-14': 86000,
+                '15-19': 83000,
+                '20+': 80000
             },
             supplyChain: {
-                '1-2': 75000, '3-5': 60000, '6-10': 51000,
-                '11-14': 48000, '15-19': 45000, '20+': 42000
+                '1-2': 75000,
+                '3-5': 70000,
+                '6-10': 67000,
+                '11-14': 64000,
+                '15-19': 62000,
+                '20+': 60000
             }
         };
 
-        const addOnPricing = {
+        // Add-on pricing per user by volume tier
+        const addOnPerUserPricing = {
             '1-2': { standard: 18750, plus: 37500, premium: 81250 },
             '3-5': { standard: 15000, plus: 30000, premium: 65000 },
             '6-10': { standard: 12750, plus: 25500, premium: 55250 },
@@ -1340,7 +1223,6 @@
         };
 
         const multipliers = {
-            addOn: { base: 1.0, standard: 1.15, plus: 1.3, premium: 1.65 },
             region: {
                 'north-america': 1.0, 'west-north-europe': 1.0, 'middle-east': 0.9,
                 'north-asia-oceania': 0.9, 'east-south-europe': 0.8,
@@ -1357,26 +1239,26 @@
         };
 
         // ==========================================
-        // ADD-ON PACKAGE FEATURES (from image)
+        // ADD-ON PACKAGE FEATURES (INDEPENDENT - not cumulative)
         // ==========================================
         const addOnFeatures = {
             intelligence: {
                 base: [],
                 standard: ['T-Rank Power & Coalitions', 'Orbis IP'],
-                plus: ['T-Rank Power & Coalitions', 'Orbis IP', 'Pathfinder', 'News Edge', 'Shell Company Indicator'],
-                premium: ['T-Rank Power & Coalitions', 'Orbis IP', 'Pathfinder', 'News Edge', 'Shell Company Indicator', 'Cyber Risk (Bitsight)', 'Orbis Cross Border', 'Orbis M&A']
+                plus: ['Pathfinder', 'News Edge', 'Shell Company Indicator'],
+                premium: ['Cyber Risk (Bitsight)', 'Orbis Cross Border', 'Orbis M&A']
             },
             investigations: {
                 base: [],
                 standard: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ'],
-                plus: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ', 'Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard'],
-                premium: ['T-Rank Power & Coalitions', 'State Owned Entities', 'ICIJ', 'Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard', 'Orbis M&A', 'Cyber Risk (Bitsight)', 'Orbis Cross Border']
+                plus: ['Shell Company Indicator', 'News Edge', 'Pathfinder', 'FS Standard'],
+                premium: ['Orbis M&A', 'Cyber Risk (Bitsight)', 'Orbis Cross Border']
             },
             supplyChain: {
                 base: [],
                 standard: ['Financial Strength', 'ESG Score', 'Probability of Default'],
-                plus: ['Financial Strength', 'ESG Score', 'Probability of Default', 'Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator'],
-                premium: ['Financial Strength', 'ESG Score', 'Probability of Default', 'Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator', 'ORBIS M&A', 'Orbis Cross Border', 'Sanctions 360']
+                plus: ['Cyber Risk (Bitsight)', 'News Edge', 'Shell Company Indicator'],
+                premium: ['ORBIS M&A', 'Orbis Cross Border', 'Sanctions 360']
             }
         };
 
@@ -1401,6 +1283,27 @@
         };
 
         // ==========================================
+        // HELPER: GET VOLUME TIER
+        // ==========================================
+        function getVolumeTier(userCount) {
+            if (userCount <= 2) return '1-2';
+            if (userCount <= 5) return '3-5';
+            if (userCount <= 10) return '6-10';
+            if (userCount <= 14) return '11-14';
+            if (userCount <= 19) return '15-19';
+            return '20+';
+        }
+
+        function getVolumeTierLabel(userCount) {
+            if (userCount <= 2) return '1-2 Users';
+            if (userCount <= 5) return '3-5 Users';
+            if (userCount <= 10) return '6-10 Users';
+            if (userCount <= 14) return '11-14 Users';
+            if (userCount <= 19) return '15-19 Users';
+            return '20+ Users';
+        }
+
+        // ==========================================
         // NAVIGATION
         // ==========================================
         function nextStep() {
@@ -1412,6 +1315,7 @@
                 
                 if (currentStep === 2) {
                     renderAddOnCards();
+                    updateVolumeTier();
                 }
                 
                 if (currentStep === 3) {
@@ -1459,7 +1363,9 @@
                     if (!configData.useCase) { alert('Please select a use case to continue.'); return false; }
                     return true;
                 case 2:
-                    if (!configData.userBand) { alert('Please select a user band to continue.'); return false; }
+                    const userCount = parseInt(document.getElementById('user-count').value) || 0;
+                    if (userCount < 1) { alert('Please enter at least 1 user.'); return false; }
+                    configData.userCount = userCount;
                     return true;
                 default:
                     return true;
@@ -1481,19 +1387,6 @@
             configData.useCase = useCase;
         }
 
-        function selectUserBand(band) {
-            document.querySelectorAll('[name="userBand"]').forEach(input => {
-                input.closest('.selection-card').classList.remove('selected');
-                input.checked = false;
-            });
-            
-            const bandId = `users-${band}`;
-            const card = document.querySelector(`#${bandId}`).closest('.selection-card');
-            document.getElementById(bandId).checked = true;
-            card.classList.add('selected');
-            configData.userBand = band;
-        }
-
         function selectAddOn(addon) {
             document.querySelectorAll('[name="addOn"]').forEach(input => {
                 input.closest('.selection-card').classList.remove('selected');
@@ -1507,8 +1400,15 @@
             configData.addOn = addon;
         }
 
+        function updateVolumeTier() {
+            const userCount = parseInt(document.getElementById('user-count').value) || 1;
+            configData.userCount = userCount;
+            const tierLabel = getVolumeTierLabel(userCount);
+            document.getElementById('volume-tier-text').textContent = tierLabel;
+        }
+
         // ==========================================
-        // RENDER ADD-ON CARDS
+        // RENDER ADD-ON CARDS (Independent packages)
         // ==========================================
         function renderAddOnCards() {
             const container = document.getElementById('addon-cards');
@@ -1517,9 +1417,9 @@
             
             const addOns = [
                 { key: 'base', name: 'Base Only', desc: 'Core functionality only', tier: '' },
-                { key: 'standard', name: 'Standard', desc: 'Enhanced monitoring & analysis', tier: 'standard' },
-                { key: 'plus', name: 'Plus', desc: 'Advanced analytics & reporting', tier: 'plus' },
-                { key: 'premium', name: 'Premium', desc: 'Full suite with priority support', tier: 'premium' }
+                { key: 'standard', name: 'Standard', desc: 'Standard add-on bundle', tier: 'standard' },
+                { key: 'plus', name: 'Plus', desc: 'Plus add-on bundle', tier: 'plus' },
+                { key: 'premium', name: 'Premium', desc: 'Premium add-on bundle', tier: 'premium' }
             ];
 
             let html = '';
@@ -1540,11 +1440,10 @@
                             <div class="card-features">
                                 <div class="card-features-title">Includes</div>
                                 <ul>
-                                    ${featureList.slice(0, 4).map(f => `<li>${f}</li>`).join('')}
-                                    ${featureList.length > 4 ? `<li>+${featureList.length - 4} more...</li>` : ''}
+                                    ${featureList.map(f => `<li>${f}</li>`).join('')}
                                 </ul>
                             </div>
-                        ` : ''}
+                        ` : '<p style="color: #94a3b8; font-size: 0.85rem; margin-top: 15px;">No additional features</p>'}
                     </div>
                 `;
             });
@@ -1589,13 +1488,25 @@
             configData.scope = document.getElementById('scope').value;
             configData.refresh = document.getElementById('refresh').value;
 
-            // Calculate price
-            let basePrice = basePricing[configData.useCase][configData.userBand];
-            let addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
-            let subtotal = basePrice + addOnPrice;
+            const userCount = configData.userCount;
+            const volumeTier = getVolumeTier(userCount);
 
-            let combinedMultiplier = multipliers.addOn[configData.addOn]
-                * multipliers.region[configData.region]
+            // Calculate base price: users × per-user rate
+            const perUserRate = perUserPricing[configData.useCase][volumeTier];
+            const baseTotal = userCount * perUserRate;
+
+            // Calculate add-on price: users × per-user add-on rate
+            let addOnTotal = 0;
+            if (configData.addOn !== 'base') {
+                const addOnPerUser = addOnPerUserPricing[volumeTier][configData.addOn];
+                addOnTotal = userCount * addOnPerUser;
+            }
+
+            // Subtotal before multipliers
+            let subtotal = baseTotal + addOnTotal;
+
+            // Apply multipliers
+            let combinedMultiplier = multipliers.region[configData.region]
                 * multipliers.delivery[configData.delivery]
                 * multipliers.agency[configData.agencyType];
 
@@ -1613,7 +1524,8 @@
 
             // Update display
             document.getElementById('quote-usecase').textContent = labels.useCase[configData.useCase];
-            document.getElementById('quote-userband').textContent = configData.userBand + ' Users';
+            document.getElementById('quote-users').textContent = userCount + (userCount === 1 ? ' User' : ' Users');
+            document.getElementById('quote-tier').textContent = getVolumeTierLabel(userCount);
             document.getElementById('quote-addon').textContent = labels.addOn[configData.addOn];
             document.getElementById('quote-region').textContent = labels.region[configData.region];
             document.getElementById('quote-delivery').textContent = labels.delivery[configData.delivery];
@@ -1639,7 +1551,7 @@
                 datafeedSection.classList.add('hidden');
             }
 
-            // Add-on features
+            // Add-on features (independent, not cumulative)
             const features = addOnFeatures[configData.useCase][configData.addOn];
             const featuresContainer = document.getElementById('quote-addon-features');
             if (features.length > 0) {
@@ -1660,13 +1572,21 @@
         // EXPORT FUNCTIONS
         // ==========================================
         function copyQuote() {
-            // Calculate price
-            let basePrice = basePricing[configData.useCase][configData.userBand];
-            let addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
-            let subtotal = basePrice + addOnPrice;
+            const userCount = configData.userCount;
+            const volumeTier = getVolumeTier(userCount);
 
-            let combinedMultiplier = multipliers.addOn[configData.addOn]
-                * multipliers.region[configData.region]
+            const perUserRate = perUserPricing[configData.useCase][volumeTier];
+            const baseTotal = userCount * perUserRate;
+
+            let addOnTotal = 0;
+            if (configData.addOn !== 'base') {
+                const addOnPerUser = addOnPerUserPricing[volumeTier][configData.addOn];
+                addOnTotal = userCount * addOnPerUser;
+            }
+
+            let subtotal = baseTotal + addOnTotal;
+
+            let combinedMultiplier = multipliers.region[configData.region]
                 * multipliers.delivery[configData.delivery]
                 * multipliers.agency[configData.agencyType];
 
@@ -1690,7 +1610,8 @@ PRICING & PACKAGING QUOTE
 PACKAGE CONFIGURATION
 ---------------------
 Use Case: ${labels.useCase[configData.useCase]}
-User Band: ${configData.userBand} Users
+Number of Users: ${userCount}
+Volume Tier: ${getVolumeTierLabel(userCount)}
 Add-On Package: ${labels.addOn[configData.addOn]}
 
 CONFIGURATION
@@ -1726,7 +1647,7 @@ BASE OFFERING INCLUDED
             if (features.length > 0) {
                 summary += `
 
-ADD-ON FEATURES INCLUDED
+ADD-ON FEATURES (${labels.addOn[configData.addOn]})
 ------------------------
 ${features.map(f => '• ' + f).join('\n')}`;
             }
