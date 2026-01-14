@@ -183,36 +183,6 @@
 
         .base-item::before { content: '📦'; }
 
-        /* Add-On Options Box */
-        .addon-options-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 1px solid #f59e0b;
-            border-radius: 12px;
-            padding: 20px 25px;
-            margin-top: 30px;
-        }
-
-        .addon-options-box h4 {
-            color: #92400e;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .addon-options-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .addon-option-tag {
-            background: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #92400e;
-            font-weight: 500;
-        }
-
         /* Configurator Card */
         .configurator-card {
             background: white;
@@ -563,16 +533,6 @@
             font-size: 0.95rem;
             color: #1a365d;
         }
-
-        /* Data Feed Options */
-        .data-feed-section {
-            display: none;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 2px dashed #e2e8f0;
-        }
-
-        .data-feed-section.visible { display: block; }
 
         /* Quote Summary Styles */
         .quote-grid {
@@ -974,44 +934,12 @@
                         <h3 class="form-section-title">🚀 Delivery Method</h3>
                         <div class="form-group">
                             <label class="form-label">How will you access the solution?</label>
-                            <select class="form-select" id="delivery" onchange="handleDeliveryChange()">
+                            <select class="form-select" id="delivery">
                                 <option value="web">Web/UI</option>
                                 <option value="hybrid">Hybrid - UI + API</option>
                                 <option value="api">API Direct Integration</option>
-                                <option value="datafeed">Data Feed</option>
                             </select>
                             <p class="form-help">Choose the access method that fits your workflow</p>
-                        </div>
-
-                        <!-- Data Feed Options -->
-                        <div class="data-feed-section" id="datafeed-options">
-                            <h4 style="color: #1a365d; margin-bottom: 20px;">📊 Data Feed Configuration</h4>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Usage Rights</label>
-                                <select class="form-select" id="usage-rights">
-                                    <option value="internal">Internal Analytics</option>
-                                    <option value="operational">Operational Integration</option>
-                                    <option value="classified">Classified Fusion</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Scope</label>
-                                <select class="form-select" id="scope">
-                                    <option value="regional">Regional</option>
-                                    <option value="global">Global</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Refresh Frequency</label>
-                                <select class="form-select" id="refresh">
-                                    <option value="annual">Annual</option>
-                                    <option value="quarterly">Quarterly</option>
-                                    <option value="monthly">Monthly</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
 
@@ -1089,21 +1017,6 @@
                                 </div>
                             </div>
 
-                            <div class="quote-section hidden" id="quote-datafeed-section">
-                                <h3 class="quote-section-title">📊 Data Feed Settings</h3>
-                                <div class="quote-item">
-                                    <span class="quote-item-label">Usage Rights</span>
-                                    <span class="quote-item-value" id="quote-usage-rights">-</span>
-                                </div>
-                                <div class="quote-item">
-                                    <span class="quote-item-label">Scope</span>
-                                    <span class="quote-item-value" id="quote-scope">-</span>
-                                </div>
-                                <div class="quote-item">
-                                    <span class="quote-item-label">Refresh Frequency</span>
-                                    <span class="quote-item-value" id="quote-refresh">-</span>
-                                </div>
-                            </div>
                         </div>
 
                         <div>
@@ -1164,10 +1077,7 @@
             region: 'north-america',
             delivery: 'web',
             agencyType: 'federal',
-            entityVolume: 'medium',
-            usageRights: 'internal',
-            scope: 'regional',
-            refresh: 'annual'
+            entityVolume: 'medium'
         };
 
         // ==========================================
@@ -1216,14 +1126,9 @@
                 'north-asia-oceania': 0.9, 'east-south-europe': 0.8,
                 'south-america-africa': 0.7, 'south-asia': 0.7
             },
-            delivery: { 'web': 1.0, 'hybrid': 1.15, 'api': 1.2, 'datafeed': 1.35 },
+            delivery: { 'web': 1.0, 'hybrid': 1.15, 'api': 1.2 },
             agency: { 'federal': 1.0, 'state': 0.8, 'local': 0.7 },
-            entityVolume: { 'small': 0.9, 'medium': 1.0, 'large': 1.2, 'enterprise': 1.3 },
-            dataFeed: {
-                usageRights: { 'internal': 1.0, 'operational': 1.8, 'classified': 2.5 },
-                scope: { 'regional': 1.0, 'global': 2.0 },
-                refresh: { 'annual': 1.0, 'quarterly': 1.5, 'monthly': 2.5 }
-            }
+            entityVolume: { 'small': 0.9, 'medium': 1.0, 'large': 1.2, 'enterprise': 1.3 }
         };
 
         // ==========================================
@@ -1261,13 +1166,10 @@
                 'east-south-europe': 'East/South Europe', 'south-america-africa': 'South America & Africa',
                 'south-asia': 'South Asia'
             },
-            delivery: { 'web': 'Web/UI', 'hybrid': 'Hybrid (UI + API)', 'api': 'API Direct Integration', 'datafeed': 'Data Feed' },
+            delivery: { 'web': 'Web/UI', 'hybrid': 'Hybrid (UI + API)', 'api': 'API Direct Integration' },
             agency: { 'federal': 'Federal/Central', 'state': 'State', 'local': 'Local' },
             volume: { 'small': '<10K Entities', 'medium': '10K-50K Entities', 'large': '50K-250K Entities', 'enterprise': '250K-1M+ Entities' },
-            addOn: { 'base': 'Base Only', 'standard': 'Standard', 'plus': 'Plus', 'premium': 'Premium' },
-            usageRights: { 'internal': 'Internal Analytics', 'operational': 'Operational Integration', 'classified': 'Classified Fusion' },
-            scope: { 'regional': 'Regional', 'global': 'Global' },
-            refresh: { 'annual': 'Annual', 'quarterly': 'Quarterly', 'monthly': 'Monthly' }
+            addOn: { 'base': 'Base Only', 'standard': 'Standard', 'plus': 'Plus', 'premium': 'Premium' }
         };
 
         // ==========================================
@@ -1451,18 +1353,6 @@
             }
         }
 
-        function handleDeliveryChange() {
-            const delivery = document.getElementById('delivery').value;
-            configData.delivery = delivery;
-            
-            const datafeedOptions = document.getElementById('datafeed-options');
-            if (delivery === 'datafeed') {
-                datafeedOptions.classList.add('visible');
-            } else {
-                datafeedOptions.classList.remove('visible');
-            }
-        }
-
         // ==========================================
         // QUOTE GENERATION
         // ==========================================
@@ -1472,9 +1362,6 @@
             configData.delivery = document.getElementById('delivery').value;
             configData.agencyType = document.getElementById('agency-type').value;
             configData.entityVolume = document.getElementById('entity-volume').value;
-            configData.usageRights = document.getElementById('usage-rights').value;
-            configData.scope = document.getElementById('scope').value;
-            configData.refresh = document.getElementById('refresh').value;
 
             const userCount = configData.userCount;
             const volumeTier = getVolumeTier(userCount);
@@ -1502,12 +1389,6 @@
                 combinedMultiplier *= multipliers.entityVolume[configData.entityVolume];
             }
 
-            if (configData.delivery === 'datafeed') {
-                combinedMultiplier *= multipliers.dataFeed.usageRights[configData.usageRights];
-                combinedMultiplier *= multipliers.dataFeed.scope[configData.scope];
-                combinedMultiplier *= multipliers.dataFeed.refresh[configData.refresh];
-            }
-
             const total = subtotal * combinedMultiplier;
 
             // Update display
@@ -1526,17 +1407,6 @@
                 document.getElementById('quote-volume').textContent = labels.volume[configData.entityVolume];
             } else {
                 volumeRow.classList.add('hidden');
-            }
-
-            // Data Feed section
-            const datafeedSection = document.getElementById('quote-datafeed-section');
-            if (configData.delivery === 'datafeed') {
-                datafeedSection.classList.remove('hidden');
-                document.getElementById('quote-usage-rights').textContent = labels.usageRights[configData.usageRights];
-                document.getElementById('quote-scope').textContent = labels.scope[configData.scope];
-                document.getElementById('quote-refresh').textContent = labels.refresh[configData.refresh];
-            } else {
-                datafeedSection.classList.add('hidden');
             }
 
             // Add-on features (independent, not cumulative)
@@ -1582,12 +1452,6 @@
                 combinedMultiplier *= multipliers.entityVolume[configData.entityVolume];
             }
 
-            if (configData.delivery === 'datafeed') {
-                combinedMultiplier *= multipliers.dataFeed.usageRights[configData.usageRights];
-                combinedMultiplier *= multipliers.dataFeed.scope[configData.scope];
-                combinedMultiplier *= multipliers.dataFeed.refresh[configData.refresh];
-            }
-
             const total = subtotal * combinedMultiplier;
             const features = addOnFeatures[configData.useCase][configData.addOn];
 
@@ -1611,16 +1475,6 @@ Agency Type: ${labels.agency[configData.agencyType]}`;
             if (configData.useCase === 'supplyChain') {
                 summary += `
 Entity Volume: ${labels.volume[configData.entityVolume]}`;
-            }
-
-            if (configData.delivery === 'datafeed') {
-                summary += `
-
-DATA FEED SETTINGS
-------------------
-Usage Rights: ${labels.usageRights[configData.usageRights]}
-Scope: ${labels.scope[configData.scope]}
-Refresh Frequency: ${labels.refresh[configData.refresh]}`;
             }
 
             summary += `
