@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moody's for Compliance — SMB Essentials</title>
+    <title>Pricing Plans — Moody's for Compliance</title>
     <style>
         /* Reset and Base Styles */
         *, *::before, *::after {
@@ -19,6 +19,8 @@
             --slate-grey: #4D4F53;
             --light-grey: #F2F2F2;
             --white: #ffffff;
+            --border-color: #e2e5e9;
+            --success-green: #0a8754;
         }
 
         body {
@@ -26,247 +28,451 @@
             font-size: 16px;
             line-height: 1.6;
             color: var(--slate-grey);
-            background-color: var(--white);
+            background-color: var(--light-grey);
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header / Hero Section */
-        header {
-            background-color: var(--moodys-blue);
-            color: var(--white);
-            padding: 60px 24px;
+        /* Page Header */
+        .page-header {
+            background-color: var(--white);
+            padding: 64px 24px;
             text-align: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        header h1 {
-            font-size: 2.5rem;
+        .page-header .eyebrow {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-blue);
+            margin-bottom: 12px;
+        }
+
+        .page-header h1 {
+            font-size: 2.75rem;
             font-weight: 700;
+            color: var(--moodys-blue);
             margin-bottom: 16px;
             letter-spacing: -0.5px;
         }
 
-        header p.subtitle {
-            font-size: 1.25rem;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 48px 24px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        section h2 {
-            font-size: 1.75rem;
-            color: var(--moodys-blue);
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-
-        section p {
-            margin-bottom: 16px;
-            max-width: 800px;
-        }
-
-        /* Value Proposition Section */
-        .value-proposition {
-            background-color: var(--light-grey);
-        }
-
-        .value-proposition p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 24px;
-        }
-
-        .feature-card {
-            background-color: var(--white);
-            border: 1px solid #e0e0e0;
-            border-left: 4px solid var(--light-blue);
-            padding: 20px 24px;
-            border-radius: 4px;
-            transition: box-shadow 0.2s ease;
-        }
-
-        .feature-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 45, 114, 0.1);
-        }
-
-        .feature-card p {
-            margin: 0;
-            font-size: 0.95rem;
+        .page-header .lead {
+            font-size: 1.2rem;
             color: var(--slate-grey);
+            max-width: 680px;
+            margin: 0 auto;
         }
 
-        /* Model Section */
-        .model-section {
+        /* Pricing Tiers Section */
+        .pricing-section {
+            padding: 64px 24px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .pricing-card {
             background-color: var(--white);
-        }
-
-        .model-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .model-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #e0e0e0;
-            padding-left: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
         }
 
-        .model-list li::before {
-            content: "✓";
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 45, 114, 0.12);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--light-blue);
+        }
+
+        .pricing-card.featured::before {
+            content: "Most Popular";
             position: absolute;
-            left: 0;
-            color: var(--light-blue);
-            font-weight: bold;
-        }
-
-        .model-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Pricing Table Section */
-        .pricing-section {
-            background-color: var(--light-grey);
-        }
-
-        .pricing-table-wrapper {
-            overflow-x: auto;
-            margin-top: 24px;
-        }
-
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .pricing-table thead {
-            background-color: var(--moodys-blue);
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--light-blue);
             color: var(--white);
-        }
-
-        .pricing-table th {
-            padding: 16px 20px;
-            text-align: left;
+            font-size: 0.75rem;
             font-weight: 600;
-            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .pricing-table td {
-            padding: 16px 20px;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.95rem;
-        }
-
-        .pricing-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .pricing-table tbody tr:nth-child(even) {
-            background-color: var(--light-grey);
-        }
-
-        .pricing-table tbody tr:hover {
-            background-color: rgba(0, 113, 188, 0.05);
+            padding: 4px 16px;
+            border-radius: 20px;
         }
 
         .tier-name {
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--moodys-blue);
+            margin-bottom: 8px;
+        }
+
+        .entity-count {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--moodys-blue);
+            line-height: 1.2;
+        }
+
+        .entity-label {
+            font-size: 0.875rem;
+            color: var(--slate-grey);
+            margin-bottom: 20px;
+        }
+
+        .price-range {
+            background-color: var(--light-grey);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--slate-grey);
+            margin-bottom: 4px;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--moodys-blue);
         }
 
+        .price-suffix {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--slate-grey);
+        }
+
+        .card-cta {
+            display: block;
+            width: 100%;
+            background-color: var(--moodys-blue);
+            color: var(--white);
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-cta:hover {
+            background-color: #001d4d;
+        }
+
+        .pricing-card.featured .card-cta {
+            background-color: var(--light-blue);
+        }
+
+        .pricing-card.featured .card-cta:hover {
+            background-color: var(--light-blue-hover);
+        }
+
         .pricing-footnote {
-            margin-top: 16px;
-            font-size: 0.85rem;
-            font-style: italic;
+            text-align: center;
+            font-size: 0.875rem;
             color: #6b6b6b;
-            padding: 12px 16px;
+            font-style: italic;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
             background-color: var(--white);
-            border-left: 3px solid var(--light-blue);
-            border-radius: 0 4px 4px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--light-blue);
         }
 
-        /* Ideal Customer Section */
-        .customer-profile {
+        /* Features Section */
+        .features-section {
             background-color: var(--white);
+            padding: 64px 24px;
+            border-top: 1px solid var(--border-color);
         }
 
-        .profile-list {
-            list-style: none;
-            margin-top: 20px;
+        .features-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .features-header h2 {
+            font-size: 2rem;
+            color: var(--moodys-blue);
+            margin-bottom: 12px;
+        }
+
+        .features-header p {
+            font-size: 1.1rem;
+            color: var(--slate-grey);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background-color: rgba(0, 113, 188, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--moodys-blue);
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--slate-grey);
+            line-height: 1.5;
+        }
+
+        /* AI Agents Highlight */
+        .agents-section {
+            background: linear-gradient(135deg, var(--moodys-blue) 0%, #003d8f 100%);
+            padding: 48px 24px;
+        }
+
+        .agents-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .agents-text {
+            flex: 1;
+        }
+
+        .agents-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .agents-section h2 {
+            color: var(--white);
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+        }
+
+        .agents-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        .agents-visual {
+            display: flex;
             gap: 16px;
         }
 
-        .profile-list li {
-            padding: 16px 20px;
-            background-color: var(--light-grey);
-            border-radius: 6px;
-            padding-left: 44px;
-            position: relative;
+        .agent-card-mini {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            min-width: 140px;
         }
 
-        .profile-list li::before {
-            content: "→";
-            position: absolute;
-            left: 18px;
-            color: var(--light-blue);
+        .agent-card-mini .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .agent-card-mini .label {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .model-section {
+            background-color: var(--light-grey);
+            padding: 64px 24px;
+        }
+
+        .model-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .model-header h2 {
+            font-size: 2rem;
+            color: var(--moodys-blue);
+            margin-bottom: 12px;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .model-step {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 28px 24px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background-color: var(--light-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+
+        .model-step h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--moodys-blue);
+            margin-bottom: 8px;
+        }
+
+        .model-step p {
+            font-size: 0.85rem;
+            color: var(--slate-grey);
+            line-height: 1.5;
+        }
+
+        /* Ideal For Section */
+        .ideal-section {
+            background-color: var(--white);
+            padding: 64px 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ideal-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .ideal-header h2 {
+            font-size: 2rem;
+            color: var(--moodys-blue);
+            margin-bottom: 12px;
+        }
+
+        .ideal-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ideal-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--light-grey);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--slate-grey);
+            border: 1px solid var(--border-color);
+        }
+
+        .ideal-tag .check {
+            color: var(--success-green);
             font-weight: bold;
-            font-size: 1.1rem;
         }
 
         /* CTA Section */
         .cta-section {
-            text-align: center;
+            background-color: var(--moodys-blue);
             padding: 64px 24px;
-            background: linear-gradient(135deg, var(--moodys-blue) 0%, #003d8f 100%);
+            text-align: center;
         }
 
         .cta-section h2 {
             color: var(--white);
+            font-size: 2rem;
             margin-bottom: 12px;
         }
 
         .cta-section p {
             color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 32px;
-            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 28px;
+            max-width: 560px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .cta-button {
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
             display: inline-block;
             background-color: var(--light-blue);
             color: var(--white);
-            padding: 16px 48px;
-            font-size: 1.1rem;
+            padding: 16px 40px;
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
@@ -275,13 +481,28 @@
             cursor: pointer;
         }
 
-        .cta-button:hover {
+        .cta-primary:hover {
             background-color: var(--light-blue-hover);
             transform: translateY(-2px);
         }
 
-        .cta-button:active {
-            transform: translateY(0);
+        .cta-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--white);
+            padding: 16px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Footer */
@@ -289,7 +510,7 @@
             background-color: var(--slate-grey);
             color: var(--white);
             text-align: center;
-            padding: 32px 24px;
+            padding: 28px 24px;
             font-size: 0.875rem;
         }
 
@@ -297,61 +518,76 @@
             opacity: 0.8;
         }
 
-        /* Responsive Adjustments */
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            header {
-                padding: 40px 20px;
+            .page-header {
+                padding: 48px 20px;
             }
 
-            header h1 {
-                font-size: 1.75rem;
+            .page-header h1 {
+                font-size: 2rem;
             }
 
-            header p.subtitle {
-                font-size: 1rem;
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
-            section {
-                padding: 36px 20px;
-            }
-
-            section h2 {
-                font-size: 1.4rem;
+            .pricing-card.featured::before {
+                font-size: 0.7rem;
+                padding: 3px 12px;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .pricing-table th,
-            .pricing-table td {
-                padding: 12px 14px;
-                font-size: 0.85rem;
+            .agents-content {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .profile-list {
+            .agents-section p {
+                max-width: 100%;
+            }
+
+            .model-grid {
                 grid-template-columns: 1fr;
+                max-width: 320px;
             }
 
-            .cta-button {
-                padding: 14px 36px;
-                font-size: 1rem;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                max-width: 280px;
             }
         }
 
         @media print {
-            header {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
+            .page-header,
+            .agents-section,
             .cta-section {
-                background: var(--moodys-blue) !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .pricing-table thead {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -360,149 +596,223 @@
 </head>
 <body>
 
-    <!-- Header / Hero Section -->
-    <header>
+    <!-- Page Header -->
+    <header class="page-header">
         <div class="container">
-            <h1>Moody's for Compliance — SMB Essentials</h1>
-            <p class="subtitle">Entry Package | Out‑of‑the‑Box Compliance for Long‑Tail SMBs</p>
+            <p class="eyebrow">Moody's for Compliance</p>
+            <h1>SMB Essentials Pricing</h1>
+            <p class="lead">Out‑of‑the‑box compliance for long‑tail SMBs. Predictable pricing, rapid deployment, and everything you need to screen entities with confidence.</p>
         </div>
     </header>
 
-    <!-- Value Proposition Section -->
-    <section class="value-proposition">
-        <div class="container">
-            <h2>Why SMB Essentials?</h2>
-            <p>
-                Designed for small and medium businesses that need reliable compliance capabilities without the complexity, 
-                <strong>Moody's SMB Essentials</strong> delivers quick time‑to‑value with minimal configuration. 
-                Our streamlined offering provides a predictable Annual Contract Value of <strong>$20k–$40k</strong>, 
-                combining a unified <strong>Access Package</strong> with a flexible <strong>Usage Allowance</strong> model—so 
-                you only pay for what you need while having everything you need to stay compliant from day one.
-            </p>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2>Features Included</h2>
-            <div class="features-grid">
-                <article class="feature-card">
-                    <p><strong>Single out‑of‑the‑box configuration</strong> — Pre‑configured for immediate deployment</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Matching, search, entity data and live registry data</strong> — Comprehensive data access</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Screening workflow</strong> — Streamlined compliance screening processes</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Targeted monitoring alerts</strong> — Real‑time notifications on critical changes</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Due diligence agent report</strong> — Automated risk assessment reporting</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Bulk upload</strong> — Efficient batch processing capabilities</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Creation of own entities</strong> — Flexible entity management</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>Comprehensive audit report with export</strong> — Full audit trail and documentation</p>
-                </article>
-                <article class="feature-card">
-                    <p><strong>AI navigation interface</strong> — Intelligent, intuitive user experience</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Model Explanation Section -->
-    <section class="model-section">
-        <div class="container">
-            <h2>How the Model Works</h2>
-            <p>
-                Our transparent pricing structure is designed to scale with your business while keeping costs predictable.
-            </p>
-            <ul class="model-list">
-                <li><strong>Access Package:</strong> Entry tier provides full platform access with all essential features included</li>
-                <li><strong>Level 1 Usage Allowance:</strong> Annual commitment ranging from $10k–$49k based on your entity volume</li>
-                <li><strong>Unified Consumption:</strong> All consumption—whether via UI, API, or MCP—draws from the same usage allowance</li>
-                <li><strong>Step‑Up Only Model:</strong> Designed to grow with you; upgrade seamlessly as your compliance needs expand</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Pricing Table Section -->
+    <!-- Pricing Cards Section -->
     <section class="pricing-section">
         <div class="container">
-            <h2>Entity‑Based Pricing</h2>
-            <div class="pricing-table-wrapper">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Tier</th>
-                            <th>Entity Volume</th>
-                            <th>Est. Annual Usage Allowance</th>
-                            <th>Est. Total Contract Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="tier-name">SMB‑250</td>
-                            <td>250 entities</td>
-                            <td>~$10k–$15k</td>
-                            <td>~$20k–$30k total</td>
-                        </tr>
-                        <tr>
-                            <td class="tier-name">SMB‑500</td>
-                            <td>500 entities</td>
-                            <td>~$15k–$25k</td>
-                            <td>~$25k–$35k total</td>
-                        </tr>
-                        <tr>
-                            <td class="tier-name">SMB‑750</td>
-                            <td>750 entities</td>
-                            <td>~$20k–$30k</td>
-                            <td>~$30k–$40k total</td>
-                        </tr>
-                        <tr>
-                            <td class="tier-name">SMB‑1000</td>
-                            <td>1,000 entities</td>
-                            <td>~$25k–$40k</td>
-                            <td>~$35k–$50k total</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="pricing-grid">
+
+                <div class="pricing-card">
+                    <div class="tier-name">SMB‑250</div>
+                    <div class="entity-count">250</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Total Annual Value</div>
+                        <div class="price-value">$20k–$30k</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="tier-name">SMB‑500</div>
+                    <div class="entity-count">500</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Total Annual Value</div>
+                        <div class="price-value">$25k–$35k</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">SMB‑750</div>
+                    <div class="entity-count">750</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Total Annual Value</div>
+                        <div class="price-value">$30k–$40k</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">SMB‑1000</div>
+                    <div class="entity-count">1,000</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Total Annual Value</div>
+                        <div class="price-value">$35k–$50k</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
             </div>
+
             <p class="pricing-footnote">
                 Pricing is indicative and may vary based on data mix, screening intensity, and monitoring cadence.
             </p>
         </div>
     </section>
 
-    <!-- Ideal Customer Profile Section -->
-    <section class="customer-profile">
+    <!-- What's Included Section -->
+    <section class="features-section">
         <div class="container">
-            <h2>Ideal Customer Profile</h2>
-            <p>SMB Essentials is purpose‑built for organizations that value simplicity, speed, and predictability.</p>
-            <ul class="profile-list">
-                <li>SMBs managing <strong>250–1,000 entities</strong> requiring compliance coverage</li>
-                <li>Organizations with <strong>light or moderate KYC/KYB workloads</strong></li>
-                <li><strong>Procurement and onboarding teams</strong> needing efficient vendor screening</li>
-                <li><strong>Marketplaces and fintechs</strong> seeking scalable compliance solutions</li>
-                <li>Businesses prioritizing <strong>rapid deployment with predictable pricing</strong></li>
-            </ul>
+            <div class="features-header">
+                <h2>What's Included in Every Plan</h2>
+                <p>All SMB Essentials plans include a single out‑of‑the‑box configuration with these core capabilities.</p>
+            </div>
+
+            <div class="features-grid">
+                <article class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Entity Data from Curated Sources</h3>
+                    <p>Access reliable entity data sourced from curated, high‑quality registries and databases.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Sanctions, PEPs & Adverse Media</h3>
+                    <p>Screen against global sanctions lists, politically exposed persons, and adverse media sources.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Screening Workflow</h3>
+                    <p>Streamlined workflow for efficient entity screening with review queues and case management.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Targeted Monitoring Alerts</h3>
+                    <p>Real‑time notifications when critical changes occur on monitored entities.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">📤</div>
+                    <h3>Bulk Upload</h3>
+                    <p>Efficiently process large entity lists with batch upload and screening capabilities.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">➕</div>
+                    <h3>Create Your Own Entities</h3>
+                    <p>Add and manage custom entities within your compliance workspace.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>Comprehensive Audit Reports</h3>
+                    <p>Full audit trail with export functionality for regulatory and internal review.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Navigation Interface</h3>
+                    <p>Intelligent, intuitive interface to navigate and surface insights quickly.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Unified Consumption</h3>
+                    <p>All access—UI, API, or MCP—draws from a single, predictable usage allowance.</p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <!-- Call to Action Section -->
+    <!-- AI Agents Highlight -->
+    <section class="agents-section">
+        <div class="container">
+            <div class="agents-content">
+                <div class="agents-text">
+                    <span class="agents-badge">Included at No Extra Cost</span>
+                    <h2>Moody's Screening & IDD Agents</h2>
+                    <p>All SMB Essentials customers get access to Moody's intelligent agents for enhanced automation and due diligence. Leverage AI‑powered screening and Instant Due Diligence (IDD) reporting agents to accelerate your compliance workflows.</p>
+                </div>
+                <div class="agents-visual">
+                    <div class="agent-card-mini">
+                        <div class="icon">🔎</div>
+                        <div class="label">Screening Agent</div>
+                    </div>
+                    <div class="agent-card-mini">
+                        <div class="icon">📋</div>
+                        <div class="label">IDD Agent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How the Model Works -->
+    <section class="model-section">
+        <div class="container">
+            <div class="model-header">
+                <h2>How the Pricing Model Works</h2>
+            </div>
+
+            <div class="model-grid">
+                <div class="model-step">
+                    <div class="step-number">1</div>
+                    <h3>Access Package</h3>
+                    <p>Entry tier with full platform access and all essential features included.</p>
+                </div>
+
+                <div class="model-step">
+                    <div class="step-number">2</div>
+                    <h3>Usage Allowance</h3>
+                    <p>Annual commitment ($10k–$49k) based on your entity volume needs.</p>
+                </div>
+
+                <div class="model-step">
+                    <div class="step-number">3</div>
+                    <h3>Unified Consumption</h3>
+                    <p>All activity—UI, API, or MCP—draws from the same allowance.</p>
+                </div>
+
+                <div class="model-step">
+                    <div class="step-number">4</div>
+                    <h3>Step‑Up Growth</h3>
+                    <p>Upgrade seamlessly as your compliance needs expand over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideal For Section -->
+    <section class="ideal-section">
+        <div class="container">
+            <div class="ideal-header">
+                <h2>Built For</h2>
+            </div>
+
+            <div class="ideal-grid">
+                <span class="ideal-tag"><span class="check">✓</span> SMBs with 250–1,000 entities</span>
+                <span class="ideal-tag"><span class="check">✓</span> Light to moderate KYC/KYB workloads</span>
+                <span class="ideal-tag"><span class="check">✓</span> Procurement & onboarding teams</span>
+                <span class="ideal-tag"><span class="check">✓</span> Marketplaces & fintechs</span>
+                <span class="ideal-tag"><span class="check">✓</span> Rapid deployment needs</span>
+                <span class="ideal-tag"><span class="check">✓</span> Predictable, transparent pricing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to Get Started?</h2>
-            <p>Discover how Moody's SMB Essentials can streamline your compliance operations with a personalized demonstration.</p>
-            <a href="#" class="cta-button">Request a Demo</a>
+            <h2>Ready to Simplify Compliance?</h2>
+            <p>Get started with Moody's SMB Essentials and see how easy compliance can be.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">Request a Demo</a>
+                <a href="#" class="cta-secondary">Talk to Sales</a>
+            </div>
         </div>
     </section>
 
