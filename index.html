@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Solutions - Pricing Configurator</title>
+    <style>
+        /* Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            min-height: 100vh;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #a8d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Package Showcase Section */
+        .packages-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e3a5f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        /* Package Cards */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .package-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .package-card.intelligence {
+            border-color: #3b82f6;
+        }
+
+        .package-card.investigations {
+            border-color: #8b5cf6;
+        }
+
+        .package-card.supply-chain {
+            border-color: #10b981;
+        }
+
+        .package-header {
+            padding: 30px;
+            color: white;
+        }
+
+        .package-card.intelligence .package-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .package-card.investigations .package-header {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .package-card.supply-chain .package-header {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+        }
+
+        .package-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .package-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .package-tagline {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .package-body {
+            padding: 30px;
+        }
+
+        .package-price-range {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .price-from {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        .price-to {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Base Offering Box */
+        .base-offering {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .base-offering h3 {
+            color: #0369a1;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .base-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .base-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #1e3a5f;
+        }
+
+        .base-item::before {
+            content: '📦';
+        }
+
+        /* Configurator Card */
+        .configurator-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: #e2e8f0;
+            color: #718096;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            color: white;
+        }
+
+        .progress-step.completed {
+            background: #10b981;
+            color: white;
+        }
+
+        .progress-step .step-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-arrow {
+            color: #cbd5e0;
+            font-size: 1.4rem;
+            margin: 0 8px;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 50px;
+            min-height: 550px;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .step-subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 35px;
+        }
+
+        /* Selection Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cards-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cards-grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .cards-grid-3, .cards-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid-3, .cards-grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Selection Card */
+        .selection-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: white;
+        }
+
+        .selection-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #1e3a5f;
+        }
+
+        .selection-card.selected {
+            border-color: #1e3a5f;
+            background: linear-gradient(135deg, rgba(30,58,95,0.05) 0%, rgba(13,33,55,0.05) 100%);
+            box-shadow: 0 10px 30px rgba(30,58,95,0.2);
+        }
+
+        .selection-card input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .card-radio {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #cbd5e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .selection-card.selected .card-radio {
+            background: #1e3a5f;
+            border-color: #1e3a5f;
+        }
+
+        .card-radio::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .selection-card.selected .card-radio::after {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .card-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 12px 0 8px;
+        }
+
+        .card-multiplier {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        select.form-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23475569' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        select.form-select:focus {
+            outline: none;
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 3px rgba(30,58,95,0.2);
+        }
+
+        /* Info Alert */
+        .info-alert {
+            background: linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(14,165,233,0.05) 100%);
+            border: 1px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin: 25px 0;
+        }
+
+        .info-alert-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-alert-text {
+            font-size: 0.95rem;
+            color: #1e3a5f;
+        }
+
+        /* Data Feed Options */
+        .data-feed-section {
+            display: none;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .data-feed-section.visible {
+            display: block;
+        }
+
+        /* Quote Summary Styles */
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quote-section {
+            margin-bottom: 25px;
+        }
+
+        .quote-section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .quote-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .quote-item:last-child {
+            border-bottom: none;
+        }
+
+        .quote-item-label {
+            color: #475569;
+        }
+
+        .quote-item-value {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        /* Pricing Card */
+        .pricing-card {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin: 30px 0;
+        }
+
+        .pricing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-row.total {
+            margin-top: 15px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255,255,255,0.4);
+            border-bottom: none;
+        }
+
+        .pricing-label {
+            font-size: 1rem;
+        }
+
+        .pricing-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .pricing-row.total .pricing-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .pricing-row.total .pricing-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        /* Breakdown Box */
+        .breakdown-box {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .breakdown-box h4 {
+            color: #0369a1;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e0f2fe;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-item-label {
+            color: #475569;
+        }
+
+        .breakdown-item-value {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 50px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30,58,95,0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content-area {
+                padding: 30px 20px;
+            }
+
+            .packages-section {
+                padding: 30px 20px;
+            }
+
+            .progress-bar {
+                padding: 15px;
+            }
+
+            .progress-step {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+
+            .progress-arrow {
+                display: none;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏛️ Government Solutions</h1>
+            <p>Pricing Configurator - Build Your Custom Package</p>
+        </header>
+
+        <!-- Package Showcase Section -->
+        <section class="packages-section">
+            <h2 class="section-title">Our Government Solutions Packages</h2>
+            <p class="section-subtitle">Choose from three specialized solutions designed for government agencies</p>
+
+            <!-- Base Offering -->
+            <div class="base-offering">
+                <h3>📦 Included in All Packages - Base Offering</h3>
+                <div class="base-items">
+                    <div class="base-item">Orbis Global</div>
+                    <div class="base-item">BFO</div>
+                    <div class="base-item">Orbis T-Rank</div>
+                    <div class="base-item">GRID Review</div>
+                </div>
+            </div>
+
+            <!-- Package Cards -->
+            <div class="packages-grid">
+                <!-- Intelligence Package -->
+                <div class="package-card intelligence">
+                    <div class="package-header">
+                        <div class="package-icon">🔍</div>
+                        <div class="package-name">Intelligence</div>
+                        <div class="package-tagline">Strategic insights for national security & policy</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price-range">
+                            <span class="price-from">From</span>
+                            <span class="price-value">$70,000</span>
+                            <span class="price-to">to $125,000/year</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Advanced entity intelligence gathering</li>
+                            <li>Cross-border ownership analysis</li>
+                            <li>Risk assessment & threat detection</li>
+                            <li>Strategic partnership intelligence</li>
+                            <li>Custom analyst workflows</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Investigations Package -->
+                <div class="package-card investigations">
+                    <div class="package-header">
+                        <div class="package-icon">🔎</div>
+                        <div class="package-name">Investigations</div>
+                        <div class="package-tagline">Deep-dive investigations & compliance checks</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price-range">
+                            <span class="price-from">From</span>
+                            <span class="price-value">$56,000</span>
+                            <span class="price-to">to $100,000/year</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Detailed entity investigations</li>
+                            <li>Beneficial ownership mapping</li>
+                            <li>Financial crime detection</li>
+                            <li>Regulatory compliance checks</li>
+                            <li>Case management tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Supply Chain Package -->
+                <div class="package-card supply-chain">
+                    <div class="package-header">
+                        <div class="package-icon">🔗</div>
+                        <div class="package-name">Supply Chain</div>
+                        <div class="package-tagline">Vendor risk & supply chain integrity</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price-range">
+                            <span class="price-from">From</span>
+                            <span class="price-value">$42,000</span>
+                            <span class="price-to">to $75,000/year</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Vendor & supplier screening</li>
+                            <li>Entity volume monitoring</li>
+                            <li>Supply chain risk mapping</li>
+                            <li>Procurement compliance</li>
+                            <li>Bulk entity processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurator Card -->
+        <div class="configurator-card">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-step active" id="progress-1">
+                    <span class="step-number">1</span>
+                    Use Case
+                </div>
+                <span class="progress-arrow">→</span>
+                <div class="progress-step" id="progress-2">
+                    <span class="step-number">2</span>
+                    Users & Add-Ons
+                </div>
+                <span class="progress-arrow">→</span>
+                <div class="progress-step" id="progress-3">
+                    <span class="step-number">3</span>
+                    Attributes
+                </div>
+                <span class="progress-arrow">→</span>
+                <div class="progress-step" id="progress-4">
+                    <span class="step-number">4</span>
+                    Quote
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Step 1: Use Case Selection -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">Select Your Primary Use Case</h2>
+                    <p class="step-subtitle">Choose the solution that best fits your agency's needs</p>
+
+                    <div class="cards-grid cards-grid-3">
+                        <!-- Intelligence -->
+                        <div class="selection-card" onclick="selectUseCase('intelligence')">
+                            <input type="radio" id="intelligence" name="useCase">
+                            <div class="card-header">
+                                <div class="card-radio"></div>
+                                <div class="card-title">🔍 Intelligence</div>
+                            </div>
+                            <p class="card-description">Strategic insights for national security, policy analysis, and threat detection. Ideal for intelligence agencies and strategic planning units.</p>
+                            <div class="card-price">$70,000 - $125,000/year</div>
+                        </div>
+
+                        <!-- Investigations -->
+                        <div class="selection-card" onclick="selectUseCase('investigations')">
+                            <input type="radio" id="investigations" name="useCase">
+                            <div class="card-header">
+                                <div class="card-radio"></div>
+                                <div class="card-title">🔎 Investigations</div>
+                            </div>
+                            <p class="card-description">Deep-dive investigations and compliance verification. Perfect for law enforcement, regulatory bodies, and audit departments.</p>
+                            <div class="card-price">$56,000 - $100,000/year</div>
+                        </div>
+
+                        <!-- Supply Chain -->
+                        <div class="selection-card" onclick="selectUseCase('supplyChain')">
+                            <input type="radio" id="supplyChain" name="useCase">
+                            <div class="card-header">
+                                <div class="card-radio"></div>
+                                <div class="card-title">🔗 Supply Chain</div>
+                            </div>
+                            <p class="card-description">Vendor risk assessment and supply chain integrity monitoring. Best for procurement offices and contract management.</p>
+                            <div class="card-price">$42,000 - $75,000/year</div>
+                        </div>
+                    </div>
+
+                    <div class="info-alert">
+                        <span class="info-alert-icon">💡</span>
+                        <span class="info-alert-text"><strong>All packages include:</strong> Orbis Global, BFO, Orbis T-Rank, and GRID Review as part of the base offering.</span>
+                    </div>
+                </div>
+
+                <!-- Step 2: User Band & Add-Ons -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">Users & Add-On Packages</h2>
+                    <p class="step-subtitle">Select your user count and optional add-on packages</p>
+
+                    <!-- User Band Selection -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">👥 Number of Users</h3>
+                        <div class="cards-grid">
+                            <div class="selection-card" onclick="selectUserBand('1-2')">
+                                <input type="radio" id="users-1-2" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">1-2 Users</div>
+                                </div>
+                                <p class="card-description">Small team or individual analyst</p>
+                                <div class="card-price" id="price-1-2">$125,000</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectUserBand('3-5')">
+                                <input type="radio" id="users-3-5" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">3-5 Users</div>
+                                </div>
+                                <p class="card-description">Department or small unit</p>
+                                <div class="card-price" id="price-3-5">$100,000</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectUserBand('6-10')">
+                                <input type="radio" id="users-6-10" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">6-10 Users</div>
+                                </div>
+                                <p class="card-description">Division or multiple teams</p>
+                                <div class="card-price" id="price-6-10">$85,000</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectUserBand('11-14')">
+                                <input type="radio" id="users-11-14" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">11-14 Users</div>
+                                </div>
+                                <p class="card-description">Large department</p>
+                                <div class="card-price" id="price-11-14">$80,000</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectUserBand('15-19')">
+                                <input type="radio" id="users-15-19" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">15-19 Users</div>
+                                </div>
+                                <p class="card-description">Agency-wide deployment</p>
+                                <div class="card-price" id="price-15-19">$75,000</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectUserBand('20+')">
+                                <input type="radio" id="users-20+" name="userBand">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">20+ Users</div>
+                                </div>
+                                <p class="card-description">Enterprise deployment</p>
+                                <div class="card-price" id="price-20+">$70,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add-On Packages -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">📦 Add-On Package</h3>
+                        <p class="form-help" style="margin-bottom: 20px;">Enhance your base package with additional features and capabilities</p>
+                        
+                        <div class="cards-grid cards-grid-4">
+                            <div class="selection-card selected" onclick="selectAddOn('base')">
+                                <input type="radio" id="addon-base" name="addOn" checked>
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">Base Only</div>
+                                </div>
+                                <p class="card-description">Core functionality without add-ons</p>
+                                <div class="card-multiplier">1.0x Multiplier</div>
+                                <div class="card-price" id="addon-price-base">$0</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectAddOn('standard')">
+                                <input type="radio" id="addon-standard" name="addOn">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">Standard</div>
+                                </div>
+                                <p class="card-description">Enhanced monitoring & alerts</p>
+                                <div class="card-multiplier">1.15x Multiplier</div>
+                                <div class="card-price" id="addon-price-standard">+$18,750</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectAddOn('plus')">
+                                <input type="radio" id="addon-plus" name="addOn">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">Plus</div>
+                                </div>
+                                <p class="card-description">Advanced analytics & reporting</p>
+                                <div class="card-multiplier">1.3x Multiplier</div>
+                                <div class="card-price" id="addon-price-plus">+$37,500</div>
+                            </div>
+
+                            <div class="selection-card" onclick="selectAddOn('premium')">
+                                <input type="radio" id="addon-premium" name="addOn">
+                                <div class="card-header">
+                                    <div class="card-radio"></div>
+                                    <div class="card-title">Premium</div>
+                                </div>
+                                <p class="card-description">Full suite with priority support</p>
+                                <div class="card-multiplier">1.65x Multiplier</div>
+                                <div class="card-price" id="addon-price-premium">+$81,250</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Attributes -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">Configuration Attributes</h2>
+                    <p class="step-subtitle">Customize your deployment with these attribute selections</p>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">🌍 Region</h3>
+                        <div class="form-group">
+                            <label class="form-label">Select your primary region</label>
+                            <select class="form-select" id="region" onchange="updateCalculation()">
+                                <option value="north-america">North America (1.0x)</option>
+                                <option value="west-north-europe">West/North Europe (1.0x)</option>
+                                <option value="middle-east">Middle East (0.9x)</option>
+                                <option value="north-asia-oceania">North Asia & Oceania (0.9x)</option>
+                                <option value="east-south-europe">East/South Europe (0.8x)</option>
+                                <option value="south-america-africa">South America & Africa (0.7x)</option>
+                                <option value="south-asia">South Asia (0.7x)</option>
+                            </select>
+                            <p class="form-help">Regional pricing adjustments based on operational costs</p>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">🚀 Delivery Method</h3>
+                        <div class="form-group">
+                            <label class="form-label">How will you access the solution?</label>
+                            <select class="form-select" id="delivery" onchange="handleDeliveryChange()">
+                                <option value="web">Web/UI (1.0x)</option>
+                                <option value="hybrid">Hybrid - UI + API (1.15x)</option>
+                                <option value="api">API Direct Integration (1.2x)</option>
+                                <option value="datafeed">Data Feed (1.35x)</option>
+                            </select>
+                            <p class="form-help">Different delivery methods have varying infrastructure requirements</p>
+                        </div>
+
+                        <!-- Data Feed Options (shown only when Data Feed is selected) -->
+                        <div class="data-feed-section" id="datafeed-options">
+                            <h4 style="color: #1e3a5f; margin-bottom: 20px;">📊 Data Feed Configuration</h4>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Usage Rights</label>
+                                <select class="form-select" id="usage-rights" onchange="updateCalculation()">
+                                    <option value="internal">Internal Analytics (1.0x)</option>
+                                    <option value="operational">Operational Integration (1.8x)</option>
+                                    <option value="classified">Classified Fusion (2.5x)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Scope</label>
+                                <select class="form-select" id="scope" onchange="updateCalculation()">
+                                    <option value="regional">Regional (1.0x)</option>
+                                    <option value="global">Global (2.0x)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Refresh Frequency</label>
+                                <select class="form-select" id="refresh" onchange="updateCalculation()">
+                                    <option value="annual">Annual (1.0x)</option>
+                                    <option value="quarterly">Quarterly (1.5x)</option>
+                                    <option value="monthly">Monthly (2.5x)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">🏛️ Agency Type</h3>
+                        <div class="form-group">
+                            <label class="form-label">What type of government agency?</label>
+                            <select class="form-select" id="agency-type" onchange="updateCalculation()">
+                                <option value="federal">Federal/Central Government (1.0x)</option>
+                                <option value="state">State Government (0.8x)</option>
+                                <option value="local">Local Government (0.7x)</option>
+                            </select>
+                            <p class="form-help">Pricing tiers based on agency scope and budget considerations</p>
+                        </div>
+                    </div>
+
+                    <!-- Entity Volume (Supply Chain Only) -->
+                    <div class="form-section hidden" id="entity-volume-section">
+                        <h3 class="form-section-title">📈 Entity Volume (Supply Chain)</h3>
+                        <div class="form-group">
+                            <label class="form-label">Expected entity volume per year</label>
+                            <select class="form-select" id="entity-volume" onchange="updateCalculation()">
+                                <option value="small">&lt;10K Entities (0.9x)</option>
+                                <option value="medium">10K-50K Entities (1.0x)</option>
+                                <option value="large">50K-250K Entities (1.2x)</option>
+                                <option value="enterprise">250K-1M+ Entities (1.3x)</option>
+                            </select>
+                            <p class="form-help">Higher volumes receive adjusted pricing</p>
+                        </div>
+                    </div>
+
+                    <!-- Real-time Price Preview -->
+                    <div class="breakdown-box">
+                        <h4>💰 Real-Time Price Calculation</h4>
+                        <div class="breakdown-item">
+                            <span class="breakdown-item-label">Base Price (<span id="preview-usecase">-</span>)</span>
+                            <span class="breakdown-item-value" id="preview-base">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-item-label">Add-On Package (<span id="preview-addon">Base Only</span>)</span>
+                            <span class="breakdown-item-value" id="preview-addon-cost">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-item-label">Subtotal (before multipliers)</span>
+                            <span class="breakdown-item-value" id="preview-subtotal">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-item-label">Combined Multiplier</span>
+                            <span class="breakdown-item-value" id="preview-multiplier">1.00x</span>
+                        </div>
+                        <div class="breakdown-item" style="font-weight: 700; font-size: 1.1rem; padding-top: 15px; border-top: 2px solid #0ea5e9;">
+                            <span class="breakdown-item-label">Estimated Annual Price</span>
+                            <span class="breakdown-item-value" id="preview-total" style="color: #0369a1; font-size: 1.3rem;">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Quote Summary -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">📋 Your Custom Quote</h2>
+                    <p class="step-subtitle">Review your configured package and pricing</p>
+
+                    <div class="quote-grid">
+                        <div>
+                            <div class="quote-section">
+                                <h3 class="quote-section-title">🎯 Package Configuration</h3>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Use Case</span>
+                                    <span class="quote-item-value" id="quote-usecase">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">User Band</span>
+                                    <span class="quote-item-value" id="quote-userband">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Add-On Package</span>
+                                    <span class="quote-item-value" id="quote-addon">-</span>
+                                </div>
+                            </div>
+
+                            <div class="quote-section">
+                                <h3 class="quote-section-title">⚙️ Attributes</h3>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Region</span>
+                                    <span class="quote-item-value" id="quote-region">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Delivery Method</span>
+                                    <span class="quote-item-value" id="quote-delivery">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Agency Type</span>
+                                    <span class="quote-item-value" id="quote-agency">-</span>
+                                </div>
+                                <div class="quote-item hidden" id="quote-volume-row">
+                                    <span class="quote-item-label">Entity Volume</span>
+                                    <span class="quote-item-value" id="quote-volume">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="quote-section">
+                                <h3 class="quote-section-title">📦 What's Included</h3>
+                                <ul class="package-features" id="quote-includes">
+                                    <li>Orbis Global</li>
+                                    <li>BFO</li>
+                                    <li>Orbis T-Rank</li>
+                                    <li>GRID Review</li>
+                                </ul>
+                            </div>
+
+                            <div class="quote-section hidden" id="quote-datafeed-section">
+                                <h3 class="quote-section-title">📊 Data Feed Configuration</h3>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Usage Rights</span>
+                                    <span class="quote-item-value" id="quote-usage-rights">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Scope</span>
+                                    <span class="quote-item-value" id="quote-scope">-</span>
+                                </div>
+                                <div class="quote-item">
+                                    <span class="quote-item-label">Refresh Frequency</span>
+                                    <span class="quote-item-value" id="quote-refresh">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Card -->
+                    <div class="pricing-card">
+                        <div class="pricing-row">
+                            <span class="pricing-label">Base Package Price</span>
+                            <span class="pricing-value" id="final-base">$0</span>
+                        </div>
+                        <div class="pricing-row">
+                            <span class="pricing-label">Add-On Package</span>
+                            <span class="pricing-value" id="final-addon">$0</span>
+                        </div>
+                        <div class="pricing-row">
+                            <span class="pricing-label">Subtotal</span>
+                            <span class="pricing-value" id="final-subtotal">$0</span>
+                        </div>
+                        <div class="pricing-row">
+                            <span class="pricing-label">Applied Multipliers</span>
+                            <span class="pricing-value" id="final-multiplier">1.00x</span>
+                        </div>
+                        <div class="pricing-row total">
+                            <span class="pricing-label">TOTAL ANNUAL PRICE</span>
+                            <span class="pricing-value" id="final-total">$0</span>
+                        </div>
+                    </div>
+
+                    <!-- Breakdown Box -->
+                    <div class="breakdown-box">
+                        <h4>📊 Multiplier Breakdown</h4>
+                        <div id="multiplier-breakdown"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="copyQuote()">📋 Copy Quote Summary</button>
+                        <button class="btn btn-primary" onclick="printQuote()">🖨️ Print Quote</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation">
+                <button class="btn btn-secondary" id="btn-prev" onclick="previousStep()" disabled>
+                    ← Previous
+                </button>
+                <button class="btn btn-primary" id="btn-next" onclick="nextStep()">
+                    Next →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // STATE MANAGEMENT
+        // ==========================================
+        let currentStep = 1;
+        let configData = {
+            useCase: '',
+            userBand: '',
+            addOn: 'base',
+            region: 'north-america',
+            delivery: 'web',
+            agencyType: 'federal',
+            entityVolume: 'medium',
+            usageRights: 'internal',
+            scope: 'regional',
+            refresh: 'annual'
+        };
+
+        // ==========================================
+        // PRICING DATA (from Excel)
+        // ==========================================
+        const basePricing = {
+            intelligence: {
+                '1-2': 125000,
+                '3-5': 100000,
+                '6-10': 85000,
+                '11-14': 80000,
+                '15-19': 75000,
+                '20+': 70000
+            },
+            investigations: {
+                '1-2': 100000,
+                '3-5': 80000,
+                '6-10': 68000,
+                '11-14': 64000,
+                '15-19': 60000,
+                '20+': 56000
+            },
+            supplyChain: {
+                '1-2': 75000,
+                '3-5': 60000,
+                '6-10': 51000,
+                '11-14': 48000,
+                '15-19': 45000,
+                '20+': 42000
+            }
+        };
+
+        const addOnPricing = {
+            '1-2': { standard: 18750, plus: 37500, premium: 81250 },
+            '3-5': { standard: 15000, plus: 30000, premium: 65000 },
+            '6-10': { standard: 12750, plus: 25500, premium: 55250 },
+            '11-14': { standard: 12000, plus: 24000, premium: 52000 },
+            '15-19': { standard: 11250, plus: 22500, premium: 48750 },
+            '20+': { standard: 10500, plus: 21000, premium: 45500 }
+        };
+
+        const addOnMultipliers = {
+            base: 1.0,
+            standard: 1.15,
+            plus: 1.3,
+            premium: 1.65
+        };
+
+        const regionMultipliers = {
+            'north-america': 1.0,
+            'west-north-europe': 1.0,
+            'middle-east': 0.9,
+            'north-asia-oceania': 0.9,
+            'east-south-europe': 0.8,
+            'south-america-africa': 0.7,
+            'south-asia': 0.7
+        };
+
+        const deliveryMultipliers = {
+            'web': 1.0,
+            'hybrid': 1.15,
+            'api': 1.2,
+            'datafeed': 1.35
+        };
+
+        const agencyMultipliers = {
+            'federal': 1.0,
+            'state': 0.8,
+            'local': 0.7
+        };
+
+        const entityVolumeMultipliers = {
+            'small': 0.9,
+            'medium': 1.0,
+            'large': 1.2,
+            'enterprise': 1.3
+        };
+
+        const dataFeedMultipliers = {
+            usageRights: {
+                'internal': 1.0,
+                'operational': 1.8,
+                'classified': 2.5
+            },
+            scope: {
+                'regional': 1.0,
+                'global': 2.0
+            },
+            refresh: {
+                'annual': 1.0,
+                'quarterly': 1.5,
+                'monthly': 2.5
+            }
+        };
+
+        const useCaseLabels = {
+            'intelligence': 'Intelligence',
+            'investigations': 'Investigations',
+            'supplyChain': 'Supply Chain'
+        };
+
+        const regionLabels = {
+            'north-america': 'North America',
+            'west-north-europe': 'West/North Europe',
+            'middle-east': 'Middle East',
+            'north-asia-oceania': 'North Asia & Oceania',
+            'east-south-europe': 'East/South Europe',
+            'south-america-africa': 'South America & Africa',
+            'south-asia': 'South Asia'
+        };
+
+        const deliveryLabels = {
+            'web': 'Web/UI',
+            'hybrid': 'Hybrid (UI + API)',
+            'api': 'API Direct Integration',
+            'datafeed': 'Data Feed'
+        };
+
+        const agencyLabels = {
+            'federal': 'Federal/Central',
+            'state': 'State',
+            'local': 'Local'
+        };
+
+        const volumeLabels = {
+            'small': '<10K Entities',
+            'medium': '10K-50K Entities',
+            'large': '50K-250K Entities',
+            'enterprise': '250K-1M+ Entities'
+        };
+
+        const addOnLabels = {
+            'base': 'Base Only',
+            'standard': 'Standard',
+            'plus': 'Plus',
+            'premium': 'Premium'
+        };
+
+        const usageRightsLabels = {
+            'internal': 'Internal Analytics',
+            'operational': 'Operational Integration',
+            'classified': 'Classified Fusion'
+        };
+
+        const scopeLabels = {
+            'regional': 'Regional',
+            'global': 'Global'
+        };
+
+        const refreshLabels = {
+            'annual': 'Annual',
+            'quarterly': 'Quarterly',
+            'monthly': 'Monthly'
+        };
+
+        // ==========================================
+        // NAVIGATION FUNCTIONS
+        // ==========================================
+        function nextStep() {
+            if (!validateStep(currentStep)) return;
+            
+            if (currentStep < 4) {
+                currentStep++;
+                updateStep();
+                
+                if (currentStep === 2) {
+                    updateUserBandPrices();
+                    updateAddOnPrices();
+                }
+                
+                if (currentStep === 3) {
+                    toggleEntityVolumeSection();
+                    updateCalculation();
+                }
+                
+                if (currentStep === 4) {
+                    generateQuote();
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        }
+
+        function updateStep() {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            
+            // Update progress bar
+            for (let i = 1; i <= 4; i++) {
+                const progressStep = document.getElementById(`progress-${i}`);
+                progressStep.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    progressStep.classList.add('completed');
+                } else if (i === currentStep) {
+                    progressStep.classList.add('active');
+                }
+            }
+            
+            // Update navigation buttons
+            document.getElementById('btn-prev').disabled = currentStep === 1;
+            
+            const btnNext = document.getElementById('btn-next');
+            if (currentStep === 4) {
+                btnNext.innerHTML = '✓ Complete';
+                btnNext.disabled = true;
+            } else {
+                btnNext.innerHTML = 'Next →';
+                btnNext.disabled = false;
+            }
+        }
+
+        function validateStep(step) {
+            switch(step) {
+                case 1:
+                    if (!configData.useCase) {
+                        alert('Please select a use case to continue.');
+                        return false;
+                    }
+                    return true;
+                    
+                case 2:
+                    if (!configData.userBand) {
+                        alert('Please select a user band to continue.');
+                        return false;
+                    }
+                    return true;
+                    
+                default:
+                    return true;
+            }
+        }
+
+        // ==========================================
+        // SELECTION FUNCTIONS
+        // ==========================================
+        function selectUseCase(useCase) {
+            // Clear all selections
+            document.querySelectorAll('#step-1 .selection-card').forEach(card => {
+                card.classList.remove('selected');
+                card.querySelector('input').checked = false;
+            });
+            
+            // Select the clicked one
+            const card = document.querySelector(`#${useCase}`).closest('.selection-card');
+            const radio = document.getElementById(useCase);
+            
+            radio.checked = true;
+            card.classList.add('selected');
+            
+            configData.useCase = useCase;
+        }
+
+        function selectUserBand(band) {
+            // Clear all selections
+            document.querySelectorAll('[name="userBand"]').forEach(input => {
+                input.closest('.selection-card').classList.remove('selected');
+                input.checked = false;
+            });
+            
+            // Select the clicked one
+            const bandId = `users-${band}`;
+            const card = document.querySelector(`#${bandId}`).closest('.selection-card');
+            const radio = document.getElementById(bandId);
+            
+            radio.checked = true;
+            card.classList.add('selected');
+            
+            configData.userBand = band;
+            updateAddOnPrices();
+            updateCalculation();
+        }
+
+        function selectAddOn(addon) {
+            // Clear all selections
+            document.querySelectorAll('[name="addOn"]').forEach(input => {
+                input.closest('.selection-card').classList.remove('selected');
+                input.checked = false;
+            });
+            
+            // Select the clicked one
+            const addonId = `addon-${addon}`;
+            const card = document.querySelector(`#${addonId}`).closest('.selection-card');
+            const radio = document.getElementById(addonId);
+            
+            radio.checked = true;
+            card.classList.add('selected');
+            
+            configData.addOn = addon;
+            updateCalculation();
+        }
+
+        // ==========================================
+        // UPDATE FUNCTIONS
+        // ==========================================
+        function updateUserBandPrices() {
+            const useCase = configData.useCase;
+            if (!useCase) return;
+
+            const prices = basePricing[useCase];
+            Object.keys(prices).forEach(band => {
+                const priceEl = document.getElementById(`price-${band}`);
+                if (priceEl) {
+                    priceEl.textContent = '$' + prices[band].toLocaleString();
+                }
+            });
+        }
+
+        function updateAddOnPrices() {
+            const band = configData.userBand;
+            if (!band) return;
+
+            const prices = addOnPricing[band];
+            
+            document.getElementById('addon-price-base').textContent = '$0';
+            document.getElementById('addon-price-standard').textContent = '+$' + prices.standard.toLocaleString();
+            document.getElementById('addon-price-plus').textContent = '+$' + prices.plus.toLocaleString();
+            document.getElementById('addon-price-premium').textContent = '+$' + prices.premium.toLocaleString();
+        }
+
+        function toggleEntityVolumeSection() {
+            const section = document.getElementById('entity-volume-section');
+            if (configData.useCase === 'supplyChain') {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        }
+
+        function handleDeliveryChange() {
+            const delivery = document.getElementById('delivery').value;
+            configData.delivery = delivery;
+            
+            const datafeedOptions = document.getElementById('datafeed-options');
+            if (delivery === 'datafeed') {
+                datafeedOptions.classList.add('visible');
+            } else {
+                datafeedOptions.classList.remove('visible');
+            }
+            
+            updateCalculation();
+        }
+
+        function updateCalculation() {
+            // Get current values from dropdowns
+            configData.region = document.getElementById('region').value;
+            configData.delivery = document.getElementById('delivery').value;
+            configData.agencyType = document.getElementById('agency-type').value;
+            configData.entityVolume = document.getElementById('entity-volume').value;
+            configData.usageRights = document.getElementById('usage-rights').value;
+            configData.scope = document.getElementById('scope').value;
+            configData.refresh = document.getElementById('refresh').value;
+
+            // Calculate base price
+            let basePrice = 0;
+            if (configData.useCase && configData.userBand) {
+                basePrice = basePricing[configData.useCase][configData.userBand];
+            }
+
+            // Calculate add-on price
+            let addOnPrice = 0;
+            if (configData.userBand && configData.addOn !== 'base') {
+                addOnPrice = addOnPricing[configData.userBand][configData.addOn] || 0;
+            }
+
+            // Calculate subtotal
+            const subtotal = basePrice + addOnPrice;
+
+            // Calculate combined multiplier
+            let combinedMultiplier = 1.0;
+            
+            // Add-on multiplier
+            combinedMultiplier *= addOnMultipliers[configData.addOn];
+            
+            // Region multiplier
+            combinedMultiplier *= regionMultipliers[configData.region];
+            
+            // Delivery multiplier
+            combinedMultiplier *= deliveryMultipliers[configData.delivery];
+            
+            // Agency type multiplier
+            combinedMultiplier *= agencyMultipliers[configData.agencyType];
+            
+            // Entity volume multiplier (Supply Chain only)
+            if (configData.useCase === 'supplyChain') {
+                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
+            }
+            
+            // Data Feed multipliers (only if Data Feed delivery)
+            if (configData.delivery === 'datafeed') {
+                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
+                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
+                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
+            }
+
+            // Calculate final total
+            const total = subtotal * combinedMultiplier;
+
+            // Update preview display
+            document.getElementById('preview-usecase').textContent = useCaseLabels[configData.useCase] || '-';
+            document.getElementById('preview-base').textContent = '$' + basePrice.toLocaleString();
+            document.getElementById('preview-addon').textContent = addOnLabels[configData.addOn];
+            document.getElementById('preview-addon-cost').textContent = '$' + addOnPrice.toLocaleString();
+            document.getElementById('preview-subtotal').textContent = '$' + subtotal.toLocaleString();
+            document.getElementById('preview-multiplier').textContent = combinedMultiplier.toFixed(2) + 'x';
+            document.getElementById('preview-total').textContent = '$' + Math.round(total).toLocaleString();
+        }
+
+        // ==========================================
+        // QUOTE GENERATION
+        // ==========================================
+        function generateQuote() {
+            // Calculate all values
+            const basePrice = basePricing[configData.useCase][configData.userBand];
+            const addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
+            const subtotal = basePrice + addOnPrice;
+
+            // Build multiplier breakdown
+            let multiplierBreakdown = [];
+            let combinedMultiplier = 1.0;
+
+            // Add-on multiplier
+            if (configData.addOn !== 'base') {
+                multiplierBreakdown.push({
+                    label: `Add-On Package (${addOnLabels[configData.addOn]})`,
+                    value: addOnMultipliers[configData.addOn]
+                });
+            }
+            combinedMultiplier *= addOnMultipliers[configData.addOn];
+
+            // Region
+            multiplierBreakdown.push({
+                label: `Region (${regionLabels[configData.region]})`,
+                value: regionMultipliers[configData.region]
+            });
+            combinedMultiplier *= regionMultipliers[configData.region];
+
+            // Delivery
+            multiplierBreakdown.push({
+                label: `Delivery Method (${deliveryLabels[configData.delivery]})`,
+                value: deliveryMultipliers[configData.delivery]
+            });
+            combinedMultiplier *= deliveryMultipliers[configData.delivery];
+
+            // Agency Type
+            multiplierBreakdown.push({
+                label: `Agency Type (${agencyLabels[configData.agencyType]})`,
+                value: agencyMultipliers[configData.agencyType]
+            });
+            combinedMultiplier *= agencyMultipliers[configData.agencyType];
+
+            // Entity Volume (Supply Chain)
+            if (configData.useCase === 'supplyChain') {
+                multiplierBreakdown.push({
+                    label: `Entity Volume (${volumeLabels[configData.entityVolume]})`,
+                    value: entityVolumeMultipliers[configData.entityVolume]
+                });
+                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
+            }
+
+            // Data Feed attributes
+            if (configData.delivery === 'datafeed') {
+                multiplierBreakdown.push({
+                    label: `Usage Rights (${usageRightsLabels[configData.usageRights]})`,
+                    value: dataFeedMultipliers.usageRights[configData.usageRights]
+                });
+                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
+
+                multiplierBreakdown.push({
+                    label: `Scope (${scopeLabels[configData.scope]})`,
+                    value: dataFeedMultipliers.scope[configData.scope]
+                });
+                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
+
+                multiplierBreakdown.push({
+                    label: `Refresh Frequency (${refreshLabels[configData.refresh]})`,
+                    value: dataFeedMultipliers.refresh[configData.refresh]
+                });
+                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
+            }
+
+            const total = subtotal * combinedMultiplier;
+
+            // Update quote display
+            document.getElementById('quote-usecase').textContent = useCaseLabels[configData.useCase];
+            document.getElementById('quote-userband').textContent = configData.userBand + ' Users';
+            document.getElementById('quote-addon').textContent = addOnLabels[configData.addOn];
+            document.getElementById('quote-region').textContent = regionLabels[configData.region] + ` (${regionMultipliers[configData.region]}x)`;
+            document.getElementById('quote-delivery').textContent = deliveryLabels[configData.delivery] + ` (${deliveryMultipliers[configData.delivery]}x)`;
+            document.getElementById('quote-agency').textContent = agencyLabels[configData.agencyType] + ` (${agencyMultipliers[configData.agencyType]}x)`;
+
+            // Entity Volume row
+            const volumeRow = document.getElementById('quote-volume-row');
+            if (configData.useCase === 'supplyChain') {
+                volumeRow.classList.remove('hidden');
+                document.getElementById('quote-volume').textContent = volumeLabels[configData.entityVolume] + ` (${entityVolumeMultipliers[configData.entityVolume]}x)`;
+            } else {
+                volumeRow.classList.add('hidden');
+            }
+
+            // Data Feed section
+            const datafeedSection = document.getElementById('quote-datafeed-section');
+            if (configData.delivery === 'datafeed') {
+                datafeedSection.classList.remove('hidden');
+                document.getElementById('quote-usage-rights').textContent = usageRightsLabels[configData.usageRights] + ` (${dataFeedMultipliers.usageRights[configData.usageRights]}x)`;
+                document.getElementById('quote-scope').textContent = scopeLabels[configData.scope] + ` (${dataFeedMultipliers.scope[configData.scope]}x)`;
+                document.getElementById('quote-refresh').textContent = refreshLabels[configData.refresh] + ` (${dataFeedMultipliers.refresh[configData.refresh]}x)`;
+            } else {
+                datafeedSection.classList.add('hidden');
+            }
+
+            // Pricing card
+            document.getElementById('final-base').textContent = '$' + basePrice.toLocaleString();
+            document.getElementById('final-addon').textContent = '$' + addOnPrice.toLocaleString();
+            document.getElementById('final-subtotal').textContent = '$' + subtotal.toLocaleString();
+            document.getElementById('final-multiplier').textContent = combinedMultiplier.toFixed(2) + 'x';
+            document.getElementById('final-total').textContent = '$' + Math.round(total).toLocaleString();
+
+            // Multiplier breakdown
+            let breakdownHTML = '';
+            multiplierBreakdown.forEach(item => {
+                breakdownHTML += `
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-label">${item.label}</span>
+                        <span class="breakdown-item-value">${item.value}x</span>
+                    </div>
+                `;
+            });
+            breakdownHTML += `
+                <div class="breakdown-item" style="font-weight: 700; border-top: 2px solid #0ea5e9; padding-top: 12px; margin-top: 8px;">
+                    <span class="breakdown-item-label">Combined Multiplier</span>
+                    <span class="breakdown-item-value">${combinedMultiplier.toFixed(2)}x</span>
+                </div>
+            `;
+            document.getElementById('multiplier-breakdown').innerHTML = breakdownHTML;
+        }
+
+        // ==========================================
+        // EXPORT FUNCTIONS
+        // ==========================================
+        function copyQuote() {
+            const basePrice = basePricing[configData.useCase][configData.userBand];
+            const addOnPrice = configData.addOn !== 'base' ? addOnPricing[configData.userBand][configData.addOn] : 0;
+            const subtotal = basePrice + addOnPrice;
+            
+            let combinedMultiplier = addOnMultipliers[configData.addOn] 
+                * regionMultipliers[configData.region] 
+                * deliveryMultipliers[configData.delivery] 
+                * agencyMultipliers[configData.agencyType];
+            
+            if (configData.useCase === 'supplyChain') {
+                combinedMultiplier *= entityVolumeMultipliers[configData.entityVolume];
+            }
+            
+            if (configData.delivery === 'datafeed') {
+                combinedMultiplier *= dataFeedMultipliers.usageRights[configData.usageRights];
+                combinedMultiplier *= dataFeedMultipliers.scope[configData.scope];
+                combinedMultiplier *= dataFeedMultipliers.refresh[configData.refresh];
+            }
+            
+            const total = subtotal * combinedMultiplier;
+
+            let summary = `GOVERNMENT SOLUTIONS - PRICING QUOTE
+========================================
+
+PACKAGE CONFIGURATION
+---------------------
+Use Case: ${useCaseLabels[configData.useCase]}
+User Band: ${configData.userBand} Users
+Add-On Package: ${addOnLabels[configData.addOn]}
+
+ATTRIBUTES
+----------
+Region: ${regionLabels[configData.region]} (${regionMultipliers[configData.region]}x)
+Delivery Method: ${deliveryLabels[configData.delivery]} (${deliveryMultipliers[configData.delivery]}x)
+Agency Type: ${agencyLabels[configData.agencyType]} (${agencyMultipliers[configData.agencyType]}x)`;
+
+            if (configData.useCase === 'supplyChain') {
+                summary += `
+Entity Volume: ${volumeLabels[configData.entityVolume]} (${entityVolumeMultipliers[configData.entityVolume]}x)`;
+            }
+
+            if (configData.delivery === 'datafeed') {
+                summary += `
+
+DATA FEED CONFIGURATION
+-----------------------
+Usage Rights: ${usageRightsLabels[configData.usageRights]} (${dataFeedMultipliers.usageRights[configData.usageRights]}x)
+Scope: ${scopeLabels[configData.scope]} (${dataFeedMultipliers.scope[configData.scope]}x)
+Refresh Frequency: ${refreshLabels[configData.refresh]} (${dataFeedMultipliers.refresh[configData.refresh]}x)`;
+            }
+
+            summary += `
+
+BASE OFFERING INCLUDED
+----------------------
+• Orbis Global
+• BFO
+• Orbis T-Rank
+• GRID Review
+
+PRICING SUMMARY
+---------------
+Base Package Price: $${basePrice.toLocaleString()}
+Add-On Package: $${addOnPrice.toLocaleString()}
+Subtotal: $${subtotal.toLocaleString()}
+Combined Multiplier: ${combinedMultiplier.toFixed(2)}x
+
+TOTAL ANNUAL PRICE: $${Math.round(total).toLocaleString()}
+========================================`;
+
+            navigator.clipboard.writeText(summary).then(() => {
+                alert('✅ Quote summary copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard. Please try again.');
+            });
+        }
+
+        function printQuote() {
+            window.print();
+        }
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStep();
+        });
+    </script>
+</body>
+</html>
