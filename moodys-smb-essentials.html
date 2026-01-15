@@ -334,66 +334,6 @@
             font-weight: 600;
         }
 
-        /* How It Works */
-        .model-section {
-            background-color: var(--light-grey);
-            padding: 64px 24px;
-        }
-
-        .model-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .model-header h2 {
-            font-size: 2rem;
-            color: var(--moodys-blue);
-            margin-bottom: 12px;
-        }
-
-        .model-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .model-step {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 28px 24px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .step-number {
-            width: 36px;
-            height: 36px;
-            background-color: var(--light-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 0 auto 16px;
-        }
-
-        .model-step h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--moodys-blue);
-            margin-bottom: 8px;
-        }
-
-        .model-step p {
-            font-size: 0.85rem;
-            color: var(--slate-grey);
-            line-height: 1.5;
-        }
-
         /* Ideal For Section */
         .ideal-section {
             background-color: var(--white);
@@ -527,10 +467,6 @@
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .model-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
@@ -565,11 +501,6 @@
 
             .agents-section p {
                 max-width: 100%;
-            }
-
-            .model-grid {
-                grid-template-columns: 1fr;
-                max-width: 320px;
             }
 
             .cta-buttons {
@@ -746,41 +677,6 @@
                         <div class="icon">📋</div>
                         <div class="label">IDD Agent</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How the Model Works -->
-    <section class="model-section">
-        <div class="container">
-            <div class="model-header">
-                <h2>How the Pricing Model Works</h2>
-            </div>
-
-            <div class="model-grid">
-                <div class="model-step">
-                    <div class="step-number">1</div>
-                    <h3>Fixed Annual Access Fee</h3>
-                    <p>Pay a fixed annual fee for full platform access, features, and workflows—predictable and transparent.</p>
-                </div>
-
-                <div class="model-step">
-                    <div class="step-number">2</div>
-                    <h3>Prepaid Consumption Allowance</h3>
-                    <p>Prepay a consumption allowance to utilise against entity data, screening, and agentic capabilities.</p>
-                </div>
-
-                <div class="model-step">
-                    <div class="step-number">3</div>
-                    <h3>Unified Consumption</h3>
-                    <p>All activity—UI, API, or MCP—draws from the same prepaid allowance.</p>
-                </div>
-
-                <div class="model-step">
-                    <div class="step-number">4</div>
-                    <h3>Step‑Up Growth</h3>
-                    <p>Upgrade seamlessly as your compliance needs expand over time.</p>
                 </div>
             </div>
         </div>
