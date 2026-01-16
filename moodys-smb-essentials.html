@@ -150,26 +150,6 @@
             box-shadow: 0 12px 32px rgba(0, 45, 114, 0.12);
         }
 
-        .pricing-card.featured {
-            border: 2px solid var(--light-blue);
-        }
-
-        .pricing-card.featured::before {
-            content: "Most Popular";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--light-blue);
-            color: var(--white);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 16px;
-            border-radius: 20px;
-        }
-
         .tier-name {
             font-size: 1.1rem;
             font-weight: 700;
@@ -236,14 +216,6 @@
             background-color: #001d4d;
         }
 
-        .pricing-card.featured .card-cta {
-            background-color: var(--light-blue);
-        }
-
-        .pricing-card.featured .card-cta:hover {
-            background-color: var(--light-blue-hover);
-        }
-
         .pricing-footnote {
             text-align: center;
             font-size: 0.875rem;
@@ -255,67 +227,6 @@
             background-color: var(--white);
             border-radius: 8px;
             border-left: 4px solid var(--light-blue);
-        }
-
-        /* Features Section */
-        .features-section {
-            background-color: var(--white);
-            padding: 64px 24px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .features-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .features-header h2 {
-            font-size: 2rem;
-            color: var(--moodys-blue);
-            margin-bottom: 12px;
-        }
-
-        .features-header p {
-            font-size: 1.1rem;
-            color: var(--slate-grey);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .feature-item {
-            text-align: center;
-            padding: 24px;
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background-color: rgba(0, 113, 188, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            font-size: 1.5rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--moodys-blue);
-            margin-bottom: 8px;
-        }
-
-        .feature-item p {
-            font-size: 0.9rem;
-            color: var(--slate-grey);
-            line-height: 1.5;
         }
 
         /* AI Agents Highlight */
@@ -517,10 +428,6 @@
             .pricing-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
@@ -537,15 +444,6 @@
                 max-width: 380px;
                 margin-left: auto;
                 margin-right: auto;
-            }
-
-            .pricing-card.featured::before {
-                font-size: 0.7rem;
-                padding: 3px 12px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
             }
 
             .agents-content {
@@ -590,6 +488,59 @@
         </div>
     </header>
 
+    <!-- Pricing Cards Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+
+                <div class="pricing-card">
+                    <div class="tier-name">Starter</div>
+                    <div class="entity-count">500</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Annual Price</div>
+                        <div class="price-value">$20,000</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">Growth</div>
+                    <div class="entity-count">1,000</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Annual Price</div>
+                        <div class="price-value">$27,000</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">Scale</div>
+                    <div class="entity-count">1,500</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Annual Price</div>
+                        <div class="price-value">$33,000</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">Enterprise</div>
+                    <div class="entity-count">2,000</div>
+                    <div class="entity-label">entities</div>
+                    <div class="price-range">
+                        <div class="price-label">Annual Price</div>
+                        <div class="price-value">$40,000</div>
+                    </div>
+                    <a href="#" class="card-cta">Get Started</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Value Proposition Section -->
     <section class="value-section">
         <div class="container">
@@ -608,129 +559,6 @@
                 <p>This package helps smaller organizations reduce manual checks, avoid hidden risks, and meet compliance requirements without needing dedicated compliance teams or complex tooling. It's fast to deploy, easy to use, and priced to fit the needs of high‑growth businesses.</p>
                 
                 <p class="value-tagline"><strong>Grow safely. Operate confidently. Stay compliant—without slowing down.</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Cards Section -->
-    <section class="pricing-section">
-        <div class="container">
-            <div class="pricing-grid">
-
-                <div class="pricing-card">
-                    <div class="tier-name">Package‑500</div>
-                    <div class="entity-count">500</div>
-                    <div class="entity-label">entities</div>
-                    <div class="price-range">
-                        <div class="price-label">Annual Price</div>
-                        <div class="price-value">$20,000</div>
-                    </div>
-                    <a href="#" class="card-cta">Get Started</a>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div class="tier-name">Package‑1000</div>
-                    <div class="entity-count">1,000</div>
-                    <div class="entity-label">entities</div>
-                    <div class="price-range">
-                        <div class="price-label">Annual Price</div>
-                        <div class="price-value">$27,000</div>
-                    </div>
-                    <a href="#" class="card-cta">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Package‑1500</div>
-                    <div class="entity-count">1,500</div>
-                    <div class="entity-label">entities</div>
-                    <div class="price-range">
-                        <div class="price-label">Annual Price</div>
-                        <div class="price-value">$33,000</div>
-                    </div>
-                    <a href="#" class="card-cta">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Package‑2000</div>
-                    <div class="entity-count">2,000</div>
-                    <div class="entity-label">entities</div>
-                    <div class="price-range">
-                        <div class="price-label">Annual Price</div>
-                        <div class="price-value">$40,000</div>
-                    </div>
-                    <a href="#" class="card-cta">Get Started</a>
-                </div>
-
-            </div>
-
-            <p class="pricing-footnote">
-                Each entity is verified using Moody's Orbis data and Beneficial Ownership insight. Pricing includes GRID screening of legal entities and associated individuals across sanctions, PEPs, and Adverse Media, plus ongoing monitoring of screened entities.
-            </p>
-        </div>
-    </section>
-
-    <!-- What's Included Section -->
-    <section class="features-section">
-        <div class="container">
-            <div class="features-header">
-                <h2>What's Included in Every Package</h2>
-                <p>All packages include these core capabilities with a single out‑of‑the‑box configuration.</p>
-            </div>
-
-            <div class="features-grid">
-                <article class="feature-item">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Moody's Orbis Company Data</h3>
-                    <p>Accurate global company data to verify and understand the entities you work with.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">👁️</div>
-                    <h3>Beneficial Ownership Insight</h3>
-                    <p>Transparent ownership visibility to identify who actually controls an entity.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Integrated GRID Screening</h3>
-                    <p>Automated sanctions, PEP, and adverse‑media screening in one streamlined workflow.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">🔔</div>
-                    <h3>Ongoing Monitoring</h3>
-                    <p>Continuous monitoring of screened entities with real‑time alerts on critical changes.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Fast Deployment</h3>
-                    <p>Pre‑configured for immediate deployment—get started quickly with minimal setup.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">📤</div>
-                    <h3>Bulk Upload</h3>
-                    <p>Efficiently process large entity lists with batch upload and screening capabilities.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">📊</div>
-                    <h3>Comprehensive Audit Reports</h3>
-                    <p>Full audit trail with export functionality for regulatory and internal review.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI Navigation Interface</h3>
-                    <p>Intelligent, intuitive interface to navigate and surface insights quickly.</p>
-                </article>
-
-                <article class="feature-item">
-                    <div class="feature-icon">✅</div>
-                    <h3>No Complex Tooling Required</h3>
-                    <p>Meet compliance requirements without needing dedicated compliance teams.</p>
-                </article>
             </div>
         </div>
     </section>
