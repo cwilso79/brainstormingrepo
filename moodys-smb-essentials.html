@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moody's for Compliance Entry — Pricing Plans</title>
+    <title>Compliance Packages for Inside Sales Teams — Moody's</title>
     <style>
         /* Reset and Base Styles */
         *, *::before, *::after {
@@ -67,6 +67,60 @@
             color: var(--slate-grey);
             max-width: 680px;
             margin: 0 auto;
+        }
+
+        /* Value Proposition Section */
+        .value-section {
+            background-color: var(--white);
+            padding: 64px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .value-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .value-content h2 {
+            font-size: 2rem;
+            color: var(--moodys-blue);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .value-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            color: var(--slate-grey);
+        }
+
+        .value-list {
+            list-style: none;
+            margin: 24px 0;
+            padding: 0;
+        }
+
+        .value-list li {
+            padding: 12px 0 12px 32px;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--slate-grey);
+        }
+
+        .value-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--light-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .value-tagline {
+            margin-top: 28px;
+            font-size: 1.15rem;
+            color: var(--moodys-blue);
         }
 
         /* Pricing Tiers Section */
@@ -531,10 +585,32 @@
     <header class="page-header">
         <div class="container">
             <p class="eyebrow">Pricing Plans</p>
-            <h1>Moody's for Compliance Entry</h1>
-            <p class="lead">Out‑of‑the‑box compliance for long‑tail SMBs. Predictable pricing, rapid deployment, and everything you need to screen entities with confidence.</p>
+            <h1>Compliance Packages for Inside Sales Teams</h1>
+            <p class="lead">Out‑of‑the‑box compliance for growing companies. Predictable pricing, rapid deployment, and everything you need to screen entities with confidence.</p>
         </div>
     </header>
+
+    <!-- Value Proposition Section -->
+    <section class="value-section">
+        <div class="container">
+            <div class="value-content">
+                <h2>Simple, trusted compliance—built for growing companies.</h2>
+                <p>Our Compliance Package brings together Moody's Orbis company data, Beneficial Ownership insight, and integrated GRID screening to give mid‑market and sub‑$1B organizations the clarity they need to onboard customers and partners with confidence.</p>
+                
+                <p>With one streamlined solution, you gain:</p>
+                
+                <ul class="value-list">
+                    <li><strong>Accurate global company data</strong> from Orbis</li>
+                    <li><strong>Transparent ownership visibility</strong> to identify who actually controls an entity</li>
+                    <li><strong>Automated sanctions, PEP, and adverse‑media screening</strong> via GRID</li>
+                </ul>
+                
+                <p>This package helps smaller organizations reduce manual checks, avoid hidden risks, and meet compliance requirements without needing dedicated compliance teams or complex tooling. It's fast to deploy, easy to use, and priced to fit the needs of high‑growth businesses.</p>
+                
+                <p class="value-tagline"><strong>Grow safely. Operate confidently. Stay compliant—without slowing down.</strong></p>
+            </div>
+        </div>
+    </section>
 
     <!-- Pricing Cards Section -->
     <section class="pricing-section">
@@ -542,8 +618,8 @@
             <div class="pricing-grid">
 
                 <div class="pricing-card">
-                    <div class="tier-name">Entry‑250</div>
-                    <div class="entity-count">250</div>
+                    <div class="tier-name">Package‑500</div>
+                    <div class="entity-count">500</div>
                     <div class="entity-label">entities</div>
                     <div class="price-range">
                         <div class="price-label">Annual Price</div>
@@ -553,8 +629,8 @@
                 </div>
 
                 <div class="pricing-card featured">
-                    <div class="tier-name">Entry‑500</div>
-                    <div class="entity-count">500</div>
+                    <div class="tier-name">Package‑1000</div>
+                    <div class="entity-count">1,000</div>
                     <div class="entity-label">entities</div>
                     <div class="price-range">
                         <div class="price-label">Annual Price</div>
@@ -564,8 +640,8 @@
                 </div>
 
                 <div class="pricing-card">
-                    <div class="tier-name">Entry‑750</div>
-                    <div class="entity-count">750</div>
+                    <div class="tier-name">Package‑1500</div>
+                    <div class="entity-count">1,500</div>
                     <div class="entity-label">entities</div>
                     <div class="price-range">
                         <div class="price-label">Annual Price</div>
@@ -575,8 +651,8 @@
                 </div>
 
                 <div class="pricing-card">
-                    <div class="tier-name">Entry‑1000</div>
-                    <div class="entity-count">1,000</div>
+                    <div class="tier-name">Package‑2000</div>
+                    <div class="entity-count">2,000</div>
                     <div class="entity-label">entities</div>
                     <div class="price-range">
                         <div class="price-label">Annual Price</div>
@@ -588,7 +664,7 @@
             </div>
 
             <p class="pricing-footnote">
-                Each entity is verified and monitored using data from Moody's curated sources. Pricing includes screening of legal entities and associated individuals across sanctions, PEPs, and Adverse Media & Lists, plus ongoing monitoring of screened entities.
+                Each entity is verified using Moody's Orbis data and Beneficial Ownership insight. Pricing includes GRID screening of legal entities and associated individuals across sanctions, PEPs, and Adverse Media, plus ongoing monitoring of screened entities.
             </p>
         </div>
     </section>
@@ -597,39 +673,39 @@
     <section class="features-section">
         <div class="container">
             <div class="features-header">
-                <h2>What's Included in Every Plan</h2>
-                <p>All Entry plans include these core capabilities with a single out‑of‑the‑box configuration.</p>
+                <h2>What's Included in Every Package</h2>
+                <p>All packages include these core capabilities with a single out‑of‑the‑box configuration.</p>
             </div>
 
             <div class="features-grid">
                 <article class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Single Out of the Box Configuration</h3>
-                    <p>Pre‑configured for immediate deployment—get started quickly with minimal setup.</p>
+                    <div class="feature-icon">🌐</div>
+                    <h3>Moody's Orbis Company Data</h3>
+                    <p>Accurate global company data to verify and understand the entities you work with.</p>
                 </article>
 
                 <article class="feature-item">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Matching, Search & Entity Data</h3>
-                    <p>Accurate entity matching and comprehensive search capabilities powered by Moody's curated data sources.</p>
+                    <div class="feature-icon">👁️</div>
+                    <h3>Beneficial Ownership Insight</h3>
+                    <p>Transparent ownership visibility to identify who actually controls an entity.</p>
                 </article>
 
                 <article class="feature-item">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Screening Workflow</h3>
-                    <p>Streamlined workflow for efficient entity screening with review queues and case management.</p>
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Integrated GRID Screening</h3>
+                    <p>Automated sanctions, PEP, and adverse‑media screening in one streamlined workflow.</p>
                 </article>
 
                 <article class="feature-item">
                     <div class="feature-icon">🔔</div>
-                    <h3>Targeted Monitoring Alerts</h3>
-                    <p>Real‑time notifications when critical changes occur on monitored entities.</p>
+                    <h3>Ongoing Monitoring</h3>
+                    <p>Continuous monitoring of screened entities with real‑time alerts on critical changes.</p>
                 </article>
 
                 <article class="feature-item">
-                    <div class="feature-icon">📋</div>
-                    <h3>Due Diligence Agent Report</h3>
-                    <p>Automated due diligence reporting to support your risk assessment processes.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Deployment</h3>
+                    <p>Pre‑configured for immediate deployment—get started quickly with minimal setup.</p>
                 </article>
 
                 <article class="feature-item">
@@ -639,14 +715,8 @@
                 </article>
 
                 <article class="feature-item">
-                    <div class="feature-icon">➕</div>
-                    <h3>Creation of Own Entities</h3>
-                    <p>Add and manage your own custom entities within your compliance workspace.</p>
-                </article>
-
-                <article class="feature-item">
                     <div class="feature-icon">📊</div>
-                    <h3>Comprehensive Audit Report</h3>
+                    <h3>Comprehensive Audit Reports</h3>
                     <p>Full audit trail with export functionality for regulatory and internal review.</p>
                 </article>
 
@@ -654,6 +724,12 @@
                     <div class="feature-icon">🤖</div>
                     <h3>AI Navigation Interface</h3>
                     <p>Intelligent, intuitive interface to navigate and surface insights quickly.</p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <h3>No Complex Tooling Required</h3>
+                    <p>Meet compliance requirements without needing dedicated compliance teams.</p>
                 </article>
             </div>
         </div>
@@ -666,7 +742,7 @@
                 <div class="agents-text">
                     <span class="agents-badge">Available Add‑On</span>
                     <h2>Moody's Screening & IDD Agents</h2>
-                    <p>Unlock enhanced automation with Moody's intelligent agents. AI‑powered Screening and Instant Due Diligence (IDD) reporting agents are available to Entry customers for an additional cost beyond the pricing shown above.</p>
+                    <p>Unlock enhanced automation with Moody's intelligent agents. AI‑powered Screening and Instant Due Diligence (IDD) reporting agents are available to Compliance Package customers for an additional cost beyond the pricing shown above.</p>
                 </div>
                 <div class="agents-visual">
                     <div class="agent-card-mini">
@@ -690,12 +766,12 @@
             </div>
 
             <div class="ideal-grid">
-                <span class="ideal-tag"><span class="check">✓</span> SMBs with 250–1,000 entities</span>
-                <span class="ideal-tag"><span class="check">✓</span> Light to moderate KYC/KYB workloads</span>
-                <span class="ideal-tag"><span class="check">✓</span> Procurement & onboarding teams</span>
-                <span class="ideal-tag"><span class="check">✓</span> Marketplaces & fintechs</span>
+                <span class="ideal-tag"><span class="check">✓</span> Mid‑market & sub‑$1B organizations</span>
+                <span class="ideal-tag"><span class="check">✓</span> High‑growth businesses</span>
+                <span class="ideal-tag"><span class="check">✓</span> Inside sales teams</span>
+                <span class="ideal-tag"><span class="check">✓</span> Customer & partner onboarding</span>
+                <span class="ideal-tag"><span class="check">✓</span> Teams without dedicated compliance staff</span>
                 <span class="ideal-tag"><span class="check">✓</span> Rapid deployment needs</span>
-                <span class="ideal-tag"><span class="check">✓</span> Predictable, transparent pricing</span>
             </div>
         </div>
     </section>
@@ -704,7 +780,7 @@
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Simplify Compliance?</h2>
-            <p>Get started with Moody's for Compliance Entry and see how easy compliance can be.</p>
+            <p>Get started with a Compliance Package and see how easy compliance can be.</p>
             <div class="cta-buttons">
                 <a href="#" class="cta-primary">Request a Demo</a>
                 <a href="#" class="cta-secondary">Talk to Sales</a>
